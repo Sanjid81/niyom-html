@@ -38,6 +38,103 @@ function niyom_option($key)
 }
 
 /**
+ * Format a Carbon Fields rich_text value for output.
+ *
+ * Keeps everything the editor can produce (paragraphs, line breaks, links,
+ * images, lists, shortcodes) and adds srcset + lazy loading to images.
+ *
+ * @param string $html Raw field value.
+ * @return string Safe HTML, or '' when the field holds no real content.
+ */
+function niyom_rich_text($html)
+{
+    if (!niyom_has_content($html)) {
+        return '';
+    }
+
+    $html = wp_kses_post($html);
+    $html = wpautop($html);
+    $html = shortcode_unautop($html);
+    $html = do_shortcode($html);
+
+    return wp_filter_content_tags($html);
+}
+
+/**
+ * True when a field value has visible content (text, an image or an embed).
+ * Treats editor leftovers like "<p>&nbsp;</p>" as empty.
+ *
+ * @param mixed $value Field value.
+ * @return bool
+ */
+function niyom_has_content($value)
+{
+    if (!is_string($value)) {
+        return !empty($value);
+    }
+
+    if (preg_match('/<(img|iframe|video|audio|svg)\b/i', $value)) {
+        return true;
+    }
+
+    $text = html_entity_decode(wp_strip_all_tags($value, true), ENT_QUOTES, 'UTF-8');
+    $text = str_replace("\xC2\xA0", ' ', $text); // non-breaking spaces.
+
+    return trim($text) !== '';
+}
+
+/**
+ * Format a short textarea (titles): Enter makes a new line, simple inline tags are kept.
+ *
+ * @param string $text Raw field value.
+ * @return string
+ */
+function niyom_inline_text($text)
+{
+    if (!niyom_has_content($text)) {
+        return '';
+    }
+
+    $allowed = [
+        'br'     => [],
+        'em'     => [],
+        'i'      => [],
+        'strong' => [],
+        'b'      => [],
+        'span'   => ['class' => true],
+        'a'      => ['href' => true, 'target' => true, 'rel' => true],
+    ];
+
+    return nl2br(wp_kses(trim($text), $allowed), false);
+}
+
+/**
+ * Print an SVG icon from assets/icons. Its fill follows the text colour (currentColor).
+ *
+ * @param string $name  File name without .svg.
+ * @param string $class Extra class for the <svg>.
+ * @return string
+ */
+function niyom_icon($name, $class = '')
+{
+    $file = NIYOM_DIR . '/assets/icons/' . sanitize_file_name($name) . '.svg';
+    if (!file_exists($file)) {
+        return '';
+    }
+
+    $svg = file_get_contents($file);
+    $svg = preg_replace('/\sfill="(?!none)[^"]*"/i', ' fill="currentColor"', $svg);
+    $svg = preg_replace('/\s(style|preserveAspectRatio|overflow)="[^"]*"/i', '', $svg);
+    $svg = preg_replace('/\sid="[^"]*"/i', '', $svg);
+
+    return str_replace(
+        '<svg ',
+        '<svg class="icon ' . esc_attr($class) . '" aria-hidden="true" focusable="false" ',
+        $svg
+    );
+}
+
+/**
  * Add a submenu toggle button after top-level menu items that have children.
  * Link click opens the page; button click opens the submenu (mobile).
  */

@@ -14,4 +14,8 @@ require_once NIYOM_DIR . '/inc/setup.php';         // Theme supports, menus, hel
 require_once NIYOM_DIR . '/inc/enqueue.php';       // Front-end + editor assets.
 require_once NIYOM_DIR . '/inc/carbon-fields.php'; // Carbon Fields boot.
 require_once NIYOM_DIR . '/inc/theme-options.php'; // Theme Options pages.
-require_once NIYOM_DIR . '/inc/blocks.php';        // Gutenberg blocks.
+
+// Gutenberg blocks (Carbon Fields): every file in inc/blocks/ is loaded.
+foreach (glob(NIYOM_DIR . '/inc/blocks/*.php') as $niyom_block_file) {
+    require_once $niyom_block_file;
+}

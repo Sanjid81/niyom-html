@@ -1,0 +1,116 @@
+// =====================================================================
+// Rich text — output of Carbon Fields rich_text (niyom_rich_text()).
+// Colour and font size come from the parent; this handles spacing,
+// line breaks, links, lists, images and WordPress alignment classes.
+// =====================================================================
+
+.rich-text {
+    overflow-wrap: break-word;
+
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    > * + * {
+        margin-top: 1em;
+    }
+
+    p:empty {
+        display: none;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-thickness: 1px;
+        transition: opacity var(--transition);
+
+        &:hover {
+            opacity: 0.75;
+        }
+    }
+
+    strong,
+    b {
+        font-weight: 500;
+    }
+
+    em,
+    i {
+        font-style: italic;
+    }
+
+    ul,
+    ol {
+        padding-left: 1.25em;
+    }
+
+    ul {
+        list-style: disc;
+    }
+
+    ol {
+        list-style: decimal;
+    }
+
+    li + li {
+        margin-top: 0.4em;
+    }
+
+    blockquote {
+        padding-left: 1em;
+        border-left: 2px solid currentColor;
+        font-style: italic;
+    }
+
+    img {
+        display: inline-block;
+        max-width: 100%;
+        height: auto;
+        vertical-align: middle;
+    }
+
+    figure,
+    .wp-caption {
+        max-width: 100%;
+    }
+
+    figcaption,
+    .wp-caption-text {
+        margin-top: 8px;
+        font-size: 14px;
+        opacity: 0.8;
+    }
+
+    .aligncenter {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .alignleft {
+        float: left;
+        margin: 0.3em 1em 0.5em 0;
+    }
+
+    .alignright {
+        float: right;
+        margin: 0.3em 0 0.5em 1em;
+    }
+
+    iframe,
+    video {
+        max-width: 100%;
+    }
+
+    @include breakpoint-max(sm) {
+        .alignleft,
+        .alignright {
+            float: none;
+            margin: 0 0 1em;
+        }
+    }
+}

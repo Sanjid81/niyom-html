@@ -1,0 +1,262 @@
+// =====================================================================
+// Home Banner — Figma "Home — Desktop › Banner" (1920 × 922 below the
+// header) and "Home — Mobile 360 › Hero — static" (360 × 640).
+// Markup: components/Home/banner.php
+// =====================================================================
+
+$banner-ink: rgba(11, 58, 83, 1); // Deep Ink, for gradient stops.
+
+.home-banner {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    min-height: clamp(640px, 48vw, 922px);
+    overflow: hidden;
+    background: var(--color-ink);
+    color: var(--color-white);
+
+    // Top shade under the header (Figma: black 35% → 0).
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        height: 142px;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0) 100%);
+        pointer-events: none;
+    }
+
+    // Legibility gradient (Figma: Deep Ink, left + bottom).
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background:
+            linear-gradient(90deg, rgba($banner-ink, 0.55) 0%, rgba($banner-ink, 0) 45%),
+            linear-gradient(180deg, rgba($banner-ink, 0) 0%, rgba($banner-ink, 0) 42%, rgba($banner-ink, 0.82) 72%, rgba($banner-ink, 0.97) 100%);
+        pointer-events: none;
+    }
+
+    &__media {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 30% center;
+    }
+
+    &__inner {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        width: 100%;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 160px 80px 29px;
+    }
+
+    &__content {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 40px;
+    }
+
+    &__title {
+        flex: 0 1 714px;
+        max-width: 714px;
+        color: var(--color-white);
+    }
+
+    &__aside {
+        display: flex;
+        flex: 0 0 487px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 40px;
+        max-width: 487px;
+    }
+
+    &__text {
+        color: var(--color-white);
+    }
+
+    // Stage labels row.
+    &__stages {
+        display: flex;
+        margin-top: 69px;
+        list-style: none;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    &__stage {
+        flex: 1 1 0;
+        min-width: 0;
+        padding-top: 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        text-align: center;
+
+        &:first-child {
+            text-align: left;
+        }
+
+        &:last-child:not(:first-child) {
+            text-align: right;
+        }
+
+        &.is-active {
+            border-top-color: var(--color-cyan);
+        }
+    }
+
+    &__stage-label {
+        display: block;
+        font-family: var(--font-mono);
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 17px;
+        letter-spacing: 0.78px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.72);
+
+        .is-active & {
+            color: var(--color-cyan);
+        }
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        &__inner {
+            padding-left: var(--container-padding);
+            padding-right: var(--container-padding);
+        }
+
+        &__aside {
+            flex-basis: 420px;
+            max-width: 420px;
+        }
+    }
+
+    // Tablet: title on top, text + button below.
+    @include breakpoint-max(lg) {
+        min-height: 640px;
+
+        &__inner {
+            padding-top: 140px;
+            padding-bottom: 28px;
+        }
+
+        &__content {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 32px;
+        }
+
+        &__title {
+            flex: none;
+            max-width: 600px;
+        }
+
+        &__aside {
+            flex: none;
+            gap: 32px;
+            max-width: 560px;
+        }
+
+        &__stages {
+            margin-top: 48px;
+        }
+
+        &__stage-label {
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+    }
+
+    // Mobile (Figma 360): image on top, solid Deep Ink below, stages become bars.
+    @include breakpoint-max(md) {
+        &::before {
+            display: none;
+        }
+
+        &::after {
+            background: linear-gradient(180deg, rgba($banner-ink, 0) 179px, $banner-ink 320px);
+        }
+
+        &__media {
+            bottom: auto;
+            height: 432px;
+        }
+
+        &__image {
+            object-position: 43% center;
+        }
+
+        &__inner {
+            padding: 220px 16px 28px;
+        }
+
+        &__content,
+        &__aside {
+            gap: 24px;
+        }
+
+        &__title,
+        &__aside {
+            max-width: 100%;
+        }
+
+        &__stages {
+            justify-content: center;
+            gap: 4px;
+            margin-top: 24px;
+        }
+
+        &__stage,
+        &__stage:first-child,
+        &__stage:last-child:not(:first-child) {
+            flex: 0 0 14px;
+            height: 2px;
+            padding: 0;
+            border: 0;
+            background: rgba(255, 255, 255, 0.2);
+
+            &.is-active {
+                background: var(--color-cyan);
+            }
+        }
+
+        // Labels stay for screen readers only.
+        &__stage-label {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+        }
+    }
+
+}
+
+// No image: plain Deep Ink, no gradients needed.
+.home-banner:not(.home-banner--has-image) {
+    &::before,
+    &::after {
+        display: none;
+    }
+}
