@@ -20,7 +20,14 @@ function niyom_asset_version($file)
  * Front-end assets (webpack output in /dist).
  */
 add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_style('niyom-app', NIYOM_URI . '/dist/app.css', [], niyom_asset_version('/dist/app.css'));
+    // Figma fonts: Inter 400/500 (headings, body) + JetBrains Mono 400/500 (buttons, nav, labels).
+    wp_enqueue_style(
+        'niyom-fonts',
+        'https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap',
+        [],
+        null
+    );
+    wp_enqueue_style('niyom-app', NIYOM_URI . '/dist/app.css', ['niyom-fonts'], niyom_asset_version('/dist/app.css'));
     wp_enqueue_script('niyom-app', NIYOM_URI . '/dist/app.js', [], niyom_asset_version('/dist/app.js'), true);
 });
 

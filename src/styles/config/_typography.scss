@@ -1,31 +1,303 @@
+// =====================================================================
+// Typography — from Figma "Niyom - Website Design" (Assets → Typography).
+//
+// Inter = headings + body. JetBrains Mono = buttons, navigation, labels
+// (always uppercase). Headings are Regular (400), never bold.
+//
+// Desktop values come from the Figma desktop frame (1920px), the sm values
+// from the mobile frame (360px). The lg values sit between the two.
+// Figma percentages are converted to px (e.g. -4% of 90px = -3.6px).
+//
+// Use in HTML:   <h2 class="heading-two">…</h2>
+// Use in SCSS:   .card__title { @extend .heading-four; }
+// =====================================================================
+
+// ---------------------------------------------------------------------
+// Display + headings (Inter Regular)
+// ---------------------------------------------------------------------
+
+// D1 — desktop 90 / 100% / -4%  · mobile 48 / 102% / -1%
+.display-one {
+    font-family: var(--font-heading);
+    font-size: 90px;
+    font-weight: 400;
+    line-height: 90px;
+    letter-spacing: -3.6px;
+
+    @include breakpoint-max(lg) {
+        font-size: 64px;
+        line-height: 66px;
+        letter-spacing: -1.5px;
+    }
+
+    @include breakpoint-max(sm) {
+        font-size: 48px;
+        line-height: 49px;
+        letter-spacing: -0.48px;
+    }
+}
+
+// H1 — desktop 64 / 100% / -4%  · mobile 40 / 105% / -1% (mobile assumed)
+.heading-one {
+    font-family: var(--font-heading);
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 64px;
+    letter-spacing: -2.56px;
+
+    @include breakpoint-max(lg) {
+        font-size: 48px;
+        line-height: 50px;
+        letter-spacing: -1px;
+    }
+
+    @include breakpoint-max(sm) {
+        font-size: 40px;
+        line-height: 42px;
+        letter-spacing: -0.4px;
+    }
+}
+
+// H2 — desktop 56 / 100% / -2%  · mobile 34 / 115% / -1%
+.heading-two {
+    font-family: var(--font-heading);
+    font-size: 56px;
+    font-weight: 400;
+    line-height: 56px;
+    letter-spacing: -1.12px;
+
+    @include breakpoint-max(lg) {
+        font-size: 42px;
+        line-height: 46px;
+        letter-spacing: -0.6px;
+    }
+
+    @include breakpoint-max(sm) {
+        font-size: 34px;
+        line-height: 39px;
+        letter-spacing: -0.34px;
+    }
+}
+
+// H3 — desktop 42 / 120% / -2%  · mobile 28 / 120% / -0.5% (mobile assumed)
+.heading-three {
+    font-family: var(--font-heading);
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 50px;
+    letter-spacing: -0.84px;
+
+    @include breakpoint-max(lg) {
+        font-size: 34px;
+        line-height: 41px;
+        letter-spacing: -0.5px;
+    }
+
+    @include breakpoint-max(sm) {
+        font-size: 28px;
+        line-height: 34px;
+        letter-spacing: -0.14px;
+    }
+}
+
+// H4 — desktop 32 / 120% / -2%  · mobile 24 / 125% / -0.5%
+.heading-four {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 38px;
+    letter-spacing: -0.64px;
+
+    @include breakpoint-max(lg) {
+        font-size: 28px;
+        line-height: 34px;
+        letter-spacing: -0.3px;
+    }
+
+    @include breakpoint-max(sm) {
+        font-size: 24px;
+        line-height: 30px;
+        letter-spacing: -0.12px;
+    }
+}
+
+// H5 — desktop 28 / 120% / -2%  · mobile 22 / 125% / -0.5% (mobile assumed)
+.heading-five {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 34px;
+    letter-spacing: -0.56px;
+
+    @include breakpoint-max(lg) {
+        font-size: 24px;
+        line-height: 30px;
+        letter-spacing: -0.24px;
+    }
+
+    @include breakpoint-max(sm) {
+        font-size: 22px;
+        line-height: 28px;
+        letter-spacing: -0.11px;
+    }
+}
+
+// Lead Text — desktop Inter Regular 24 / 120% / -2%  · mobile Inter Medium 20 / 120% / 0
+.lead-text {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: -0.48px;
+
+    @include breakpoint-max(lg) {
+        font-size: 22px;
+        line-height: 27px;
+        letter-spacing: -0.2px;
+    }
+
+    @include breakpoint-max(sm) {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 24px;
+        letter-spacing: 0;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Body (Inter)
+// ---------------------------------------------------------------------
+
+// Body L — desktop 18 / 140%  · mobile 16 / 140%
+.body-large {
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 0;
+
+    @include breakpoint-max(sm) {
+        font-size: 16px;
+        line-height: 22px;
+    }
+}
+
+// Body M — 16 / 140% (desktop and mobile)
+.body-medium {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0;
+}
+
+// Body S — desktop Inter Medium 14 / 160%  · mobile Inter Regular 14 / 140%
+.body-small {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: 0;
+
+    @include breakpoint-max(sm) {
+        font-weight: 400;
+        line-height: 20px;
+    }
+}
+
+// ---------------------------------------------------------------------
+// Actions, navigation, labels
+// ---------------------------------------------------------------------
+
+// Button — JetBrains Mono Regular, desktop 16 / 24px  · mobile 14 / 24px, uppercase
+.button-text {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0;
+    text-transform: uppercase;
+
+    @include breakpoint-max(sm) {
+        font-size: 14px;
+    }
+}
+
+// Link — Inter Regular 16 / 140%, underlined
+.link-text {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+// Navigation — JetBrains Mono Regular 14 / 22px, uppercase
+.nav-text {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+// Label L — JetBrains Mono Medium 14 / 100%, uppercase (Figma variable "Labels/L")
+.label-large {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 14px;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+// Label S — JetBrains Mono Regular 12 / 120% / 1%, uppercase (Figma variable "Labels/S")
+// Used for section eyebrows like "( ABOUT NIYOM )" and card meta.
+.label-small {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0.12px;
+    text-transform: uppercase;
+}
+
+// =====================================================================
+// Base element styles
+// =====================================================================
+
+body {
+    @extend .body-medium;
+    color: var(--color-text);
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    line-height: 1.2;
-    color: inherit;
+    color: var(--color-heading);
 }
 
-h1 {
-    font-size: clamp(36px, 5vw, 64px);
-}
-
-h2 {
-    font-size: clamp(28px, 3.5vw, 44px);
-}
-
-h3 {
-    font-size: clamp(22px, 2.5vw, 30px);
-}
-
-h4 {
-    font-size: 20px;
-}
+h1 { @extend .heading-one; }
+h2 { @extend .heading-two; }
+h3 { @extend .heading-three; }
+h4 { @extend .heading-four; }
+h5 { @extend .heading-five; }
+h6 { @extend .lead-text; }
 
 p + p {
     margin-top: 1em;
+}
+
+// Section eyebrow: renders "( LABEL )" from plain text.
+.eyebrow {
+    @extend .label-small;
+    color: var(--color-muted);
+
+    &::before { content: "( "; }
+    &::after { content: " )"; }
 }

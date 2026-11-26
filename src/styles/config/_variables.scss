@@ -1,18 +1,68 @@
-// Brand tokens. Change these first for a new design.
+// =====================================================================
+// Design tokens — from Figma "Niyom - Website Design" (Assets → Colors).
+// Change brand values here only. See DESIGN.md for where each is used.
+// =====================================================================
+
 :root {
-    --color-primary: #1d4ed8;
-    --color-primary-dark: #1e3a8a;
-    --color-text: #1f2937;
-    --color-muted: #6b7280;
-    --color-white: #ffffff;
-    --color-light: #f5f5f5;
-    --color-dark: #111827;
-    --color-border: rgba(0, 0, 0, 0.08);
+    // ---------- Brand colors (Figma names in comments) ----------
+    --color-teal: #087A80;                 // Research Teal — primary
+    --color-cyan: #36C4CC;                 // Signal Cyan — accent
+    --color-ink: #0B3A53;                  // Dark / Deep Ink — headings, dark sections
+    --color-ink-80: rgba(11, 58, 83, 0.8); // Dark / Body text (#0B3A53CC)
+    --color-ink-60: rgba(11, 58, 83, 0.6); // Dark / 60 (#0B3A5399)
+    --color-border: rgba(11, 58, 83, 0.1); // border (#0B3A531A)
+    --color-mist: #EAF5F5;                 // Mist — light teal panels, tags
+    --color-subtle-bg: #FCFBF7;            // subtle bg — warm off-white, footer
+    --color-surface: #F6F6F6;              // Surface
+    --color-surface-2: #FAFAFA;            // surface 2
+    --color-white: #FFFFFF;                // White / 100
+    --color-white-80: rgba(255, 255, 255, 0.8); // White / 80
+    --color-white-60: rgba(255, 255, 255, 0.6); // White / 60
+    --color-error: #C2410C;                // Form field error
 
-    --font-body: "Inter", system-ui, sans-serif;
-    --font-heading: "Inter", system-ui, sans-serif;
+    // ---------- Semantic aliases (use these in components) ----------
+    --color-primary: var(--color-teal);
+    --color-primary-dark: var(--color-ink); // primary button hover
+    --color-heading: var(--color-ink);
+    --color-text: var(--color-ink-80);
+    --color-muted: var(--color-ink-60);
+    --color-dark: var(--color-ink);
+    --color-light: var(--color-subtle-bg);
 
-    --header-height: 80px;
-    --radius: 8px;
+    // ---------- Fonts (loaded in inc/enqueue.php) ----------
+    --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --font-body: var(--font-sans);
+    --font-heading: var(--font-sans);
+
+    // ---------- Layout ----------
+    --container-max: 1920px;
+    --container-padding: 120px; // Figma desktop side padding
+    --header-height: 88px;      // Figma Header / Desktop
+
+    // ---------- Shape & motion ----------
+    --radius: 0;                // Design uses square corners
+    --radius-pill: 100px;       // Tags / pills only
     --transition: 0.2s ease;
+    --focus-ring: 0 0 0 2px var(--color-cyan);
+}
+
+// Responsive token overrides
+@include breakpoint-max(xxl) {
+    :root {
+        --container-padding: 64px;
+    }
+}
+
+@include breakpoint-max(lg) {
+    :root {
+        --container-padding: 32px;
+    }
+}
+
+@include breakpoint-max(md) {
+    :root {
+        --container-padding: 20px; // Figma mobile 360: 20px sides
+        --header-height: 64px;     // Figma mobile navigation bar
+    }
 }

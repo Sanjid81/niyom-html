@@ -1,10 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+// Fonts (Inter + JetBrains Mono) are loaded in inc/enqueue.php.
 
-// config
-@import "./config/variables";
+// config — order matters: breakpoints → variables → typography → globals
 @import "./config/breakpoints";
-@import "./config/globals";
+@import "./config/variables";
 @import "./config/typography";
+@import "./config/globals";
 
 // layout
 @import "./layout/header";

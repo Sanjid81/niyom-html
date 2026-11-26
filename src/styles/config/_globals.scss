@@ -10,12 +10,10 @@ html {
     scroll-behavior: smooth;
 }
 
+// Font, size and color for body are set in _typography.scss.
 body {
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--color-text);
     background: var(--color-white);
+    -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
     -webkit-tap-highlight-color: transparent;
 }
@@ -41,22 +39,13 @@ button {
     cursor: pointer;
 }
 
+// Figma: 1920 canvas, 120px sides (padding steps down in _variables.scss).
 .container {
     width: 100%;
-    max-width: 1320px;
+    max-width: var(--container-max);
     margin: 0 auto;
-    padding-left: 40px;
-    padding-right: 40px;
-
-    @include breakpoint-max(lg) {
-        padding-left: 24px;
-        padding-right: 24px;
-    }
-
-    @include breakpoint-max(sm) {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
 }
 
 .skip-link {
