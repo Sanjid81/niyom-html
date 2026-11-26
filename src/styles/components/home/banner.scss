@@ -1,43 +1,57 @@
 // =====================================================================
-// Home Banner — Figma "Home — Desktop › Banner" (1920 × 922 below the
-// header) and "Home — Mobile 360 › Hero — static" (360 × 640).
-// Markup: components/Home/banner.php
+// Home Banner slider — Figma "Home — Desktop › Banner" (1920 × 922 below
+// the header) and "Home — Mobile 360 › Hero — static" (360 × 640).
+// Markup: components/Home/banner.php · JS: src/scripts/components/home-banner.js
 // =====================================================================
 
 $banner-ink: rgba(11, 58, 83, 1); // Deep Ink, for gradient stops.
+$banner-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
 .home-banner {
     position: relative;
     isolation: isolate;
-    display: flex;
-    min-height: clamp(640px, 48vw, 922px);
     overflow: hidden;
     background: var(--color-ink);
     color: var(--color-white);
 
-    // Top shade under the header (Figma: black 35% → 0).
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1;
-        height: 142px;
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0) 100%);
-        pointer-events: none;
+    // ---------- Slider ----------
+
+    &__slider {
+        height: 100%;
     }
 
-    // Legibility gradient (Figma: Deep Ink, left + bottom).
-    &::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: 1;
-        background:
-            linear-gradient(90deg, rgba($banner-ink, 0.55) 0%, rgba($banner-ink, 0) 45%),
-            linear-gradient(180deg, rgba($banner-ink, 0) 0%, rgba($banner-ink, 0) 42%, rgba($banner-ink, 0.82) 72%, rgba($banner-ink, 0.97) 100%);
-        pointer-events: none;
+    &__slide {
+        position: relative;
+        display: flex;
+        min-height: clamp(640px, 48vw, 922px);
+        height: auto;
+        overflow: hidden;
+        background: var(--color-ink);
+
+        // Top shade under the header (Figma: black 35% → 0).
+        &.has-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+            height: 142px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0) 100%);
+            pointer-events: none;
+        }
+
+        // Legibility gradient (Figma: Deep Ink, left + bottom).
+        &.has-image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background:
+                linear-gradient(90deg, rgba($banner-ink, 0.55) 0%, rgba($banner-ink, 0) 45%),
+                linear-gradient(180deg, rgba($banner-ink, 0) 0%, rgba($banner-ink, 0) 42%, rgba($banner-ink, 0.82) 72%, rgba($banner-ink, 0.97) 100%);
+            pointer-events: none;
+        }
     }
 
     &__media {
@@ -51,7 +65,11 @@ $banner-ink: rgba(11, 58, 83, 1); // Deep Ink, for gradient stops.
         height: 100%;
         object-fit: cover;
         object-position: 30% center;
+        transform: scale(1.06);
+        transition: transform 8s $banner-ease;
     }
+
+    // ---------- Content ----------
 
     &__inner {
         position: relative;
@@ -65,11 +83,18 @@ $banner-ink: rgba(11, 58, 83, 1); // Deep Ink, for gradient stops.
         padding: 160px 80px 29px;
     }
 
+    &--has-tabs &__inner {
+        padding-bottom: 140px; // 29 bottom + 42 tabs + 69 gap (Figma).
+    }
+
     &__content {
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
         gap: 40px;
+        opacity: 0;
+        transform: translateY(32px);
+        transition: opacity 0.9s $banner-ease 0.35s, transform 1.1s $banner-ease 0.35s;
     }
 
     &__title {
@@ -91,56 +116,141 @@ $banner-ink: rgba(11, 58, 83, 1); // Deep Ink, for gradient stops.
         color: var(--color-white);
     }
 
-    // Stage labels row.
-    &__stages {
-        display: flex;
-        margin-top: 69px;
-        list-style: none;
+    // Active slide: content rises in, image settles.
+    // .is-active = first slide before JS; .swiper-slide-active = after.
+    &__slide.is-active,
+    &.is-ready &__slide.swiper-slide-active {
+        .home-banner__content {
+            opacity: 1;
+            transform: none;
+        }
 
-        &:first-child {
-            margin-top: 0;
+        .home-banner__image {
+            transform: scale(1);
         }
     }
 
-    &__stage {
-        flex: 1 1 0;
-        min-width: 0;
-        padding-top: 24px;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
-        text-align: center;
+    &.is-ready &__slide.is-active:not(.swiper-slide-active) {
+        .home-banner__content {
+            opacity: 0;
+            transform: translateY(32px);
+        }
 
-        &:first-child {
+        .home-banner__image {
+            transform: scale(1.06);
+        }
+    }
+
+    // ---------- Tabs (stage labels) ----------
+
+    &__tabs-wrap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 3;
+        width: 100%;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 80px 29px;
+        pointer-events: none;
+    }
+
+    // Shows 3 tabs at a time (--tabs-visible); the row slides to keep the
+    // active tab in view (--tab-start is set by JS).
+    &__tabs-viewport {
+        clip-path: inset(-12px 0 -12px 0); // clip sideways only, keep the top line + focus ring.
+        pointer-events: auto;
+    }
+
+    &__tabs {
+        --tab-start: 0;
+        display: flex;
+        transform: translateX(calc(var(--tab-start) * -100% / var(--tabs-visible, 3)));
+        transition: transform 0.8s $banner-ease;
+    }
+
+    &__tab {
+        --progress: 0;
+        position: relative;
+        flex: 0 0 calc(100% / var(--tabs-visible, 3));
+        min-width: 0;
+        padding: 24px 0 0;
+        border: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        background: none;
+        color: rgba(255, 255, 255, 0.72);
+        text-align: center;
+        cursor: pointer;
+        transition: color var(--transition);
+
+        // Position inside the visible window (Figma: left · center · right).
+        &.is-pos-first {
             text-align: left;
         }
 
-        &:last-child:not(:first-child) {
+        &.is-pos-last {
             text-align: right;
         }
 
+        &:hover,
         &.is-active {
-            border-top-color: var(--color-cyan);
+            color: var(--color-cyan);
+        }
+
+        &:hover:not(.is-active) {
+            color: var(--color-white);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-cyan);
+            outline-offset: 4px;
+        }
+
+        // Before JS runs, the first tab is fully lit (matches Figma).
+        &.is-active {
+            --progress: 1;
         }
     }
 
-    &__stage-label {
+    &.is-ready &__tab.is-active {
+        --progress: 0;
+    }
+
+    // Cyan line that fills while the slide plays.
+    &__tab-progress {
+        position: absolute;
+        top: -1px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: var(--color-cyan);
+        transform: scaleX(var(--progress));
+        transform-origin: left center;
+    }
+
+    &__tab-label {
         display: block;
+        overflow: hidden;
         font-family: var(--font-mono);
         font-size: 13px;
         font-weight: 500;
         line-height: 17px;
         letter-spacing: 0.78px;
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.72);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 
-        .is-active & {
-            color: var(--color-cyan);
-        }
+    &__tab.is-unlabelled &__tab-label {
+        visibility: hidden;
     }
 
     // ---------- Responsive ----------
 
     @include breakpoint-max(xxl) {
-        &__inner {
+        &__inner,
+        &__tabs-wrap {
             padding-left: var(--container-padding);
             padding-right: var(--container-padding);
         }
@@ -151,12 +261,22 @@ $banner-ink: rgba(11, 58, 83, 1); // Deep Ink, for gradient stops.
         }
     }
 
-    // Tablet: title on top, text + button below.
-    @include breakpoint-max(lg) {
-        min-height: 640px;
+    // Tablet / small laptop: title on top, text + button below.
+    @include breakpoint-max(xl) {
+        &__slide {
+            min-height: 640px;
+        }
 
         &__inner {
             padding-top: 140px;
+            padding-bottom: 28px;
+        }
+
+        &--has-tabs &__inner {
+            padding-bottom: 118px; // 28 bottom + 42 tabs + 48 gap.
+        }
+
+        &__tabs-wrap {
             padding-bottom: 28px;
         }
 
@@ -177,23 +297,32 @@ $banner-ink: rgba(11, 58, 83, 1); // Deep Ink, for gradient stops.
             max-width: 560px;
         }
 
-        &__stages {
-            margin-top: 48px;
+        &__tab {
+            padding-left: 6px;
+            padding-right: 6px;
+
+            &.is-pos-first {
+                padding-left: 0;
+            }
+
+            &.is-pos-last {
+                padding-right: 0;
+            }
         }
 
-        &__stage-label {
+        &__tab-label {
             font-size: 12px;
             letter-spacing: 0.5px;
         }
     }
 
-    // Mobile (Figma 360): image on top, solid Deep Ink below, stages become bars.
+    // Mobile (Figma 360): image on top, solid Deep Ink below, tabs become bars.
     @include breakpoint-max(md) {
-        &::before {
+        &__slide.has-image::before {
             display: none;
         }
 
-        &::after {
+        &__slide.has-image::after {
             background: linear-gradient(180deg, rgba($banner-ink, 0) 179px, $banner-ink 320px);
         }
 
@@ -210,6 +339,10 @@ $banner-ink: rgba(11, 58, 83, 1); // Deep Ink, for gradient stops.
             padding: 220px 16px 28px;
         }
 
+        &--has-tabs &__inner {
+            padding-bottom: 54px; // 24 gap + 2 bar + 28 bottom (Figma).
+        }
+
         &__content,
         &__aside {
             gap: 24px;
@@ -220,43 +353,63 @@ $banner-ink: rgba(11, 58, 83, 1); // Deep Ink, for gradient stops.
             max-width: 100%;
         }
 
-        &__stages {
-            justify-content: center;
-            gap: 4px;
-            margin-top: 24px;
+        &__tabs-wrap {
+            padding: 0 16px 16px;
         }
 
-        &__stage,
-        &__stage:first-child,
-        &__stage:last-child:not(:first-child) {
+        // Mobile shows every slide as a bar, so no sliding window.
+        &__tabs-viewport {
+            clip-path: none;
+        }
+
+        &__tabs {
+            justify-content: center;
+            gap: 4px;
+            transform: none;
+        }
+
+        // 14 × 2 bar inside a 26px-tall tap area.
+        &__tab,
+        &__tab.is-pos-first,
+        &__tab.is-pos-last {
             flex: 0 0 14px;
-            height: 2px;
+            height: 26px;
             padding: 0;
             border: 0;
-            background: rgba(255, 255, 255, 0.2);
 
-            &.is-active {
-                background: var(--color-cyan);
+            &::before {
+                content: "";
+                position: absolute;
+                top: 12px;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: rgba(255, 255, 255, 0.2);
             }
         }
 
+        &__tab-progress {
+            top: 12px;
+            height: 2px;
+        }
+
         // Labels stay for screen readers only.
-        &__stage-label {
+        &__tab-label {
             position: absolute;
             width: 1px;
             height: 1px;
             overflow: hidden;
             clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
         }
     }
 
-}
+    // ---------- Reduced motion ----------
 
-// No image: plain Deep Ink, no gradients needed.
-.home-banner:not(.home-banner--has-image) {
-    &::before,
-    &::after {
-        display: none;
+    @media (prefers-reduced-motion: reduce) {
+        &__image,
+        &__content,
+        &__tabs {
+            transition: none;
+        }
     }
 }

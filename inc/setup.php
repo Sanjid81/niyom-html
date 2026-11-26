@@ -19,9 +19,13 @@ function niyom_setup()
     add_theme_support('responsive-embeds');
     add_theme_support('html5', ['search-form', 'gallery', 'caption', 'style', 'script']);
 
+    // Header + footer menus (Appearance › Menus). Other header/footer content: Theme Options.
     register_nav_menus([
-        'main_menu'   => __('Main Menu', 'niyom'),
-        'footer_menu' => __('Footer Menu', 'niyom'),
+        'main_menu'     => __('Header Menu (desktop)', 'niyom'),
+        'mobile_menu'   => __('Header Menu (mobile, falls back to desktop)', 'niyom'),
+        'footer_menu_1' => __('Footer Column 1 (Services)', 'niyom'),
+        'footer_menu_2' => __('Footer Column 2 (Quick Links)', 'niyom'),
+        'footer_menu_3' => __('Footer Column 3 (Legal)', 'niyom'),
     ]);
 }
 add_action('after_setup_theme', 'niyom_setup');
@@ -109,23 +113,35 @@ function niyom_inline_text($text)
 }
 
 /**
- * Print an SVG icon from assets/icons. Its fill follows the text colour (currentColor).
+ * Print an SVG icon from assets/icons (subfolders allowed, e.g. "social/x").
  *
- * @param string $name  File name without .svg.
- * @param string $class Extra class for the <svg>.
+ * @param string $name    File name without .svg.
+ * @param string $class   Extra class for the <svg>.
+ * @param bool   $recolor true: fill/stroke follow the text colour (currentColor).
+ *                        false: keep the colours from the file.
  * @return string
  */
-function niyom_icon($name, $class = '')
+function niyom_icon($name, $class = '', $recolor = true)
 {
-    $file = NIYOM_DIR . '/assets/icons/' . sanitize_file_name($name) . '.svg';
+    $name = implode('/', array_map('sanitize_file_name', explode('/', $name)));
+    $file = NIYOM_DIR . '/assets/icons/' . $name . '.svg';
     if (!file_exists($file)) {
         return '';
     }
 
     $svg = file_get_contents($file);
-    $svg = preg_replace('/\sfill="(?!none)[^"]*"/i', ' fill="currentColor"', $svg);
+
+    if ($recolor) {
+        $svg = preg_replace('/\s(fill|stroke)="(?!none)[^"]*"/i', ' $1="currentColor"', $svg);
+        $svg = preg_replace('/\s(fill|stroke)-opacity="[^"]*"/i', '', $svg);
+    }
+
     $svg = preg_replace('/\s(style|preserveAspectRatio|overflow)="[^"]*"/i', '', $svg);
-    $svg = preg_replace('/\sid="[^"]*"/i', '', $svg);
+
+    // Drop layer ids (avoids duplicate ids) unless the SVG references one, e.g. clip-path="url(#…)".
+    if (strpos($svg, 'url(#') === false) {
+        $svg = preg_replace('/\sid="[^"]*"/i', '', $svg);
+    }
 
     return str_replace(
         '<svg ',
@@ -133,16 +149,3 @@ function niyom_icon($name, $class = '')
         $svg
     );
 }
-
-/**
- * Add a submenu toggle button after top-level menu items that have children.
- * Link click opens the page; button click opens the submenu (mobile).
- */
-add_filter('walker_nav_menu_start_el', function ($item_output, $item, $depth, $args) {
-    if ($depth === 0 && in_array('menu-item-has-children', (array) $item->classes, true)) {
-        $item_output .= '<button type="button" class="nav-submenu-toggle" aria-expanded="false" aria-label="' . esc_attr__('Toggle submenu', 'niyom') . '">'
-            . '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 6L8 11L3 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-            . '</button>';
-    }
-    return $item_output;
-}, 10, 4);

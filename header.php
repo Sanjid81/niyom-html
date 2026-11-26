@@ -1,15 +1,20 @@
 <?php
 /**
- * Site header.
+ * Site header (Figma: Navigation — desktop 1920 / mobile 360, Mobile expanded menu).
+ * Content: Theme Options › Brand + Header; links: Appearance › Menus.
  *
  * @package niyom
  */
 
 defined('ABSPATH') || exit;
 
-$logo_id     = niyom_option('site_logo');
-$button_text = niyom_option('header_button_text');
-$button_link = niyom_option('header_button_link');
+$btn_text    = trim((string) niyom_option('niyom_header_btn_text'));
+$btn_link    = trim((string) niyom_option('niyom_header_btn_link'));
+$btn_new_tab = (bool) niyom_option('niyom_header_btn_new_tab');
+$has_button  = $btn_text !== '' && $btn_link !== '';
+
+// Mobile uses its own menu if assigned, otherwise the main menu.
+$mobile_location = has_nav_menu('mobile_menu') || !has_nav_menu('main_menu') ? 'mobile_menu' : 'main_menu';
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -25,41 +30,65 @@ $button_link = niyom_option('header_button_link');
 
     <a class="skip-link" href="#main"><?php esc_html_e('Skip to content', 'niyom'); ?></a>
 
-    <header class="site-header">
-        <div class="container site-header__inner">
+    <header class="site-header" data-site-header>
+        <div class="site-header__inner">
 
-            <a class="site-header__logo" href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-                <?php if ($logo_id) : ?>
-                    <?php echo wp_get_attachment_image($logo_id, 'medium', false, ['alt' => get_bloginfo('name')]); ?>
-                <?php else : ?>
-                    <span class="site-header__name"><?php bloginfo('name'); ?></span>
-                <?php endif; ?>
-            </a>
+            <?php echo niyom_logo('header'); ?>
 
-            <nav class="site-header__nav" id="site-nav" aria-label="<?php esc_attr_e('Main menu', 'niyom'); ?>">
+            <nav class="site-header__nav" aria-label="<?php esc_attr_e('Main menu', 'niyom'); ?>">
                 <?php
                 wp_nav_menu([
                     'theme_location' => 'main_menu',
                     'container'      => false,
                     'menu_class'     => 'site-header__menu',
-                    'fallback_cb'    => false,
+                    'depth'          => 2,
+                    'fallback_cb'    => 'niyom_menu_fallback',
                 ]);
                 ?>
-
-                <?php if ($button_text && $button_link) : ?>
-                    <a class="btn btn--primary" href="<?php echo esc_url($button_link); ?>">
-                        <?php echo esc_html($button_text); ?>
-                    </a>
-                <?php endif; ?>
             </nav>
 
-            <button class="site-header__toggle" type="button" aria-controls="site-nav" aria-expanded="false"
-                aria-label="<?php esc_attr_e('Toggle menu', 'niyom'); ?>">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <div class="site-header__actions">
+                <?php if ($has_button) : ?>
+                    <a class="btn btn--primary btn--m site-header__button" <?php echo niyom_link_attrs($btn_link, $btn_new_tab); ?>>
+                        <span><?php echo esc_html($btn_text); ?></span>
+                        <?php echo niyom_icon('arrow-right', 'btn__arrow btn__arrow--lg'); ?>
+                    </a>
+                <?php endif; ?>
 
+                <button class="site-header__toggle" type="button"
+                    aria-controls="site-mobile-nav"
+                    aria-expanded="false"
+                    aria-label="<?php esc_attr_e('Open menu', 'niyom'); ?>"
+                    data-label-open="<?php esc_attr_e('Open menu', 'niyom'); ?>"
+                    data-label-close="<?php esc_attr_e('Close menu', 'niyom'); ?>">
+                    <?php echo niyom_icon('menu', 'site-header__toggle-open', false); ?>
+                    <?php echo niyom_icon('close', 'site-header__toggle-close', false); ?>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile expanded menu -->
+        <div class="site-header__panel" id="site-mobile-nav">
+            <nav class="site-header__panel-nav" aria-label="<?php esc_attr_e('Mobile menu', 'niyom'); ?>">
+                <?php
+                wp_nav_menu([
+                    'theme_location' => $mobile_location,
+                    'container'      => false,
+                    'menu_class'     => 'site-header__mobile-menu',
+                    'depth'          => 2,
+                    'fallback_cb'    => 'niyom_menu_fallback',
+                ]);
+                ?>
+            </nav>
+
+            <?php if ($has_button) : ?>
+                <div class="site-header__panel-cta">
+                    <a class="btn btn--primary site-header__panel-button" <?php echo niyom_link_attrs($btn_link, $btn_new_tab); ?>>
+                        <span><?php echo esc_html($btn_text); ?></span>
+                        <?php echo niyom_icon('arrow-right-sm', 'btn__arrow'); ?>
+                    </a>
+                </div>
+            <?php endif; ?>
         </div>
     </header>
 

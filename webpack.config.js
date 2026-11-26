@@ -33,10 +33,15 @@ module.exports = {
           {
             loader: "sass-loader",
             options: {
-              sassOptions: { quietDeps: true, silenceDeprecations: ["import", "global-builtin"] },
+              sassOptions: { quietDeps: true, silenceDeprecations: ["import", "global-builtin", "legacy-js-api"] },
             },
           },
         ],
+      },
+      {
+        // Plain CSS from packages (e.g. swiper/css).
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.(png|jpe?g|gif|svg|webp)$/i,

@@ -1,0 +1,465 @@
+// =====================================================================
+// Home › What We Do — Figma "Home — Desktop › Content" (206:2914) and
+// "Home — Mobile 360 › Three Disciplines" (276:1813, Accordion).
+// Markup: components/Home/what-we-do.php · JS: src/scripts/components/home-what-we-do.js
+//
+// Desktop/tablet: sticky stacking cards. Every card sticks just under the
+// sticky site header (--wwd-top); later cards come later in the DOM, so
+// each one slides up over the one before. The list ends after the last
+// card, so the whole stack then scrolls away and the page continues.
+// JS only adds polish (covered cards shrink/dim slightly, via --wwd-cover)
+// and turns stacking off if a card is taller than the viewport.
+//
+// Mobile (≤ 768px): image on top, label + title, text + link fold open.
+// =====================================================================
+
+$wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+.home-what-we-do {
+    // Where cards stick: under the sticky header (+ WP admin bar).
+    --wwd-top: var(--header-height);
+    --wwd-bg: var(--color-subtle-bg);
+
+    position: relative;
+    background: var(--wwd-bg);
+
+    .admin-bar & {
+        --wwd-top: calc(var(--header-height) + 32px);
+
+        @media (max-width: 782px) {
+            --wwd-top: calc(var(--header-height) + 46px);
+        }
+    }
+
+    &__inner {
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    // ---------- Header: heading left, intro right ----------
+
+    &__header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 60px;
+        margin-bottom: 80px;
+    }
+
+    &__heading {
+        display: flex;
+        flex: 0 1 677px; // Figma heading width; shrinks less than the intro.
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        min-width: 0;
+    }
+
+    // Labels/L — JetBrains Mono Medium 14 / 100%, Dark 60.
+    &__eyebrow {
+        font-family: var(--font-mono);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        text-transform: uppercase;
+        color: var(--color-ink-60);
+
+        &::before { content: "( "; }
+        &::after { content: " )"; }
+    }
+
+    &__title {
+        max-width: 677px;
+        margin: 0;
+        color: var(--color-ink);
+    }
+
+    &__intro {
+        flex: 0 3 607px;
+        max-width: 607px;
+        color: var(--color-ink-80);
+
+        &--mobile {
+            display: none;
+        }
+    }
+
+    // ---------- Cards ----------
+
+    &__list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__item {
+        --wwd-cover: 0; // 0 → 1 while the next card covers this one (JS).
+
+        position: sticky;
+        top: var(--wwd-top);
+        z-index: calc(var(--wwd-index, 0) + 1);
+        padding: 30px 0;
+        border-top: 1px solid var(--color-ink);
+        border-bottom: 1px solid var(--color-ink);
+        background: var(--wwd-bg);
+
+        // Rows share one divider line in the static layout (Figma).
+        & + & {
+            margin-top: -1px;
+        }
+    }
+
+    &__card {
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        transform: scale(calc(1 - var(--wwd-cover) * 0.04));
+        transform-origin: 50% 0;
+        opacity: calc(1 - var(--wwd-cover) * 0.5);
+        will-change: transform, opacity;
+    }
+
+    // Text column: label + title + text at the top, link at the bottom.
+    &__content {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        min-width: 0;
+        padding: 80px 40px 80px 0;
+    }
+
+    &__head {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    // Labels/L — "01 COMPUTATIONAL BIOSCIENCES" in Research Teal.
+    &__label {
+        margin: 0;
+        font-family: var(--font-mono);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        text-transform: uppercase;
+        color: var(--color-primary);
+    }
+
+    // H4 — Inter 32 / 120% / -2%.
+    &__item-title {
+        max-width: 463px;
+        margin: 0;
+        font-family: var(--font-heading);
+        font-size: 32px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.64px;
+        color: var(--color-ink);
+    }
+
+    &__body {
+        display: grid;
+        flex: 1 1 auto;
+        grid-template-rows: 1fr;
+    }
+
+    &__body-inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 32px;
+        min-height: 0;
+    }
+
+    &__text {
+        max-width: 463px;
+        margin-top: 20px;
+        color: var(--color-ink-80);
+    }
+
+    &__link {
+        align-self: flex-start;
+    }
+
+    &__media {
+        position: relative;
+        flex: 0 0 53.155%; // 893 / 1680
+        aspect-ratio: 893 / 524;
+        overflow: hidden;
+        background: var(--color-mist);
+    }
+
+    &__image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    // Stacking off (JS: a card is taller than the viewport) → plain rows.
+    &.is-unstacked &__item {
+        position: relative;
+        top: auto;
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        &__content {
+            padding-top: 56px;
+            padding-bottom: 56px;
+        }
+
+        &__intro {
+            flex-basis: 480px;
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        &__inner {
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        // Heading on top, intro below.
+        &__header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 24px;
+            margin-bottom: 64px;
+        }
+
+        &__heading {
+            flex: none;
+            max-width: 100%;
+        }
+
+        &__intro {
+            flex: none;
+            max-width: 607px;
+        }
+
+        &__content {
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        &__item-title {
+            font-size: 28px;
+            letter-spacing: -0.56px;
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        &__inner {
+            padding-top: 96px;
+            padding-bottom: 96px;
+        }
+
+        &__header {
+            margin-bottom: 56px;
+        }
+
+        &__heading {
+            gap: 24px;
+        }
+
+        &__item {
+            padding: 24px 0;
+        }
+
+        &__content {
+            padding: 16px 32px 8px 0;
+        }
+
+        &__head {
+            gap: 16px;
+        }
+
+        &__item-title {
+            font-size: 24px;
+            letter-spacing: -0.3px;
+        }
+
+        &__text {
+            margin-top: 16px;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        &__media {
+            flex-basis: 50%;
+        }
+    }
+
+    // ---------- Mobile (Figma 360): accordion ----------
+
+    @include breakpoint-max(md) {
+        --wwd-bg: #F7F6F1; // Figma mobile "Three Disciplines" background.
+
+        &__inner {
+            padding: 56px 16px;
+        }
+
+        &__header {
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        &__heading {
+            gap: 20px;
+        }
+
+        &__eyebrow {
+            font-size: 12px;
+            line-height: normal;
+            letter-spacing: 0.48px;
+        }
+
+        // Mobile/H2 — 34 / 115% / -1%; one flowing line, no forced breaks.
+        &__title {
+            max-width: none;
+            font-size: 34px;
+            line-height: 1.15;
+            letter-spacing: -0.34px;
+
+            br {
+                display: none;
+            }
+        }
+
+        &__intro {
+            max-width: none;
+            font-size: 16px;
+            line-height: 1.4;
+
+            &--desktop {
+                display: none;
+            }
+
+            &--mobile {
+                display: block;
+            }
+        }
+
+        &__list {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        &__item,
+        &.is-unstacked &__item {
+            position: static;
+            padding: 0;
+            border: 0;
+            background: none;
+
+            & + & {
+                margin-top: 0;
+            }
+        }
+
+        &__card {
+            flex-direction: column;
+            gap: 16px;
+            transform: none;
+            opacity: 1;
+            will-change: auto;
+        }
+
+        &__media {
+            order: -1;
+            flex: none;
+            width: 100%;
+            aspect-ratio: 328 / 210;
+        }
+
+        &__content {
+            padding: 0;
+        }
+
+        &__head {
+            gap: 12px;
+        }
+
+        // Labels/S — JetBrains Mono Regular 12 / 120% / 1%.
+        &__label {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: 0.12px;
+        }
+
+        // Mobile/H4 — 24 / 125% / -0.5%.
+        &__item-title {
+            max-width: none;
+            font-size: 24px;
+            line-height: 1.25;
+            letter-spacing: -0.12px;
+        }
+
+        &__body-inner {
+            justify-content: flex-start;
+            gap: 16px;
+            padding-top: 16px;
+        }
+
+        &__text {
+            max-width: none;
+            margin-top: 0;
+        }
+
+        &__link {
+            min-height: 40px;
+        }
+
+        // Accordion (set by JS, so without JS every item stays open).
+        &.is-accordion &__head,
+        &.is-accordion &__media {
+            cursor: pointer;
+        }
+
+        &.is-accordion &__head:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 4px;
+        }
+
+        &.is-accordion &__body {
+            transition: grid-template-rows 0.45s $wwd-ease;
+        }
+
+        &.is-accordion &__body-inner {
+            overflow: hidden;
+            transition: opacity 0.3s ease, visibility 0s linear 0s;
+        }
+
+        &.is-accordion &__item:not(.is-open) &__body {
+            grid-template-rows: 0fr;
+        }
+
+        &.is-accordion &__item:not(.is-open) &__body-inner {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0s linear 0.45s;
+        }
+    }
+
+    // ---------- Reduced motion ----------
+
+    @media (prefers-reduced-motion: reduce) {
+        &__card {
+            transform: none;
+            opacity: 1;
+        }
+
+        &.is-accordion &__body,
+        &.is-accordion &__body-inner,
+        &.is-accordion &__item:not(.is-open) &__body-inner {
+            transition: none;
+        }
+    }
+}

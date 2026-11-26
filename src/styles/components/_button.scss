@@ -64,6 +64,12 @@
         }
     }
 
+    // Size M (48px) — header button.
+    &--m {
+        min-height: 48px;
+        padding: 12px 24px;
+    }
+
     // Research Teal → Deep Ink on hover.
     &--primary {
         background: var(--color-primary);
@@ -110,5 +116,70 @@
     &[aria-disabled="true"] {
         opacity: 0.5;
         pointer-events: none;
+    }
+}
+
+// =====================================================================
+// Text link with arrow — Figma "Text link" (KNOW MORE ⟶).
+// <a class="link-arrow"><span>Know more</span> <?php echo niyom_icon('arrow-right', 'link-arrow__icon link-arrow__icon--lg'); ?><?php echo niyom_icon('arrow-right-sm', 'link-arrow__icon link-arrow__icon--sm'); ?></a>
+// Add .link-arrow--light on dark backgrounds.
+// =====================================================================
+
+.link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 40px;
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    text-decoration: none;
+
+    span {
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        text-underline-offset: 4px;
+        transition: text-decoration-color var(--transition);
+    }
+
+    &:hover span {
+        text-decoration-color: currentColor;
+    }
+
+    &__icon {
+        flex-shrink: 0;
+        transition: transform var(--transition);
+
+        &--sm {
+            display: none;
+        }
+    }
+
+    &:hover &__icon {
+        transform: translateX(4px);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+    }
+
+    &--light {
+        color: var(--color-white);
+    }
+
+    @include breakpoint-max(sm) {
+        font-size: 14px;
+
+        &__icon--lg {
+            display: none;
+        }
+
+        &__icon--sm {
+            display: block;
+        }
     }
 }

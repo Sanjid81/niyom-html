@@ -1,0 +1,384 @@
+// =====================================================================
+// Home › Events & Partnerships — Figma "Home — Desktop › Events" (294:6685,
+// 1920 wide: intro 516 left, event rows 948 right) and "Events &
+// Partnerships — Mobile 360" (439:2100: stacked cards, image on top).
+// Markup: components/Home/events.php
+// =====================================================================
+
+.home-events {
+    background: var(--color-subtle-bg);
+
+    &__inner {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 40px;
+        width: 100%;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    // ---------- Intro (left) ----------
+
+    &__intro {
+        display: flex;
+        flex: 0 1 516px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 60px;
+        min-width: 0;
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        width: 100%;
+    }
+
+    // Desktop eyebrow is Labels/L (Mono Medium 14 / 100%); mobile uses Labels/S.
+    &__eyebrow {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+    }
+
+    &__heading {
+        color: var(--color-heading);
+    }
+
+    &__text {
+        color: var(--color-text);
+    }
+
+    // ---------- Event list (right) ----------
+
+    &__list {
+        display: flex;
+        flex: 0 1 948px;
+        flex-direction: column;
+        gap: 12px;
+        min-width: 0;
+    }
+
+    // One event row: date badge · content · image.
+    &__item {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        gap: 32px;
+        padding: 24px;
+        border: 1px solid var(--color-border);
+        background: var(--color-white);
+        overflow: hidden;
+        transition: border-color var(--transition);
+
+        &.is-linked:hover {
+            border-color: rgba(8, 122, 128, 0.35);
+        }
+    }
+
+    // Image sits right on desktop (it comes first in the markup for mobile).
+    &__media {
+        order: 2;
+        flex: 0 0 260px;
+        height: 170px;
+        overflow: hidden;
+        background: var(--color-mist);
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+
+    &__item.is-linked:hover &__image {
+        transform: scale(1.04);
+    }
+
+    &__details {
+        display: flex;
+        flex: 1 1 auto;
+        align-items: flex-start;
+        gap: 32px;
+        min-width: 0;
+    }
+
+    // Date badge — Mist, big teal day, month + year below.
+    &__date {
+        display: flex;
+        flex: 0 0 110px;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding: 16px 20px;
+        background: var(--color-mist);
+        text-align: center;
+    }
+
+    &__day {
+        font-family: var(--font-heading);
+        font-size: 42px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.84px;
+        color: var(--color-teal);
+    }
+
+    &__month {
+        font-family: var(--font-body);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.6;
+        color: var(--color-ink);
+        white-space: nowrap;
+    }
+
+    &__content {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        min-width: 0;
+        overflow-wrap: break-word;
+    }
+
+    // Type label — Labels/S, teal.
+    &__type {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        text-transform: uppercase;
+        color: var(--color-teal);
+    }
+
+    // Title — Lead Text (24 / 120% / -2%).
+    &__title {
+        font-family: var(--font-heading);
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.48px;
+        color: var(--color-ink);
+    }
+
+    // Stretched link: the title link covers the whole row.
+    &__link {
+        color: inherit;
+        transition: color var(--transition);
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+
+        &:focus-visible {
+            outline: none;
+
+            &::after {
+                outline: 2px solid var(--color-cyan);
+                outline-offset: -2px;
+            }
+        }
+    }
+
+    &__item.is-linked:hover &__title {
+        color: var(--color-teal);
+    }
+
+    // Venue · format — Body S, Dark 60.
+    &__meta {
+        font-family: var(--font-body);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.6;
+        color: var(--color-muted);
+    }
+
+    // "VIEW DETAILS ⟶" — Mono 14 / 22, 12px top + bottom padding (Figma).
+    &__more.link-arrow {
+        min-height: 0;
+        padding: 12px 0;
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    &__item.is-linked:hover &__more {
+        span {
+            text-decoration-color: currentColor;
+        }
+
+        .link-arrow__icon {
+            transform: translateX(4px);
+        }
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        &__inner {
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        &__item,
+        &__details {
+            gap: 24px;
+        }
+
+        &__media {
+            flex-basis: 220px;
+            height: 150px;
+        }
+    }
+
+    // Tablet / small laptop: intro on top, rows below at full width.
+    @include breakpoint-max(xl) {
+        &__inner {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 56px;
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        &__intro {
+            flex: none;
+            max-width: 640px;
+            gap: 40px;
+        }
+
+        &__header {
+            gap: 24px;
+        }
+
+        &__list {
+            flex: none;
+        }
+
+        &__media {
+            flex-basis: 260px;
+            height: 170px;
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        &__inner {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        &__media {
+            flex-basis: 200px;
+            height: 140px;
+        }
+
+        &__title {
+            font-size: 22px;
+            letter-spacing: -0.2px;
+        }
+    }
+
+    // Mobile (Figma 360): stacked white cards, image on top, no "View details".
+    @include breakpoint-max(md) {
+        &__inner {
+            gap: 32px;
+            padding: 56px 16px;
+        }
+
+        &__intro {
+            max-width: none;
+            gap: 32px;
+        }
+
+        &__header {
+            gap: 20px;
+        }
+
+        &__eyebrow {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: 0.12px;
+        }
+
+        &__item {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 16px;
+            padding: 16px 16px 20px;
+            border: 0;
+        }
+
+        &__media {
+            order: 0;
+            flex: none;
+            width: 100%;
+            height: auto;
+            max-height: 260px; // keeps large phones / small tablets from tall images.
+            aspect-ratio: 296 / 180;
+        }
+
+        &__details {
+            gap: 16px;
+        }
+
+        &__date {
+            flex-basis: 72px;
+            gap: 2px;
+            padding: 10px 8px;
+        }
+
+        &__day {
+            font-size: 28px;
+            letter-spacing: -0.56px;
+        }
+
+        &__month {
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        &__content {
+            gap: 8px;
+        }
+
+        &__title {
+            font-size: 20px;
+            line-height: 1.25;
+            letter-spacing: -0.4px;
+        }
+
+        &__meta {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #5D6B73; // Figma mobile meta colour.
+        }
+
+        // Figma hides the link on mobile; the whole card stays tappable.
+        &__more {
+            display: none !important;
+        }
+
+        // Keep the link reachable when it is the only link (no title).
+        &__more.home-events__link {
+            display: inline-flex !important;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &__image,
+        &__more .link-arrow__icon {
+            transition: none;
+        }
+    }
+}

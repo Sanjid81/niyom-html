@@ -1,0 +1,494 @@
+// =====================================================================
+// Home Contact — Figma "Warm gallery — Research contact"
+// Desktop 270:1606 (1920 wide, 100/120 padding, 700px info column,
+// 160px gap, #FAFAFA form panel) · Mobile 278:2702 (360 wide, 56/16).
+// Markup: components/Home/contact.php
+// Form:   Contact Form 7 "Home – Research Enquiry" (classes niyom-form,
+//         niyom-field…); CF7 output is styled here, scoped to the section.
+// =====================================================================
+
+// Icons as data URIs (Figma arrow-down 20 and the button arrow).
+$contact-select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M10 4.16667V15.8333M15.8333 10L10 15.8333L4.16667 10' stroke='%230B3A53' stroke-opacity='0.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+$contact-arrow-lg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28.75' height='11.0459' viewBox='0 0 28.75 11.0459'%3E%3Cpath d='M0 5.52297V6.27297H28V5.52297V4.77297H0V5.52297ZM28.5303 6.0533C28.8232 5.76041 28.8232 5.28553 28.5303 4.99264L23.7574 0.21967C23.4645 -0.0732231 22.9896 -0.0732231 22.6967 0.21967C22.4038 0.512564 22.4038 0.987437 22.6967 1.28033L26.9393 5.52297L22.6967 9.76561C22.4038 10.0585 22.4038 10.5334 22.6967 10.8263C22.9896 11.1192 23.4645 11.1192 23.7574 10.8263L28.5303 6.0533Z'/%3E%3C/svg%3E");
+$contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16.75' height='11.0459' viewBox='0 0 16.75 11.0459'%3E%3Cpath d='M0 5.52297V6.27297H16V5.52297V4.77297H0V5.52297ZM16.5303 6.0533C16.8232 5.76041 16.8232 5.28553 16.5303 4.99264L11.7574 0.21967C11.4645 -0.0732231 10.9896 -0.0732231 10.6967 0.21967C10.4038 0.512564 10.4038 0.987437 10.6967 1.28033L14.9393 5.52297L10.6967 9.76561C10.4038 10.0585 10.4038 10.5334 10.6967 10.8263C10.9896 11.1192 11.4645 11.1192 11.7574 10.8263L16.5303 6.0533Z'/%3E%3C/svg%3E");
+
+.home-contact {
+    background: var(--color-white);
+    scroll-margin-top: var(--header-height); // /#contact lands below the sticky header.
+
+    &__inner {
+        display: flex;
+        align-items: flex-start;
+        gap: clamp(64px, 8.334vw, 160px); // 160 at 1920, narrower below.
+        width: 100%;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 100px var(--container-padding);
+    }
+
+    // ---------- Left: invitation + gallery ----------
+
+    &__info {
+        display: flex;
+        flex: 0 1 700px;
+        flex-direction: column;
+        gap: 72px;
+        min-width: 0;
+    }
+
+    // Without a form the info column may use the full width.
+    &:not(&--has-form) &__info {
+        flex-basis: 100%;
+    }
+
+    &__intro {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 28px;
+        max-width: 700px;
+    }
+
+    // Figma: Labels/L — JetBrains Mono Medium 14 / 100%.
+    &__eyebrow {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 14px;
+        letter-spacing: 0;
+    }
+
+    &__heading {
+        color: var(--color-heading);
+
+        // Narrow two-column widths: let the heading wrap naturally instead
+        // of leaving a one-word line before the editor's line break.
+        @media (min-width: 1201px) and (max-width: 1799px) {
+            br {
+                display: none;
+            }
+        }
+    }
+
+    &__text {
+        color: var(--color-text);
+    }
+
+    &__gallery {
+        display: flex;
+        align-items: flex-end;
+        gap: 48px;
+    }
+
+    &__media {
+        flex: 0 0 280px;
+        height: 310px;
+        overflow: hidden;
+        background: var(--color-mist);
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__blocks {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        gap: 32px;
+        min-width: 0;
+        padding-bottom: 8px;
+    }
+
+    &__block {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    // Figma: Labels/S — JetBrains Mono 12 / 120% / 1%, Dark 60.
+    &__kicker {
+        @extend .label-small;
+        color: var(--color-muted);
+    }
+
+    // Figma: Body/M — Inter 16 / 140%, Deep Ink.
+    &__details {
+        font-size: 16px;
+        line-height: 22.4px;
+        color: var(--color-ink);
+
+        a {
+            text-decoration: none;
+            transition: color var(--transition);
+
+            &:hover {
+                opacity: 1;
+                color: var(--color-primary);
+            }
+        }
+    }
+
+    // ---------- Right: form panel ----------
+
+    // Base 560px: below 1920 both columns give up width in proportion,
+    // so the form never gets squeezed (info 700 / form 820 at 1920).
+    &__form {
+        flex: 1 1 560px;
+        min-width: 0;
+        padding: 48px;
+        background: var(--color-surface-2);
+    }
+
+    // ---------- Contact Form 7 output ----------
+
+    .wpcf7 form {
+        margin: 0;
+    }
+
+    // CF7 wraps lines in <p>; let them disappear from the layout.
+    .niyom-field > p,
+    .niyom-form__actions > p {
+        display: contents;
+    }
+
+    .niyom-form {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .niyom-form__row {
+        display: flex;
+        gap: 32px;
+
+        > .niyom-field {
+            flex: 1 1 0;
+            min-width: 0;
+        }
+    }
+
+    .niyom-field {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; // error messages grow downwards only
+        gap: 8px;
+        min-height: 84px;
+
+        &--textarea {
+            min-height: 0;
+        }
+    }
+
+    // Figma: Body/S — Inter Medium 14 / 160%, Deep Ink.
+    .niyom-field__label {
+        display: block;
+        font-family: var(--font-body);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 22.4px;
+        color: var(--color-ink);
+        cursor: pointer;
+    }
+
+    .wpcf7-form-control-wrap {
+        display: block;
+        position: relative;
+    }
+
+    // Underline-only control: 50px tall, 16px text (DESIGN.md §5).
+    .niyom-field__control {
+        display: block;
+        width: 100%;
+        height: 50px;
+        padding: 14px 0;
+        border: 0;
+        border-bottom: 1px solid var(--color-border);
+        border-radius: 0;
+        background: transparent;
+        font-family: var(--font-body);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 22px;
+        color: var(--color-ink);
+        appearance: none;
+        transition: border-color var(--transition);
+
+        &::placeholder {
+            color: var(--color-muted);
+            opacity: 1;
+        }
+
+        &:hover {
+            border-bottom-color: rgba(11, 58, 83, 0.3);
+        }
+
+        &:focus {
+            outline: none;
+            border-bottom-color: var(--color-primary);
+        }
+
+        &:focus-visible {
+            box-shadow: 0 1px 0 0 var(--color-primary);
+        }
+
+        // Keep the panel colour when the browser autofills.
+        &:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 100px var(--color-surface-2) inset;
+            -webkit-text-fill-color: var(--color-ink);
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        &.wpcf7-not-valid {
+            border-bottom-color: var(--color-error);
+        }
+    }
+
+    // Select: chevron at right, placeholder colour until a choice is made.
+    select.niyom-field__control {
+        padding-right: 36px;
+        background: $contact-select-arrow no-repeat right 0 center / 20px 20px;
+        cursor: pointer;
+
+        &:has(option[value=""]:checked) {
+            color: var(--color-muted);
+        }
+
+        option {
+            color: var(--color-ink);
+        }
+    }
+
+    textarea.niyom-field__control {
+        height: 136px;
+        min-height: 80px;
+        padding-right: 18px;
+        resize: none; // Figma shows no resize handle.
+    }
+
+    // Field error message.
+    .wpcf7-not-valid-tip {
+        display: block;
+        margin-top: 6px;
+        font-family: var(--font-body);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        color: var(--color-error);
+    }
+
+    // Submit = primary button L with the long arrow.
+    .niyom-form__actions {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .niyom-form__submit {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 56px;
+        padding: 16px 24px;
+        border: 0;
+        border-radius: 0;
+        background: var(--color-primary);
+        font-family: var(--font-mono);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        text-transform: uppercase;
+        color: var(--color-white);
+        cursor: pointer;
+        transition: background-color var(--transition);
+
+        &::after {
+            content: "";
+            flex-shrink: 0;
+            width: 28.75px;
+            height: 11.05px;
+            background: currentColor;
+            -webkit-mask: $contact-arrow-lg no-repeat center / contain;
+            mask: $contact-arrow-lg no-repeat center / contain;
+            transition: transform var(--transition);
+        }
+
+        &:hover {
+            background: var(--color-primary-dark);
+
+            &::after {
+                transform: translateX(4px);
+            }
+        }
+
+        &:focus-visible {
+            outline: none;
+            box-shadow: var(--focus-ring);
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: progress;
+        }
+    }
+
+    // CF7 spinner (shown while sending).
+    .wpcf7-spinner {
+        margin: 0;
+        background-color: var(--color-primary);
+        opacity: 1;
+    }
+
+    // Form message after submit.
+    .wpcf7 form .wpcf7-response-output {
+        margin: 24px 0 0;
+        padding: 12px 16px;
+        border: 1px solid var(--color-border);
+        background: var(--color-white);
+        font-family: var(--font-body);
+        font-size: 14px;
+        line-height: 20px;
+        color: var(--color-ink);
+    }
+
+    .wpcf7 form.sent .wpcf7-response-output {
+        border-color: var(--color-primary);
+        background: var(--color-mist);
+        color: var(--color-primary);
+    }
+
+    .wpcf7 form.invalid .wpcf7-response-output,
+    .wpcf7 form.unaccepted .wpcf7-response-output,
+    .wpcf7 form.payment-required .wpcf7-response-output,
+    .wpcf7 form.failed .wpcf7-response-output,
+    .wpcf7 form.aborted .wpcf7-response-output,
+    .wpcf7 form.spam .wpcf7-response-output {
+        border-color: var(--color-error);
+        color: var(--color-error);
+    }
+
+    // ---------- Responsive ----------
+
+    // Tablet: info on top, form below.
+    @include breakpoint-max(xl) {
+        &__inner {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 64px;
+            padding-top: 88px;
+            padding-bottom: 88px;
+        }
+
+        &__info {
+            flex: none;
+            gap: 56px;
+        }
+
+        &__form {
+            flex: none;
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        &__form {
+            padding: 40px 32px;
+        }
+    }
+
+    // Mobile (Figma 360).
+    @include breakpoint-max(md) {
+        &__inner {
+            gap: 32px;
+            padding: 56px 16px;
+        }
+
+        &__info {
+            gap: 32px;
+        }
+
+        &__intro {
+            gap: 20px;
+        }
+
+        // Figma: Labels/S — 12 / 120% / 1%.
+        &__eyebrow {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 14px;
+            letter-spacing: 0.12px;
+        }
+
+        // Figma: Mobile/Body/L — 16 / 140%.
+        &__text {
+            font-size: 16px;
+            line-height: 22.4px;
+        }
+
+        // Image is not shown on mobile (Figma).
+        &__media {
+            display: none;
+        }
+
+        &__blocks {
+            gap: 20px;
+            padding-bottom: 0;
+        }
+
+        &__form {
+            padding: 24px 16px;
+        }
+
+        .niyom-form,
+        .niyom-form__row {
+            gap: 16px;
+        }
+
+        .niyom-form__row {
+            flex-direction: column;
+        }
+
+        textarea.niyom-field__control {
+            height: 106px;
+        }
+
+        // Full-width S button (40px), short arrow.
+        .niyom-form__actions {
+            display: block;
+        }
+
+        .niyom-form__submit {
+            width: 100%;
+            min-height: 40px;
+            padding: 8px 24px;
+            font-size: 14px;
+
+            &::after {
+                width: 16.75px;
+                -webkit-mask-image: $contact-arrow-sm;
+                mask-image: $contact-arrow-sm;
+            }
+        }
+
+        // Spinner sits inside the button, on the right.
+        .wpcf7-spinner {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: rgba(255, 255, 255, 0.35);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .niyom-form__submit::after {
+            transition: none;
+        }
+    }
+}

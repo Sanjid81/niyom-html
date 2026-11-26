@@ -6,6 +6,7 @@
  *   1. Block::make() here with its fields and default content.
  *   2. Markup in components/Home/<name>.php, receiving fields as $args.
  *   3. Styles in src/styles/components/home/<name>.scss, imported in index.scss.
+ *   4. Behaviour (if any) in src/scripts/components/home-<name>.js.
  *
  * Defaults fill a new block with the Figma content. Any field left empty
  * is not shown on the page.
@@ -20,69 +21,98 @@ use Carbon_Fields\Field;
 
 add_action('carbon_fields_register_fields', function () {
 
-    $category = ['niyom-home', __('Niyom — Home', 'niyom'), 'admin-home'];
-
     // -----------------------------------------------------------------
-    // Home Banner (Figma: Home — Desktop › Banner, Home — Mobile › Hero)
+    // Home Banner slider (Figma: Home — Desktop › Banner, Home — Mobile › Hero)
+    // Each slide is one tab. The tab label shows along the bottom of the
+    // banner and switches slides when clicked.
     // -----------------------------------------------------------------
     Block::make('niyom_home_banner', __('Home Banner', 'niyom'))
-        ->set_description(__('Full-width hero: background image, large title, text, button and stage labels.', 'niyom'))
-        ->set_icon('cover-image')
-        ->set_keywords([__('hero', 'niyom'), __('banner', 'niyom'), __('home', 'niyom')])
-        ->set_category(...$category)
+        ->set_description(__('Full-width hero slider: each slide has a tab label, image, title, text and button.', 'niyom'))
+        ->set_icon('slides')
+        ->set_keywords([__('hero', 'niyom'), __('banner', 'niyom'), __('slider', 'niyom')])
+        ->set_category('niyom-home', __('Niyom — Home', 'niyom'), 'admin-home')
         ->set_mode('both')
         ->add_fields([
-            // Content.
-            Field::make('separator', 'banner_sep_content', __('Content', 'niyom')),
-
-            Field::make('textarea', 'banner_title', __('Title', 'niyom'))
-                ->set_rows(3)
-                ->set_default_value("Biology.\nComputation.\nInsight.")
-                ->set_help_text(__('Press Enter for a new line. Leave empty to hide.', 'niyom')),
-
-            Field::make('rich_text', 'banner_text', __('Text', 'niyom'))
-                ->set_default_value('NIYOM connects biological research with computational approaches and scientific expertise to support rigorous, reproducible outcomes.')
-                ->set_help_text(__('Paragraphs, line breaks, links, lists and images all work. Leave empty to hide.', 'niyom')),
-
-            Field::make('text', 'banner_button_text', __('Button Text', 'niyom'))
-                ->set_width(40)
-                ->set_default_value('Discuss Your Research'),
-            Field::make('text', 'banner_button_link', __('Button Link', 'niyom'))
-                ->set_width(40)
-                ->set_default_value('/work-with-us/'),
-            Field::make('checkbox', 'banner_button_new_tab', __('Open in new tab', 'niyom'))
-                ->set_width(20),
-
-            // Images.
-            Field::make('separator', 'banner_sep_images', __('Images', 'niyom')),
-
-            Field::make('image', 'banner_image', __('Background Image', 'niyom'))
-                ->set_value_type('url')
-                ->set_width(50)
-                ->set_default_value(NIYOM_URI . '/assets/images/home/hero-banner.jpg')
-                ->set_help_text(__('Wide image, about 2000 × 800 px. Leave empty for a plain dark background.', 'niyom')),
-            Field::make('image', 'banner_image_mobile', __('Mobile Image (optional)', 'niyom'))
-                ->set_value_type('url')
-                ->set_width(50)
-                ->set_help_text(__('Used on screens up to 768px wide. If empty, the background image is used.', 'niyom')),
-
-            // Stage labels.
-            Field::make('separator', 'banner_sep_stages', __('Stage Labels', 'niyom')),
-
-            Field::make('complex', 'banner_stages', __('Stages', 'niyom'))
+            Field::make('complex', 'banner_slides', __('Slides', 'niyom'))
                 ->set_layout('tabbed-horizontal')
-                ->set_max(3)
+                ->set_collapsed(false)
+                ->setup_labels([
+                    'plural_name'   => __('Slides', 'niyom'),
+                    'singular_name' => __('Slide', 'niyom'),
+                ])
                 ->add_fields([
-                    Field::make('text', 'label', __('Label', 'niyom'))->set_width(70),
-                    Field::make('checkbox', 'active', __('Highlight', 'niyom'))->set_width(30),
+                    Field::make('text', 'tab_label', __('Tab Label', 'niyom'))
+                        ->set_help_text(__('Shown along the bottom of the banner, e.g. "01 — Biological Structure".', 'niyom')),
+
+                    Field::make('image', 'image', __('Background Image', 'niyom'))
+                        ->set_value_type('url')
+                        ->set_help_text(__('Wide image, about 2000 × 800 px.', 'niyom')),
+                    Field::make('image', 'image_mobile', __('Mobile Image (optional)', 'niyom'))
+                        ->set_value_type('url')
+                        ->set_help_text(__('Used up to 768px wide. If empty, the background image is used.', 'niyom')),
+
+                    Field::make('textarea', 'title', __('Title', 'niyom'))
+                        ->set_rows(3)
+                        ->set_help_text(__('Press Enter for a new line.', 'niyom')),
+                    Field::make('rich_text', 'text', __('Text', 'niyom'))
+                        ->set_help_text(__('Paragraphs, line breaks, links, lists and images all work.', 'niyom')),
+
+                    Field::make('text', 'button_text', __('Button Text', 'niyom')),
+                    Field::make('text', 'button_link', __('Button Link', 'niyom')),
+                    Field::make('checkbox', 'button_new_tab', __('Open in new tab', 'niyom')),
                 ])
-                ->set_header_template('<%- label ? label : "Stage" %>')
+                ->set_header_template('<%- $_index + 1 %>')
                 ->set_default_value([
-                    ['label' => '01 — Biological Structure', 'active' => false],
-                    ['label' => '02 — Computational Data', 'active' => true],
-                    ['label' => '03 — Scientific Insight', 'active' => false],
+                    [
+                        '_id'            => 'home-banner-slide-1',
+                        '_type'          => '_',
+                        'tab_label'      => '01 — Biological Structure',
+                        'image'          => NIYOM_URI . '/assets/images/home/hero-biological-structure.jpg',
+                        'image_mobile'   => '',
+                        'title'          => "Biology.\nComputation.\nInsight.",
+                        'text'           => 'NIYOM connects biological research with computational approaches and scientific expertise to support rigorous, reproducible outcomes.',
+                        'button_text'    => 'Discuss Your Research',
+                        'button_link'    => '/work-with-us/',
+                        'button_new_tab' => false,
+                    ],
+                    [
+                        '_id'            => 'home-banner-slide-2',
+                        '_type'          => '_',
+                        'tab_label'      => '02 — Computational Data',
+                        'image'          => NIYOM_URI . '/assets/images/home/hero-computational-data.jpg',
+                        'image_mobile'   => '',
+                        'title'          => "Biology.\nComputation.\nInsight.",
+                        'text'           => 'NIYOM connects biological research with computational approaches and scientific expertise to support rigorous, reproducible outcomes.',
+                        'button_text'    => 'Discuss Your Research',
+                        'button_link'    => '/work-with-us/',
+                        'button_new_tab' => false,
+                    ],
+                    [
+                        '_id'            => 'home-banner-slide-3',
+                        '_type'          => '_',
+                        'tab_label'      => '03 — Scientific Insight',
+                        'image'          => NIYOM_URI . '/assets/images/home/hero-scientific-insight.jpg',
+                        'image_mobile'   => '',
+                        'title'          => "Biology.\nComputation.\nInsight.",
+                        'text'           => 'NIYOM connects biological research with computational approaches and scientific expertise to support rigorous, reproducible outcomes.',
+                        'button_text'    => 'Discuss Your Research',
+                        'button_link'    => '/work-with-us/',
+                        'button_new_tab' => false,
+                    ],
                 ])
-                ->set_help_text(__('Up to 3 labels along the bottom of the banner. Remove all to hide the row.', 'niyom')),
+                ->set_help_text(__('Each tab is one slide. Drag tabs to reorder. Empty fields are hidden.', 'niyom')),
+
+            Field::make('separator', 'banner_sep_settings', __('Slider Settings', 'niyom')),
+
+            Field::make('checkbox', 'banner_autoplay', __('Autoplay', 'niyom'))
+                ->set_option_value('yes')
+                ->set_default_value(true),
+            Field::make('text', 'banner_delay', __('Seconds per slide', 'niyom'))
+                ->set_attribute('type', 'number')
+                ->set_attribute('min', '2')
+                ->set_attribute('step', '0.5')
+                ->set_default_value('6')
+                ->set_conditional_logic([['field' => 'banner_autoplay', 'value' => true]]),
         ])
         ->set_render_callback(function ($fields) {
             get_template_part('components/Home/banner', null, $fields);

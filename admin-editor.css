@@ -1,11 +1,49 @@
-/* Show Carbon Fields blocks as separate cards in the block editor. */
+/* =====================================================================
+   Block editor: show each Carbon Fields block as a separate card with a
+   title bar (block name), so blocks are easy to tell apart.
+   ===================================================================== */
+
 .wp-block[data-type^="carbon-fields/"],
 .block-editor-block-list__block[data-type^="carbon-fields/"] {
-    border: 1px solid #dcdcdc;
+    position: relative;
+    margin-top: 56px !important;
+    margin-bottom: 56px !important;
+    padding: 64px 24px 24px;
+    border: 2px solid #087a80;
     border-radius: 8px;
-    padding: 24px;
-    margin-top: 16px;
-    margin-bottom: 32px;
     background: #fff;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 6px 18px rgba(11, 58, 83, 0.08);
+}
+
+/* Title bar with the block name (Gutenberg sets data-title on each block). */
+.wp-block[data-type^="carbon-fields/"]::before,
+.block-editor-block-list__block[data-type^="carbon-fields/"]::before {
+    content: attr(data-title);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 24px;
+    border-radius: 6px 6px 0 0;
+    background: #087a80;
+    color: #fff;
+    font-family: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    pointer-events: none;
+}
+
+/* Selected block: darker frame so the one being edited stands out. */
+.wp-block[data-type^="carbon-fields/"].is-selected,
+.block-editor-block-list__block[data-type^="carbon-fields/"].is-selected {
+    border-color: #0b3a53;
+    box-shadow: 0 0 0 3px rgba(54, 196, 204, 0.35), 0 6px 18px rgba(11, 58, 83, 0.12);
+}
+
+.wp-block[data-type^="carbon-fields/"].is-selected::before,
+.block-editor-block-list__block[data-type^="carbon-fields/"].is-selected::before {
+    background: #0b3a53;
 }
