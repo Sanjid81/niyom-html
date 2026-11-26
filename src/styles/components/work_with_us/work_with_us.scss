@@ -1,0 +1,94 @@
+// =====================================================================
+// Work With Us Hero — Figma "Work With Us" section
+// Markup: components/work_with_us/work_with_us.php
+// =====================================================================
+
+$wwu-ink: rgba(11, 58, 83, 1); // Deep Ink, matching the banner.
+$wwu-text: #4a5a68;
+$wwu-tag: #8c9ba5;
+
+.work-with-us-hero {
+    position: relative;
+    background: var(--color-white, #ffffff);
+    padding: 100px 0;
+    
+    @include breakpoint-max(md) {
+        padding: 60px 0;
+    }
+
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 0 80px;
+        gap: 60px;
+
+        @include breakpoint-max(xxl) {
+            padding-left: var(--container-padding);
+            padding-right: var(--container-padding);
+        }
+
+        @include breakpoint-max(md) {
+            flex-direction: column;
+            gap: 32px;
+        }
+    }
+
+    &__content {
+        flex: 1;
+        max-width: 650px;
+
+        @include breakpoint-max(md) {
+            max-width: 100%;
+        }
+    }
+
+    &__tag {
+        display: block;
+        margin-bottom: 24px;
+        color: $wwu-tag;
+        font-family: var(--font-mono);
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 17px;
+        letter-spacing: 0.78px;
+        text-transform: uppercase;
+    }
+
+    &__title {
+        margin: 0;
+        color: $wwu-ink;
+        font-size: clamp(36px, 4vw, 56px); // Responsive sizing
+        font-weight: 400;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        white-space: pre-line; // Keeps the line break from the textarea
+    }
+
+    &__aside {
+        flex: 0 0 400px;
+        padding-top: 32px; // Aligns text with the main title
+
+        @include breakpoint-max(md) {
+            flex: 1;
+            padding-top: 0;
+            max-width: 100%;
+        }
+    }
+
+    &__text {
+        color: $wwu-text;
+        font-size: 15px;
+        line-height: 1.6;
+
+        p {
+            margin-bottom: 1em;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
