@@ -1,0 +1,8 @@
+{
+    "name": "notionhive/niyom",
+    "description": "Niyom WordPress theme",
+    "type": "wordpress-theme",
+    "require": {
+        "htmlburger/carbon-fields": "^3.6"
+    }
+}

@@ -1,0 +1,26 @@
+$breakpoints: (
+    xs: 360px,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px,
+);
+
+// @include breakpoint-max(md) { ... }  =>  max-width: 768px
+@mixin breakpoint-max($name) {
+    @if map-has-key($breakpoints, $name) {
+        @media (max-width: map-get($breakpoints, $name)) {
+            @content;
+        }
+    }
+}
+
+// @include breakpoint-min(lg) { ... }  =>  min-width: 992px
+@mixin breakpoint-min($name) {
+    @if map-has-key($breakpoints, $name) {
+        @media (min-width: map-get($breakpoints, $name)) {
+            @content;
+        }
+    }
+}

@@ -1,0 +1,207 @@
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-white);
+    box-shadow: 0 1px 0 var(--color-border);
+
+    .admin-bar & {
+        top: 32px;
+
+        @media (max-width: 782px) {
+            top: 46px;
+        }
+    }
+
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        height: var(--header-height);
+    }
+
+    &__logo {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+
+        img {
+            width: auto;
+            height: 44px;
+        }
+    }
+
+    &__name {
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    &__nav {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+    }
+
+    &__menu {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+
+        li {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        a {
+            font-weight: 500;
+            transition: color var(--transition);
+
+            &:hover {
+                color: var(--color-primary);
+            }
+        }
+
+        .current-menu-item > a {
+            color: var(--color-primary);
+        }
+
+        .sub-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 200px;
+            padding: 12px 0;
+            background: var(--color-white);
+            border-radius: var(--radius);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity var(--transition);
+
+            li {
+                display: block;
+            }
+
+            a {
+                display: block;
+                padding: 8px 20px;
+            }
+        }
+
+        li:hover > .sub-menu,
+        li.submenu-open > .sub-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    // Hamburger
+    &__toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        border: 0;
+
+        span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            margin: 0 auto;
+            background: currentColor;
+            transition: transform var(--transition), opacity var(--transition);
+        }
+
+        &[aria-expanded="true"] {
+            span:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+
+            span:nth-child(2) {
+                opacity: 0;
+            }
+
+            span:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        &__toggle {
+            display: flex;
+        }
+
+        &__nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 16px;
+            padding: 24px;
+            background: var(--color-white);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+
+            &.is-open {
+                display: flex;
+            }
+        }
+
+        &__menu {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+
+            li {
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            .sub-menu {
+                display: none;
+                position: static;
+                width: 100%;
+                padding: 4px 0 0 16px;
+                box-shadow: none;
+                opacity: 1;
+                visibility: visible;
+            }
+
+            li:hover > .sub-menu {
+                display: none;
+            }
+
+            li.submenu-open > .sub-menu {
+                display: block;
+            }
+        }
+    }
+}
+
+.nav-submenu-toggle {
+    display: inline-flex;
+    border: 0;
+    color: inherit;
+
+    svg {
+        transition: transform var(--transition);
+    }
+
+    .submenu-open > & svg {
+        transform: rotate(180deg);
+    }
+}
+
+body.menu-open {
+    @include breakpoint-max(lg) {
+        overflow: hidden;
+    }
+}

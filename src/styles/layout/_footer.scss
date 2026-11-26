@@ -1,0 +1,68 @@
+.site-footer {
+    background: var(--color-dark);
+    color: rgba(255, 255, 255, 0.75);
+
+    a {
+        transition: color var(--transition);
+
+        &:hover {
+            color: var(--color-white);
+        }
+    }
+
+    &__top {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 48px;
+        padding-top: 64px;
+        padding-bottom: 64px;
+
+        @include breakpoint-max(md) {
+            grid-template-columns: 1fr;
+            gap: 32px;
+            padding-top: 48px;
+            padding-bottom: 48px;
+        }
+    }
+
+    &__logo img {
+        width: auto;
+        height: 44px;
+    }
+
+    &__name {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--color-white);
+    }
+
+    &__tagline {
+        max-width: 360px;
+        margin-top: 16px;
+    }
+
+    &__menu,
+    &__contact {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    &__contact p + p {
+        margin-top: 0;
+    }
+
+    &__social {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 8px;
+    }
+
+    &__bottom {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 14px;
+    }
+}
