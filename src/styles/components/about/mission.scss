@@ -1,0 +1,242 @@
+// =====================================================================
+// About › Brand & Mission — Figma "About NIYOM — Desktop › 03 — Brand & Mission"
+// (290:4870, 1920 wide). No mobile About frame in Figma: mobile (≤ 768)
+// follows the Home mobile patterns (276:1785).
+// Markup: components/About/mission.php
+// =====================================================================
+
+.about-mission {
+    background: var(--color-subtle-bg);
+
+    // Two equal columns: 760 + 160px gap + 760 at 1920; gap shrinks with width.
+    &__inner {
+        display: flex;
+        align-items: flex-start;
+        gap: clamp(80px, 8.333vw, 160px);
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    // ---------- Left: label + heading ----------
+
+    &__head {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        min-width: 0;
+    }
+
+    // Labels/L — JetBrains Mono Medium 14 / 100%, Dark 60.
+    &__eyebrow {
+        margin: 0;
+        font-family: var(--font-mono);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        color: var(--color-ink-60);
+
+        &::before { content: "( "; }
+        &::after { content: " )"; }
+    }
+
+    // H2 — Inter 56 / 100% / -2% at 1920, scaling down with the viewport.
+    &__title {
+        margin: 0;
+        font-family: var(--font-heading);
+        font-size: clamp(48px, 2.9167vw, 56px);
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: -1.12px;
+        color: var(--color-ink);
+
+        a {
+            color: var(--color-primary);
+        }
+    }
+
+    // ---------- Right: intro + numbered list ----------
+
+    &__body {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        gap: 40px;
+        min-width: 0;
+    }
+
+    // Body/L — Inter 18 / 140%, Body text colour.
+    &__intro {
+        font-size: 18px;
+        line-height: 1.4;
+        color: var(--color-ink-80);
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    // Each row: thin top border, number column (60px) + 40px gap + text.
+    &__item {
+        display: flex;
+        align-items: flex-start;
+        gap: 40px;
+        padding-top: 24px;
+        border-top: 1px solid var(--color-border);
+    }
+
+    // Labels/S — JetBrains Mono Regular 12 / 120% / 1%, Research Teal.
+    &__number {
+        flex: 0 0 60px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        text-transform: uppercase;
+        color: var(--color-primary);
+    }
+
+    &__content {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        gap: 8px;
+        min-width: 0;
+    }
+
+    // Lead Text — Inter 24 / 120% / -2%, Deep Ink.
+    &__item-title {
+        margin: 0;
+        font-family: var(--font-heading);
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.48px;
+        color: var(--color-ink);
+    }
+
+    // Body/M — Inter 16 / 140%, Body text colour.
+    &__item-text {
+        font-size: 16px;
+        line-height: 1.4;
+        color: var(--color-ink-80);
+    }
+
+    // ---------- Responsive ----------
+
+    // Heading on top, list below.
+    @include breakpoint-max(xl) {
+        &__inner {
+            flex-direction: column;
+            gap: 56px;
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        &__head {
+            flex: none;
+            max-width: 760px;
+            gap: 24px;
+        }
+
+        &__body {
+            flex: none;
+            width: 100%;
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        &__inner {
+            gap: 48px;
+            padding-top: 96px;
+            padding-bottom: 96px;
+        }
+
+        &__title {
+            font-size: 42px;
+            line-height: 1.1;
+            letter-spacing: -0.6px;
+        }
+
+        &__body,
+        &__list {
+            gap: 32px;
+        }
+
+        &__item {
+            gap: 24px;
+        }
+
+        &__number {
+            flex-basis: 48px;
+        }
+    }
+
+    // Mobile (Home mobile patterns, 360 wide).
+    @include breakpoint-max(md) {
+        &__inner {
+            gap: 32px;
+            padding: 56px 16px;
+        }
+
+        &__head {
+            gap: 20px;
+        }
+
+        &__eyebrow {
+            font-size: 12px;
+            line-height: normal;
+            letter-spacing: 0.48px;
+        }
+
+        // Mobile H2 — 34 / 115% / -1%.
+        &__title {
+            font-size: 34px;
+            line-height: 1.15;
+            letter-spacing: -0.34px;
+
+            br {
+                display: none;
+            }
+        }
+
+        &__intro {
+            font-size: 16px;
+        }
+
+        &__body,
+        &__list {
+            gap: 24px;
+        }
+
+        &__item {
+            gap: 16px;
+            padding-top: 20px;
+        }
+
+        &__number {
+            flex-basis: 24px;
+            padding-top: 4px;
+        }
+
+        // Mobile Lead Text — 20 / 120%.
+        &__item-title {
+            font-size: 20px;
+            letter-spacing: 0;
+        }
+
+        &__item-text {
+            font-size: 14px;
+        }
+    }
+}

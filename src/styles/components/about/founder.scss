@@ -1,0 +1,284 @@
+// =====================================================================
+// About › Founder Profile — Figma "About NIYOM — Desktop › 04 — Founder Profile"
+// (290:4891, 1920 wide). No mobile About frame in Figma: mobile (≤ 768)
+// follows the Home mobile patterns (276:1785).
+// Markup: components/About/founder.php
+// =====================================================================
+
+.about-founder {
+    background: var(--color-white);
+
+    // Portrait 680 wide, 120px gap, text fills the rest.
+    &__inner {
+        display: flex;
+        align-items: flex-start;
+        gap: 120px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    // ---------- Portrait: 680 × 820, Mist behind the image ----------
+
+    &__media {
+        position: relative;
+        flex: 0 0 40.476%; // 680 / 1680
+        margin: 0;
+        aspect-ratio: 680 / 820;
+        overflow: hidden;
+        background: var(--color-mist);
+    }
+
+    &__image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    // ---------- Text column (starts 40px below the portrait top) ----------
+
+    &__content {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 40px;
+        min-width: 0;
+        padding-top: 40px;
+    }
+
+    &--no-image &__content {
+        max-width: 880px;
+        padding-top: 0;
+    }
+
+    &__head {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+
+    // H4 — Inter 32 / 120% / -2%.
+    &__name {
+        margin: 0;
+        font-family: var(--font-heading);
+        font-size: 32px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.64px;
+        color: var(--color-ink);
+    }
+
+    // Body/S — Inter Medium 14 / 160%, Dark 60.
+    &__role {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.6;
+        color: var(--color-ink-60);
+    }
+
+    // Lead Text — Inter 24 / 120% / -2%, Deep Ink.
+    &__lead {
+        margin: 0;
+        font-family: var(--font-heading);
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.48px;
+        color: var(--color-ink);
+
+        a {
+            color: var(--color-primary);
+        }
+    }
+
+    // Body/M — Inter 16 / 140%, Body text colour.
+    &__bio {
+        width: 100%;
+        font-size: 16px;
+        line-height: 1.4;
+        color: var(--color-ink-80);
+    }
+
+    // ---------- Profile details table ----------
+
+    &__details {
+        width: 100%;
+        margin: 0;
+    }
+
+    // Row: top border only, label column 220px, 40px gap.
+    &__row {
+        display: flex;
+        align-items: flex-start;
+        gap: 40px;
+        padding: 18px 0;
+        border-top: 1px solid var(--color-border);
+    }
+
+    // Labels/S — JetBrains Mono Regular 12 / 120% / 1%, Dark 60.
+    &__label {
+        flex: 0 0 220px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        text-transform: uppercase;
+        color: var(--color-ink-60);
+    }
+
+    // Body/M — Inter 16 / 140%, Deep Ink. Links in teal.
+    &__value {
+        flex: 1 1 0;
+        min-width: 0;
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.4;
+        color: var(--color-ink);
+
+        a {
+            color: var(--color-primary);
+        }
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        &__inner {
+            gap: 80px;
+        }
+
+        &__content {
+            padding-top: 24px;
+        }
+
+        &__label {
+            flex-basis: 180px;
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        &__inner {
+            gap: 56px;
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        &__media {
+            flex-basis: 42%;
+        }
+
+        &__content {
+            gap: 32px;
+            padding-top: 0;
+        }
+
+        &__name {
+            font-size: 28px;
+            letter-spacing: -0.3px;
+        }
+
+        &__lead {
+            font-size: 22px;
+            letter-spacing: -0.2px;
+        }
+
+        &__label {
+            flex-basis: 140px;
+        }
+
+        &__row {
+            gap: 24px;
+        }
+    }
+
+    // Tablet: portrait on top, text below.
+    @include breakpoint-max(lg) {
+        &__inner {
+            flex-direction: column;
+            gap: 48px;
+            padding-top: 96px;
+            padding-bottom: 96px;
+        }
+
+        &__media {
+            flex: none;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        &__content {
+            flex: none;
+            width: 100%;
+        }
+    }
+
+    // Mobile (Home mobile patterns, 360 wide).
+    @include breakpoint-max(md) {
+        &__inner {
+            gap: 32px;
+            padding: 56px 16px;
+        }
+
+        &__media {
+            max-width: 420px;
+        }
+
+        &__content {
+            gap: 24px;
+        }
+
+        &__head {
+            gap: 4px;
+        }
+
+        // Mobile H4 — 24 / 125% / -0.5%.
+        &__name {
+            font-size: 24px;
+            line-height: 1.25;
+            letter-spacing: -0.12px;
+        }
+
+        &__role {
+            line-height: 1.4;
+        }
+
+        // Mobile Lead Text — 20 / 120%.
+        &__lead {
+            font-size: 20px;
+            letter-spacing: 0;
+
+            br {
+                display: none;
+            }
+        }
+
+        // Label above value.
+        &__row {
+            flex-direction: column;
+            gap: 8px;
+            padding: 16px 0;
+        }
+
+        &__label {
+            flex: none;
+        }
+
+        &__value {
+            flex: none;
+            width: 100%;
+        }
+    }
+
+    // Phones: portrait full width.
+    @include breakpoint-max(sm) {
+        &__media {
+            max-width: none;
+        }
+    }
+}

@@ -1,0 +1,396 @@
+// =====================================================================
+// Services › Services list — Figma "Services Overview › 03" (291:5213,
+// 1920 wide). Warm off-white; intro (760 heading left, 560 text right),
+// then service rows: 960 text column + 80px gap + 640 × 560 image.
+// No mobile Services frame in Figma: mobile (≤ 768) follows the Home
+// mobile patterns (276:1785) — 16px sides, image above the text.
+// Markup: components/Services/list.php
+// =====================================================================
+
+$services-list-line: rgba(11, 58, 83, 0.15);  // Figma point dividers (#0B3A53 at 15%).
+$services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 75%).
+
+.services-list {
+    background: var(--color-subtle-bg);
+    color: var(--color-ink);
+
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    // ---------- Intro ----------
+
+    // Bottom-aligned row pushed to both edges (760 + 360 gap + 560 at 1920).
+    &__intro {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 60px;
+    }
+
+    &__head {
+        display: flex;
+        flex: 0 1 760px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        min-width: 0;
+    }
+
+    // Labels/L — JetBrains Mono Medium 14 / 100%, Dark 60.
+    &__eyebrow {
+        margin: 0;
+        font-family: var(--font-mono);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        color: var(--color-ink-60);
+
+        &::before { content: "( "; }
+        &::after { content: " )"; }
+    }
+
+    // H2 — Inter 56 / 100% / -2%.
+    &__heading {
+        margin: 0;
+        font-family: var(--font-heading);
+        font-size: 56px;
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: -1.12px;
+        color: var(--color-ink);
+
+        a {
+            color: var(--color-primary);
+        }
+    }
+
+    // Body/L — Inter 18 / 140%, Body text colour.
+    &__text {
+        flex: 0 1 560px;
+        min-width: 0;
+        font-size: 18px;
+        line-height: 1.4;
+        color: var(--color-ink-80);
+    }
+
+    // ---------- Service rows ----------
+
+    &__items {
+        display: flex;
+        flex-direction: column;
+    }
+
+    // 40px above and below; rows after the first get a Deep Ink rule.
+    &__item {
+        display: flex;
+        align-items: flex-start;
+        gap: 80px;
+        padding: 40px 0;
+
+        & + & {
+            border-top: 1px solid var(--color-ink);
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 28px;
+        min-width: 0;
+        overflow-wrap: break-word;
+    }
+
+    &__item-head {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 28px;
+        width: 100%;
+    }
+
+    // Labels/S — JetBrains Mono 12 / 120% / 1%, Research Teal.
+    &__label {
+        margin: 0;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        text-transform: uppercase;
+        color: var(--color-primary);
+    }
+
+    // H3 — Inter 42 / 120% / -2%.
+    &__title {
+        margin: 0;
+        font-family: var(--font-heading);
+        font-size: 42px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.84px;
+        color: var(--color-ink);
+
+        a {
+            color: var(--color-primary);
+        }
+    }
+
+    // Body/M — Inter 16 / 140%, Deep Ink 75%.
+    &__desc {
+        width: 100%;
+        font-size: 16px;
+        line-height: 1.4;
+        color: $services-list-muted;
+    }
+
+    // Two columns, 32px apart; each point has a thin rule above it.
+    &__points {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 32px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__point {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px 0;
+        border-top: 1px solid $services-list-line;
+        font-size: 16px;
+        line-height: 1.4;
+        color: var(--color-ink);
+
+        a {
+            color: var(--color-primary);
+        }
+    }
+
+    &__point-arrow {
+        flex-shrink: 0;
+        color: var(--color-primary);
+    }
+
+    &__point-text {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    // "KNOW MORE ⟶" — Figma button box is 48px tall (12px above/below),
+    // 30px under the list (28px gap + 2px).
+    &__link {
+        min-height: 48px;
+        margin-top: 2px;
+    }
+
+    // ---------- Image: 640 × 560 at 1920 ----------
+
+    &__media {
+        position: relative;
+        flex: 0 0 38.0952%; // 640 / 1680
+        margin: 0;
+        aspect-ratio: 640 / 560;
+        overflow: hidden;
+        background: var(--color-mist);
+    }
+
+    &__image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        &__inner {
+            gap: 64px;
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        &__heading {
+            font-size: 48px;
+            letter-spacing: -0.96px;
+        }
+
+        &__item {
+            gap: 56px;
+        }
+
+        &__title {
+            font-size: 36px;
+            letter-spacing: -0.72px;
+        }
+
+        &__media {
+            flex-basis: 42%;
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        &__content,
+        &__item-head {
+            gap: 24px;
+        }
+
+        &__title {
+            font-size: 32px;
+            letter-spacing: -0.64px;
+        }
+
+        &__item {
+            gap: 40px;
+        }
+
+        &__media {
+            aspect-ratio: 4 / 5;
+        }
+    }
+
+    // Tablet: intro stacks; each row shows the image above the text.
+    @include breakpoint-max(lg) {
+        &__inner {
+            gap: 48px;
+            padding-top: 96px;
+            padding-bottom: 96px;
+        }
+
+        &__intro {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 24px;
+        }
+
+        &__head {
+            flex: none;
+            gap: 24px;
+            max-width: 760px;
+        }
+
+        &__heading {
+            font-size: 42px;
+            line-height: 1.1;
+            letter-spacing: -0.6px;
+        }
+
+        &__text {
+            flex: none;
+            max-width: 600px;
+        }
+
+        &__item {
+            flex-direction: column;
+            gap: 32px;
+            padding: 40px 0;
+
+            &:first-child {
+                padding-top: 0;
+            }
+        }
+
+        &__media {
+            flex: none;
+            order: -1;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+        }
+
+        &__content {
+            flex: none;
+            width: 100%;
+        }
+    }
+
+    // Mobile (Home mobile patterns, 360 wide).
+    @include breakpoint-max(md) {
+        &__inner {
+            gap: 40px;
+            padding: 56px 16px;
+        }
+
+        &__head {
+            gap: 20px;
+        }
+
+        &__eyebrow {
+            font-size: 12px;
+            line-height: normal;
+            letter-spacing: 0.48px;
+        }
+
+        // Mobile H2 — 34 / 115% / -1%.
+        &__heading {
+            font-size: 34px;
+            line-height: 1.15;
+            letter-spacing: -0.34px;
+
+            br {
+                display: none;
+            }
+        }
+
+        &__text {
+            max-width: none;
+            font-size: 16px;
+        }
+
+        &__item {
+            gap: 24px;
+            padding: 32px 0;
+        }
+
+        &__content,
+        &__item-head {
+            gap: 16px;
+        }
+
+        // Mobile H3 — 28 / 120%.
+        &__title {
+            font-size: 28px;
+            letter-spacing: -0.14px;
+
+            br {
+                display: none;
+            }
+        }
+
+        &__desc {
+            font-size: 14px;
+        }
+
+        // One column of points on phones.
+        &__points {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        &__point {
+            padding: 12px 0;
+            font-size: 14px;
+        }
+
+        &__link {
+            min-height: 40px;
+            margin-top: 0;
+        }
+
+        &__media {
+            aspect-ratio: 328 / 240;
+        }
+    }
+}

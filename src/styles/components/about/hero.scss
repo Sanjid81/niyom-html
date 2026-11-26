@@ -1,0 +1,213 @@
+// =====================================================================
+// About › Hero — Figma "About NIYOM — Desktop › 02 — Hero" (290:4853, 1920 wide).
+// No mobile About frame in Figma: mobile (≤ 768) follows the Home mobile
+// patterns (276:1785) — 16px sides, 12px label, smaller heading.
+// Markup: components/About/hero.php
+// =====================================================================
+
+.about-hero {
+    background: var(--color-white);
+
+    // 120px on every side at 1920; image sits 64px under the text.
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        gap: 64px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 120px var(--container-padding);
+    }
+
+    // ---------- Text: label, then heading left + paragraph right ----------
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+
+    // Labels/L — JetBrains Mono Medium 14 / 100%, Dark 60.
+    &__eyebrow {
+        margin: 0;
+        font-family: var(--font-mono);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        color: var(--color-ink-60);
+
+        &::before { content: "( "; }
+        &::after { content: " )"; }
+    }
+
+    // Bottom-aligned row, pushed to both edges (Figma "Hero copy").
+    &__copy {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 60px;
+        width: 100%;
+    }
+
+    // H1 — Inter 64 / 100% / -4%, 777px wide at 1920 (scales down with the viewport).
+    &__title {
+        flex: 0 1 777px;
+        min-width: 0;
+        margin: 0;
+        font-family: var(--font-heading);
+        font-size: clamp(48px, 3.3333vw, 64px);
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        color: var(--color-ink);
+
+        a {
+            color: var(--color-primary);
+        }
+    }
+
+    // Body/L — Inter 18 / 140%, Body text colour, 460px wide.
+    &__text {
+        flex: 0 1 460px;
+        min-width: 0;
+        font-size: 18px;
+        line-height: 1.4;
+        color: var(--color-ink-80);
+    }
+
+    // ---------- Image: 1680 × 620 at desktop ----------
+
+    &__media {
+        position: relative;
+        width: 100%;
+        margin: 0;
+        aspect-ratio: 1680 / 620;
+        overflow: hidden;
+        background: var(--color-ink);
+    }
+
+    &__image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        &__inner {
+            gap: 56px;
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        &__inner {
+            gap: 48px;
+            padding-top: 88px;
+            padding-bottom: 88px;
+        }
+
+        &__title {
+            font-size: 48px;
+            line-height: 1.05;
+            letter-spacing: -1.6px;
+        }
+
+        &__text {
+            flex-basis: 400px;
+        }
+    }
+
+    // Tablet: paragraph moves under the heading.
+    @include breakpoint-max(lg) {
+        &__inner {
+            gap: 40px;
+            padding-top: 72px;
+            padding-bottom: 72px;
+        }
+
+        &__copy {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 24px;
+        }
+
+        &__title {
+            flex: none;
+            max-width: 777px;
+            font-size: 44px;
+            letter-spacing: -1.2px;
+        }
+
+        &__text {
+            flex: none;
+            max-width: 600px;
+        }
+
+        &__media {
+            aspect-ratio: 16 / 7;
+        }
+    }
+
+    // Mobile (Home mobile patterns, 360 wide).
+    @include breakpoint-max(md) {
+        &__inner {
+            gap: 32px;
+            padding: 40px 16px 56px;
+        }
+
+        &__header {
+            gap: 20px;
+        }
+
+        // Labels — 12px on mobile.
+        &__eyebrow {
+            font-size: 12px;
+            line-height: normal;
+            letter-spacing: 0.48px;
+        }
+
+        &__copy {
+            gap: 20px;
+        }
+
+        // Mobile H1 — 40 / 105% / -1%; one flowing text, no forced breaks.
+        &__title {
+            max-width: none;
+            font-size: 40px;
+            line-height: 1.05;
+            letter-spacing: -0.4px;
+
+            br {
+                display: none;
+            }
+        }
+
+        // Mobile Body L — 16 / 140%.
+        &__text {
+            max-width: none;
+            font-size: 16px;
+        }
+
+        &__media {
+            aspect-ratio: 16 / 9;
+        }
+    }
+
+    @include breakpoint-max(sm) {
+        &__media {
+            aspect-ratio: 328 / 220;
+        }
+
+        &__title {
+            font-size: 36px;
+            letter-spacing: -0.36px;
+        }
+    }
+}

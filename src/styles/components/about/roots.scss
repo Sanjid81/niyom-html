@@ -1,0 +1,188 @@
+// =====================================================================
+// About › Bangladesh Roots & International Positioning — Figma
+// "08 — Bangladesh Roots & International Positioning" (290:4995, 1920 wide:
+// image 800 × 640 left, 120 gap, text column 760 right).
+// No mobile About frame in Figma: mobile follows Home — Mobile 360 patterns
+// (16px sides, image then text, facts stacked).
+// Markup: components/About/roots.php
+// =====================================================================
+
+.about-roots {
+    background: var(--color-subtle-bg);
+
+    &__inner {
+        display: grid;
+        grid-template-columns: minmax(0, 800fr) minmax(0, 760fr); // Figma 800 / 760
+        align-items: center;
+        gap: clamp(64px, 6.25vw, 120px); // 120 at 1920
+        width: 100%;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    // ---------- Image (left) ----------
+
+    &__media {
+        min-width: 0;
+        aspect-ratio: 800 / 640;
+        overflow: hidden;
+    }
+
+    &__image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    // ---------- Text (right) ----------
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 36px;
+        min-width: 0;
+        overflow-wrap: break-word;
+    }
+
+    // Desktop eyebrow is Labels/L (Mono Medium 14 / 100%); mobile uses Labels/S.
+    &__eyebrow {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+    }
+
+    &__heading {
+        color: var(--color-heading);
+    }
+
+    &__text {
+        color: var(--color-text);
+    }
+
+    // ---------- Facts (3 columns, rule on top of each) ----------
+
+    &__facts {
+        display: flex;
+        align-items: flex-start;
+        gap: 40px;
+        width: 100%;
+        margin: 0;
+    }
+
+    &__fact {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        gap: 10px;
+        min-width: 0;
+        padding-top: 20px;
+        border-top: 1px solid rgba(11, 58, 83, 0.15); // Figma: Deep Ink 15%
+    }
+
+    // Labels/S — Mono Regular 12 / 120% / 1%, uppercase.
+    &__fact-label {
+        @extend .label-small;
+        color: var(--color-muted);
+    }
+
+    // Body/M. Inter has no Bengali glyphs, so Bengali text (e.g. "বাংলা")
+    // falls back to a Bengali system font.
+    &__fact-value {
+        margin: 0;
+        font-family: "Inter", "Noto Sans Bengali", "Nirmala UI", "Vrinda", "Bangla Sangam MN", "Kohinoor Bangla", system-ui, sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.4;
+        color: var(--color-heading);
+    }
+
+    // Text only: keep a readable line length.
+    &--no-image &__inner {
+        grid-template-columns: minmax(0, 760px);
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        &__inner {
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        &__inner {
+            gap: 56px;
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        &__content {
+            gap: 28px;
+        }
+
+        &__facts {
+            gap: 24px;
+        }
+    }
+
+    // Tablet: image on top (Figma ratio), text below.
+    @include breakpoint-max(lg) {
+        &__inner {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 48px;
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        &__content {
+            max-width: 760px;
+        }
+    }
+
+    // Mobile (360).
+    @include breakpoint-max(md) {
+        &__inner {
+            gap: 32px;
+            padding: 56px 16px;
+        }
+
+        &__content {
+            max-width: none;
+            gap: 20px;
+        }
+
+        &__eyebrow {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: 0.12px;
+        }
+
+        &__facts {
+            gap: 20px;
+            margin-top: 12px;
+        }
+
+        &__fact {
+            padding-top: 16px;
+            gap: 8px;
+        }
+    }
+
+    // Small phones: facts stack, one per row.
+    @include breakpoint-max(sm) {
+        &__facts {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        &__fact {
+            flex: none;
+        }
+    }
+}

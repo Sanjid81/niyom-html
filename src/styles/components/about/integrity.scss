@@ -1,0 +1,225 @@
+// =====================================================================
+// About "Research Integrity & Ethics" — Figma "About NIYOM › 06 — Research
+// Integrity & Ethics" (290:4927, 1920 wide). No mobile About frame in Figma:
+// mobile follows the Home mobile patterns.
+// Deep Ink section, faint background image (4%), intro left (640px),
+// commitments right in 2 columns with white 20% top borders.
+// Markup: components/About/integrity.php
+// =====================================================================
+
+.about-integrity {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--color-ink);
+    color: var(--color-white);
+
+    // ---------- Background image (Figma: 2000 × 1143, centred, 4%) ----------
+
+    &__bg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: -1;
+        width: max(2000px, 100%);
+        height: max(1143px, 100%);
+        opacity: 0.04;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+    }
+
+    &__bg-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    // ---------- Layout ----------
+
+    // Figma 1920: intro 640 · gap 160 · commitments 880. Columns keep that
+    // ratio on narrower screens (8.33vw = 160px at 1920).
+    &__inner {
+        display: grid;
+        grid-template-columns: minmax(0, 640fr) minmax(0, 880fr);
+        align-items: start;
+        column-gap: clamp(56px, 8.33vw, 160px);
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    // No intro: commitments take the full width.
+    &__inner > &__list:only-child {
+        grid-column: 1 / -1;
+    }
+
+    // ---------- Intro ----------
+
+    &__intro {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        min-width: 0;
+    }
+
+    // Figma "Labels/L": JetBrains Mono Medium 14 / 100%, White 60%.
+    &__eyebrow {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+        color: var(--color-white-60);
+    }
+
+    &__heading {
+        color: var(--color-white);
+    }
+
+    // Figma "Body/L": Inter 18 / 140%, White 80%, 520px box.
+    &__text {
+        max-width: 520px;
+        color: var(--color-white-80);
+
+        a {
+            color: var(--color-white);
+        }
+    }
+
+    // ---------- Commitments ----------
+
+    &__list {
+        display: grid;
+        flex: 1 1 auto;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 48px;
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        min-width: 0;
+        padding: 28px 0 36px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    // Figma "Labels/S": JetBrains Mono 12 / 120% / 1%, Signal Cyan.
+    &__number {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        text-transform: uppercase;
+        color: var(--color-cyan);
+    }
+
+    // Figma "Lead Text": Inter 24 / 120% / -2%, white.
+    &__title {
+        width: 100%;
+        font-family: var(--font-heading);
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.48px;
+        color: var(--color-white);
+    }
+
+    // Figma "Body/M": Inter 16 / 140%, White 80%.
+    &__item-text {
+        width: 100%;
+        font-size: 16px;
+        line-height: 1.4;
+        color: var(--color-white-80);
+
+        a {
+            color: var(--color-white);
+        }
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        &__inner {
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        &__list {
+            column-gap: 40px;
+        }
+
+        &__title {
+            font-size: 22px;
+            letter-spacing: -0.44px;
+        }
+    }
+
+    // Tablet: intro on top, commitments below in 2 columns.
+    @include breakpoint-max(lg) {
+        &__inner {
+            grid-template-columns: minmax(0, 1fr);
+            row-gap: 48px;
+            padding-top: 96px;
+            padding-bottom: 96px;
+        }
+
+        &__intro {
+            max-width: 640px;
+            gap: 24px;
+        }
+    }
+
+    // Mobile (Home mobile patterns): one column, 16px sides.
+    @include breakpoint-max(md) {
+        &__inner {
+            row-gap: 32px;
+            padding: 56px 16px;
+        }
+
+        &__intro {
+            gap: 20px;
+            max-width: 100%;
+        }
+
+        // Figma mobile: JetBrains Mono Medium 13, 0.52px tracking, White 80%.
+        &__eyebrow {
+            font-size: 13px;
+            line-height: normal;
+            letter-spacing: 0.52px;
+            color: var(--color-white-80);
+        }
+
+        &__list {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        &__item {
+            gap: 8px;
+            padding: 20px 0 24px;
+        }
+
+        &__item:last-child {
+            padding-bottom: 0;
+        }
+
+        // Figma mobile titles: Inter Medium 18.
+        &__title {
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 1.3;
+            letter-spacing: 0;
+        }
+
+        // Figma "Mobile/Body/S": Inter 14 / 140%.
+        &__item-text {
+            font-size: 14px;
+        }
+    }
+}
