@@ -13,14 +13,14 @@
     color: var(--color-ink);
 
     // Height fixed (Figma), width follows the uploaded image.
-    &__mark {
+    .brand-mark {
         width: auto;
         height: 48px;
         max-width: 240px;
         object-fit: contain;
     }
 
-    &__text {
+    .brand-text {
         font-family: var(--font-heading);
         font-size: 24px;
         font-weight: 500;
@@ -30,12 +30,12 @@
     }
 
     &--footer {
-        .brand__mark {
+        .brand-mark {
             height: 64px;
             max-width: 280px;
         }
 
-        .brand__text {
+        .brand-text {
             font-size: 32px;
             letter-spacing: 3.2px;
         }
@@ -65,7 +65,7 @@
         }
     }
 
-    &__inner {
+    .site-header-inner {
         position: relative;
         display: flex;
         align-items: center;
@@ -79,14 +79,14 @@
 
     // ---------- Desktop menu (centred) ----------
 
-    &__nav {
+    .site-header-nav {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
 
-    &__menu {
+    .site-header-menu {
         display: flex;
         align-items: center;
         gap: 10px;
@@ -164,13 +164,13 @@
 
     // ---------- Right side ----------
 
-    &__actions {
+    .site-header-actions {
         display: flex;
         align-items: center;
         gap: 16px;
     }
 
-    &__toggle {
+    .site-header-toggle {
         display: none;
         align-items: center;
         justify-content: center;
@@ -196,25 +196,25 @@
         }
 
         &[aria-expanded="true"] {
-            .site-header__toggle-open {
+            .site-header-toggle-open {
                 display: none;
             }
 
-            .site-header__toggle-close {
+            .site-header-toggle-close {
                 display: block;
             }
         }
     }
 
     // Mobile panel (hidden on desktop).
-    &__panel {
+    .site-header-panel {
         display: none;
     }
 
     // ---------- Responsive ----------
 
     @include breakpoint-max(xxl) {
-        &__inner {
+        .site-header-inner {
             padding: 0 32px;
         }
     }
@@ -222,16 +222,16 @@
     // Hamburger + expanded menu.
     @include breakpoint-max(xl) {
         // Doubled class beats .btn (components load after layout).
-        &__nav,
-        &__button.site-header__button {
+        .site-header-nav,
+        .site-header-button.site-header-button {
             display: none;
         }
 
-        &__toggle {
+        .site-header-toggle {
             display: inline-flex;
         }
 
-        &__panel {
+        .site-header-panel {
             position: fixed;
             top: var(--header-bottom, var(--header-height));
             left: 0;
@@ -256,11 +256,11 @@
             }
         }
 
-        &__panel-cta {
+        .site-header-panel-cta {
             padding-top: 24px;
         }
 
-        &__panel-button {
+        .site-header-panel-button {
             width: 100%;
             min-height: 40px;
             padding: 8px 24px;
@@ -269,26 +269,26 @@
     }
 
     @include breakpoint-max(md) {
-        &__inner {
+        .site-header-inner {
             padding: 0 16px;
         }
 
-        .brand__text {
+        .brand-text {
             font-size: 19px;
             letter-spacing: 1.9px;
         }
     }
 
     @media (prefers-reduced-motion: reduce) {
-        &__panel,
-        &__menu .sub-menu {
+        .site-header-panel,
+        .site-header-menu .sub-menu {
             transition: none;
         }
     }
 }
 
 // Mobile menu list (Figma: Navigation destination, 48px rows).
-.site-header__mobile-menu {
+.site-header-mobile-menu {
     > li {
         position: relative;
         display: flex;
@@ -372,38 +372,38 @@
         outline-offset: 2px;
     }
 
-    &__chevron {
+    .nav-submenu-toggle-chevron {
         width: 16px;
         height: 16px;
         transition: transform var(--transition);
     }
 
-    .submenu-open > & &__chevron {
+    .submenu-open > & .nav-submenu-toggle-chevron {
         transform: rotate(180deg);
     }
 
-    &__pm {
+    .nav-submenu-toggle-pm {
         display: none;
     }
 }
 
-.site-header__mobile-menu .nav-submenu-toggle {
+.site-header-mobile-menu .nav-submenu-toggle {
     width: 44px;
     height: 48px;
     justify-content: flex-end;
 
-    .nav-submenu-toggle__chevron {
+    .nav-submenu-toggle-chevron {
         display: none;
     }
 
-    .nav-submenu-toggle__pm {
+    .nav-submenu-toggle-pm {
         display: block;
     }
 }
 
 // Plus / minus (Figma: 18 × 1.5 teal lines). Shared with the footer accordion.
-.nav-submenu-toggle__pm,
-.site-footer__pm {
+.nav-submenu-toggle-pm,
+.site-footer-pm {
     position: relative;
     width: 18px;
     height: 18px;
@@ -426,8 +426,8 @@
     }
 }
 
-.submenu-open > .nav-submenu-toggle .nav-submenu-toggle__pm::after,
-.is-open > .site-footer__col-title .site-footer__pm::after {
+.submenu-open > .nav-submenu-toggle .nav-submenu-toggle-pm::after,
+.is-open > .site-footer-col-title .site-footer-pm::after {
     transform: rotate(0deg);
 }
 

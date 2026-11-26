@@ -1,0 +1,283 @@
+// =====================================================================
+// Scientific Engagement › Resources & event recaps — Figma "07 — Resources
+// & Event Recaps" (294:7575, 1920 wide). White, 140px top/bottom: label +
+// H2 (900px) left, 380px note right (bottom-aligned); 3 cards (24px gap):
+// 340px image, type · date meta, H5 title, Body M text, "Read more" link.
+// No mobile frame in Figma: mobile follows the Home insights cards.
+// Markup: components/ScientificEngagement/resources.php
+// =====================================================================
+
+.se-resources {
+    background: var(--color-white);
+
+    .se-resources-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 56px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    // ---------- Intro ----------
+
+    .se-resources-intro {
+        display: flex;
+        align-items: flex-end;
+        gap: 40px;
+    }
+
+    .se-resources-copy {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        min-width: 0;
+    }
+
+    // Labels/L — JetBrains Mono Medium 14 / 100%, Dark 60.
+    .se-resources-eyebrow {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+    }
+
+    .se-resources-heading {
+        max-width: 900px;
+        margin: 0;
+        color: var(--color-heading);
+    }
+
+    // Body M, Deep Ink at 70% (Figma).
+    .se-resources-text {
+        flex: 0 0 380px;
+        min-width: 0;
+        color: rgba(11, 58, 83, 0.7);
+    }
+
+    // ---------- Cards ----------
+
+    .se-resources-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .se-resources-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        min-width: 0;
+    }
+
+    .se-resources-media {
+        width: 100%;
+        height: 340px;
+        overflow: hidden;
+        background: var(--color-mist);
+    }
+
+    .se-resources-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+
+    .se-resources-card.is-linked:hover .se-resources-image {
+        transform: scale(1.04);
+    }
+
+    // Labels/S — type in teal, date in Dark 60, 16px apart.
+    .se-resources-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 16px;
+        margin: 0;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        text-transform: uppercase;
+    }
+
+    .se-resources-type {
+        color: var(--color-teal);
+    }
+
+    .se-resources-date {
+        color: var(--color-ink-60);
+    }
+
+    .se-resources-title {
+        margin: 0;
+        color: var(--color-heading);
+        overflow-wrap: break-word;
+    }
+
+    .se-resources-card-text {
+        color: var(--color-ink-80);
+    }
+
+    // Stretched link: the title link covers the whole card.
+    .se-resources-link {
+        color: inherit;
+        transition: color var(--transition);
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+
+        &:focus-visible {
+            outline: none;
+
+            &::after {
+                outline: 2px solid var(--color-cyan);
+                outline-offset: 2px;
+            }
+        }
+    }
+
+    .se-resources-card.is-linked:hover .se-resources-title {
+        color: var(--color-teal);
+    }
+
+    // "READ MORE ⟶" — Mono 14 / 22, 12px top + bottom padding (Figma).
+    .se-resources-more.link-arrow {
+        min-height: 0;
+        padding: 12px 0;
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .se-resources-card.is-linked:hover .se-resources-more {
+        span {
+            text-decoration-color: currentColor;
+        }
+
+        .link-arrow-icon {
+            transform: translateX(4px);
+        }
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        .se-resources-inner {
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        .se-resources-media {
+            height: 290px;
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        .se-resources-inner {
+            gap: 48px;
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        .se-resources-text {
+            flex-basis: 320px;
+        }
+
+        .se-resources-media {
+            height: 220px;
+        }
+
+        .se-resources-card {
+            gap: 16px;
+        }
+    }
+
+    // Tablet: note under the heading; 2 columns.
+    @include breakpoint-max(lg) {
+        .se-resources-inner {
+            gap: 40px;
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        .se-resources-intro {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 24px;
+        }
+
+        .se-resources-copy {
+            flex: none;
+            width: 100%;
+            gap: 24px;
+        }
+
+        .se-resources-text {
+            flex: none;
+            max-width: 600px;
+        }
+
+        .se-resources-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 40px 24px;
+        }
+
+        .se-resources-media {
+            height: auto;
+            aspect-ratio: 544 / 340;
+        }
+    }
+
+    // Mobile (Home mobile patterns, 360 wide): one card per row.
+    @include breakpoint-max(md) {
+        .se-resources-inner {
+            gap: 32px;
+            padding: 56px 16px;
+        }
+
+        .se-resources-intro,
+        .se-resources-copy {
+            gap: 20px;
+        }
+
+        .se-resources-eyebrow {
+            font-size: 12px;
+            line-height: normal;
+            letter-spacing: 0.48px;
+        }
+
+        .se-resources-grid {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 32px;
+        }
+
+        .se-resources-card {
+            gap: 12px;
+        }
+
+        .se-resources-more.link-arrow {
+            padding: 4px 0;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .se-resources-image,
+        .se-resources-more .link-arrow-icon {
+            transition: none;
+        }
+    }
+}

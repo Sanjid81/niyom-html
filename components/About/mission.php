@@ -35,42 +35,42 @@ if (!$has_head && !$has_body) {
 ?>
 
 <section class="about-mission">
-    <div class="about-mission__inner">
+    <div class="about-mission-inner">
 
         <?php if ($has_head) : ?>
-            <header class="about-mission__head">
+            <header class="about-mission-head">
                 <?php if ($eyebrow) : ?>
-                    <p class="about-mission__eyebrow"><?php echo esc_html($eyebrow); ?></p>
+                    <p class="about-mission-eyebrow"><?php echo esc_html($eyebrow); ?></p>
                 <?php endif; ?>
 
                 <?php if ($title) : ?>
-                    <h2 class="about-mission__title"><?php echo $title; // Escaped in niyom_inline_text(). ?></h2>
+                    <h2 class="about-mission-title"><?php echo $title; // Escaped in niyom_inline_text(). ?></h2>
                 <?php endif; ?>
             </header>
         <?php endif; ?>
 
         <?php if ($has_body) : ?>
-            <div class="about-mission__body">
+            <div class="about-mission-body">
                 <?php if ($intro) : ?>
-                    <div class="about-mission__intro rich-text"><?php echo $intro; // Escaped in niyom_rich_text(). ?></div>
+                    <div class="about-mission-intro rich-text"><?php echo $intro; // Escaped in niyom_rich_text(). ?></div>
                 <?php endif; ?>
 
                 <?php if ($items) : ?>
-                    <ol class="about-mission__list">
+                    <ol class="about-mission-list">
                         <?php foreach ($items as $item) : ?>
-                            <li class="about-mission__item">
+                            <li class="about-mission-item">
                                 <?php if ($item['number'] !== '') : ?>
-                                    <span class="about-mission__number"><?php echo esc_html($item['number']); ?></span>
+                                    <span class="about-mission-number"><?php echo esc_html($item['number']); ?></span>
                                 <?php endif; ?>
 
                                 <?php if ($item['title'] || $item['text']) : ?>
-                                    <div class="about-mission__content">
+                                    <div class="about-mission-content">
                                         <?php if ($item['title']) : ?>
-                                            <h3 class="about-mission__item-title"><?php echo $item['title']; // Escaped in niyom_inline_text(). ?></h3>
+                                            <h3 class="about-mission-item-title"><?php echo $item['title']; // Escaped in niyom_inline_text(). ?></h3>
                                         <?php endif; ?>
 
                                         <?php if ($item['text']) : ?>
-                                            <div class="about-mission__item-text rich-text"><?php echo $item['text']; // Escaped in niyom_rich_text(). ?></div>
+                                            <div class="about-mission-item-text rich-text"><?php echo $item['text']; // Escaped in niyom_rich_text(). ?></div>
                                         <?php endif; ?>
                                     </div>
                                 <?php endif; ?>

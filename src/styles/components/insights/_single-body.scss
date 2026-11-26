@@ -1,0 +1,871 @@
+// =====================================================================
+// Insight article › Body — Figma "04 — Article Body" (303:8349) and
+// "05 — References" (303:8419). 96px top, 140px bottom. Columns at 1920:
+// "On this page" + share (280) · article (840) · "Related service" (320),
+// 120px gaps. Below 1200 the box moves under the article; below 992
+// everything stacks and "On this page" becomes a collapsible box.
+//
+// Article content = Gutenberg blocks from the post (core heading,
+// paragraph, list, quote, image, group, separator, table), styled to the
+// Figma article: H2 = H4 32, Body L 18, pull quote, figure + caption,
+// "Key point box" (core/group style), "Checklist" (core/list style).
+// Markup: components/Insights/single-body.php · JS: src/scripts/components/insights.js
+// =====================================================================
+
+.article-body {
+    --article-aside: 280px;
+    --article-rail: 320px;
+    --article-gap: 120px;
+    --article-sticky-top: calc(var(--header-height) + 32px);
+
+    background: var(--color-white);
+
+    .article-body-inner {
+        display: grid;
+        grid-template-columns: var(--article-aside) minmax(0, 1fr) var(--article-rail);
+        grid-template-areas: "aside main rail";
+        align-items: start;
+        column-gap: var(--article-gap);
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 96px var(--container-padding) 140px;
+    }
+
+    &.article-body--no-rail .article-body-inner {
+        grid-template-columns: var(--article-aside) minmax(0, 1fr);
+        grid-template-areas: "aside main";
+
+        .article-main {
+            max-width: 840px;
+        }
+    }
+
+    &.article-body--no-aside .article-body-inner {
+        grid-template-columns: minmax(0, 1fr) var(--article-rail);
+        grid-template-areas: "main rail";
+    }
+
+    &.article-body--no-aside.article-body--no-rail .article-body-inner {
+        grid-template-columns: minmax(0, 840px);
+        grid-template-areas: "main";
+        justify-content: center;
+    }
+
+    // ---------- Left: "On this page" + share ----------
+
+    .article-aside {
+        grid-area: aside;
+        position: sticky;
+        top: var(--article-sticky-top);
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+        max-height: calc(100vh - var(--article-sticky-top) - 24px);
+        overflow-y: auto;
+        scrollbar-width: thin;
+    }
+
+    // Labels/S — JetBrains Mono 12 / 120% / 1%.
+    .article-toc-label,
+    .article-share-label {
+        margin: 0;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        text-transform: uppercase;
+    }
+
+    .article-toc-label {
+        color: var(--color-primary);
+    }
+
+    .article-toc-toggle {
+        display: none;
+    }
+
+    .article-toc-list {
+        margin: 0;
+        padding: 16px 0 0;
+        list-style: none;
+    }
+
+    // Body S — Inter Medium 14 / 160%. Active: teal, 2px teal line.
+    .article-toc-link {
+        display: block;
+        padding: 14px 0 14px 16px;
+        border-left: 1px solid var(--color-border);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.6;
+        color: var(--color-ink-80);
+        transition: color var(--transition), border-color var(--transition);
+
+        &:hover {
+            color: var(--color-primary);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: -2px;
+        }
+
+        &.is-active,
+        &[aria-current="true"] {
+            padding-left: 15px;
+            border-left: 2px solid var(--color-primary);
+            color: var(--color-primary);
+        }
+    }
+
+    .article-share {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .article-share-label {
+        color: var(--color-muted);
+    }
+
+    .article-share-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    // 44px squares, Deep Ink 20% border, 14px icons.
+    .article-share-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border: 1px solid rgba(11, 58, 83, 0.2);
+        background: transparent;
+        color: var(--color-muted);
+        transition: color var(--transition), border-color var(--transition), background-color var(--transition);
+
+        &:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        &:focus-visible {
+            outline: none;
+            box-shadow: var(--focus-ring);
+        }
+
+        &.is-copied {
+            border-color: var(--color-primary);
+            background: var(--color-mist);
+            color: var(--color-primary);
+        }
+
+        &[hidden] {
+            display: none;
+        }
+    }
+
+    .article-share-icon {
+        width: 14px;
+        height: 14px;
+    }
+
+    .article-share-status {
+        min-height: 20px;
+        margin: 0;
+        font-size: 13px;
+        line-height: 20px;
+        color: var(--color-primary);
+
+        &:empty {
+            display: none;
+        }
+    }
+
+    // ---------- Centre: article ----------
+
+    .article-main {
+        grid-area: main;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+    }
+
+    .article-content {
+        overflow-wrap: break-word;
+        font-size: 18px;
+        line-height: 1.4;
+        color: var(--color-ink-80);
+
+        > * {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        > * + * {
+            margin-top: 32px;
+        }
+
+        // Headings: H2 = Figma H4 (32 / 120% / -2%).
+        h2 {
+            font-size: 32px;
+            line-height: 1.2;
+            letter-spacing: -0.64px;
+            color: var(--color-heading);
+            scroll-margin-top: var(--article-sticky-top);
+        }
+
+        h3 {
+            font-size: 24px;
+            line-height: 1.2;
+            letter-spacing: -0.48px;
+            color: var(--color-heading);
+        }
+
+        h4,
+        h5,
+        h6 {
+            font-size: 20px;
+            line-height: 1.3;
+            letter-spacing: -0.2px;
+            color: var(--color-heading);
+        }
+
+        h3 + *,
+        h4 + *,
+        h5 + *,
+        h6 + * {
+            margin-top: 16px;
+        }
+
+        a {
+            color: var(--color-primary);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            transition: color var(--transition);
+
+            &:hover {
+                color: var(--color-ink);
+            }
+        }
+
+        strong,
+        b {
+            font-weight: 500;
+            color: var(--color-ink);
+        }
+
+        // Lists (not the checklist).
+        ul,
+        ol {
+            padding-left: 1.4em;
+        }
+
+        ul {
+            list-style: disc;
+        }
+
+        ol {
+            list-style: decimal;
+        }
+
+        li + li {
+            margin-top: 8px;
+        }
+
+        li::marker {
+            color: var(--color-primary);
+        }
+
+        // Pull quote (core/quote, core/pullquote): 2px teal line, 32px teal text.
+        .wp-block-quote,
+        .wp-block-pullquote blockquote,
+        > blockquote {
+            margin-left: 0;
+            margin-right: 0;
+            padding: 8px 0 8px 32px;
+            border-left: 2px solid var(--color-primary);
+
+            p {
+                font-size: 32px;
+                line-height: 1.2;
+                letter-spacing: -0.64px;
+                color: var(--color-primary);
+            }
+
+            p + p {
+                margin-top: 16px;
+            }
+
+            cite {
+                display: block;
+                margin-top: 16px;
+                font-family: var(--font-mono);
+                font-size: 12px;
+                font-style: normal;
+                line-height: 1.2;
+                letter-spacing: 0.12px;
+                text-transform: uppercase;
+                color: var(--color-muted);
+            }
+        }
+
+        .wp-block-pullquote {
+            margin-left: 0;
+            margin-right: 0;
+            padding: 0;
+            border: 0;
+            text-align: left;
+        }
+
+        // Figure + caption (Figma "Figure": 840 × 420, caption 12px below).
+        figure,
+        .wp-block-image {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .wp-block-image img,
+        figure > img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        figcaption,
+        .wp-element-caption {
+            margin: 12px 0 0;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.6;
+            text-align: left;
+            color: var(--color-muted);
+        }
+
+        // "Key point box" (core/group style): Mist, 32px padding, label + Lead Text.
+        .is-style-key-point,
+        .is-style-key-point > .wp-block-group__inner-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .is-style-key-point {
+            padding: 32px;
+            background: var(--color-mist);
+
+            > .wp-block-group__inner-container {
+                padding: 0;
+            }
+
+            p {
+                font-size: 24px;
+                line-height: 1.2;
+                letter-spacing: -0.48px;
+                color: var(--color-ink);
+            }
+
+            // First paragraph of two or more = the small "KEY POINT" label.
+            > p:first-child:not(:only-child),
+            > .wp-block-group__inner-container > p:first-child:not(:only-child) {
+                font-family: var(--font-mono);
+                font-size: 12px;
+                line-height: 1.2;
+                letter-spacing: 0.12px;
+                text-transform: uppercase;
+                color: var(--color-primary);
+            }
+
+            * + * {
+                margin-top: 0;
+            }
+        }
+
+        // "Checklist" (core/list style): rows with a top border and a teal box.
+        .is-style-checklist {
+            padding: 0;
+            list-style: none;
+
+            li {
+                position: relative;
+                margin: 0;
+                padding: 16px 0 16px 31px;
+                border-top: 1px solid var(--color-border);
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 23px;
+                    left: 1px;
+                    width: 11px;
+                    height: 11px;
+                    border: 1.5px solid var(--color-primary);
+                }
+            }
+
+            li + li {
+                margin-top: 0;
+            }
+
+            // Nested lists inside a checklist row stay plain.
+            ul,
+            ol {
+                margin-top: 8px;
+            }
+        }
+
+        // Separator.
+        hr,
+        .wp-block-separator {
+            width: 100%;
+            height: 0;
+            border: 0;
+            border-top: 1px solid var(--color-border);
+            opacity: 1;
+        }
+
+        // Table: Deep Ink header row, thin row lines.
+        .wp-block-table {
+            margin-left: 0;
+            margin-right: 0;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        th,
+        td {
+            padding: 14px 16px;
+            border: 0;
+            border-bottom: 1px solid var(--color-border);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        thead th {
+            background: var(--color-ink);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.12px;
+            text-transform: uppercase;
+            color: var(--color-white);
+        }
+
+        code {
+            padding: 2px 6px;
+            background: var(--color-mist);
+            font-family: var(--font-mono);
+            font-size: 0.85em;
+            color: var(--color-ink);
+        }
+
+        pre {
+            padding: 20px 24px;
+            overflow-x: auto;
+            background: var(--color-mist);
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--color-ink);
+
+            code {
+                padding: 0;
+                background: none;
+            }
+        }
+
+        .alignleft {
+            float: left;
+            margin: 0 24px 16px 0;
+        }
+
+        .alignright {
+            float: right;
+            margin: 0 0 16px 24px;
+        }
+
+        .aligncenter {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    // Tags (Figma: 16px above + the 32px article gap).
+    .article-tags {
+        margin-top: 48px;
+    }
+
+    // ---------- References (Figma 303:8419: 880px, 140px under the article) ----------
+
+    .article-references {
+        margin-top: 140px;
+        padding-top: 48px;
+        border-top: 1px solid rgba(11, 58, 83, 0.2);
+        scroll-margin-top: var(--article-sticky-top);
+    }
+
+    // H5 — 28 / 120% / -2%.
+    .article-references-heading {
+        margin: 0;
+        font-size: 28px;
+        line-height: 1.2;
+        letter-spacing: -0.56px;
+        color: var(--color-heading);
+    }
+
+    .article-references-list {
+        margin: 24px 0 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .article-references-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 24px;
+        padding: 16px 0;
+        border-top: 1px solid rgba(11, 58, 83, 0.15);
+    }
+
+    .article-references-number {
+        flex: 0 0 48px;
+        padding-top: 3px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        color: var(--color-primary);
+    }
+
+    .article-references-text {
+        flex: 1 1 0;
+        min-width: 0;
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.4;
+        color: rgba(11, 58, 83, 0.75);
+
+        a {
+            color: var(--color-primary);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            overflow-wrap: anywhere;
+        }
+    }
+
+    // ---------- Right: "Related service" (Deep Ink) ----------
+
+    .article-rail {
+        grid-area: rail;
+        position: sticky;
+        top: var(--article-sticky-top);
+    }
+
+    .article-service {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 32px;
+        background: var(--color-ink);
+    }
+
+    .article-service-label {
+        margin: 0;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        text-transform: uppercase;
+        color: var(--color-cyan);
+    }
+
+    // H5 — 28 / 120% / -2%, white.
+    .article-service-title {
+        margin: 0;
+        font-size: 28px;
+        line-height: 1.2;
+        letter-spacing: -0.56px;
+        color: var(--color-white);
+    }
+
+    .article-service-text {
+        margin: 0;
+        font-size: 16px;
+        line-height: 1.4;
+        color: var(--color-white-80);
+    }
+
+    // Link / Arrow — Navigation 14 / 22px, Signal Cyan.
+    .article-service-link {
+        min-height: 46px;
+        font-size: 14px;
+        line-height: 22px;
+        color: var(--color-cyan);
+
+        &:focus-visible {
+            outline-color: var(--color-cyan);
+        }
+    }
+
+    // References run 40px into the gap, as in Figma (880 vs 840).
+    @media (min-width: 1601px) {
+        &:not(.article-body--no-rail) .article-references {
+            margin-right: -40px;
+        }
+    }
+
+    // ---------- Responsive ----------
+
+    // Below 1600 three columns get too narrow: the "Related service" box
+    // moves under the article; "On this page" stays sticky on the left.
+    // (Offsets match _single-author.scss.)
+    @media (max-width: 1600px) {
+        --article-aside: 240px;
+        --article-gap: 80px;
+
+        .article-body-inner,
+        &.article-body--no-aside .article-body-inner {
+            grid-template-columns: var(--article-aside) minmax(0, 1fr);
+            grid-template-areas:
+                "aside main"
+                "aside rail";
+            row-gap: 64px;
+        }
+
+        &.article-body--no-aside .article-body-inner {
+            grid-template-columns: minmax(0, 1fr);
+            grid-template-areas:
+                "main"
+                "rail";
+        }
+
+        .article-main {
+            max-width: 880px;
+        }
+
+        // Five share buttons in one row of the narrower column.
+        .article-share-list {
+            gap: 6px;
+        }
+
+        .article-share-button {
+            width: 38px;
+            height: 38px;
+        }
+
+        .article-rail {
+            position: static;
+            max-width: 560px;
+        }
+    }
+
+    @include breakpoint-max(xxl) {
+        --article-aside: 220px;
+        --article-gap: 64px;
+
+        .article-body-inner {
+            padding-top: 80px;
+            padding-bottom: 120px;
+        }
+
+        .article-references {
+            margin-top: 112px;
+        }
+    }
+
+    // Tablet + mobile: one column; "On this page" is a collapsible box.
+    @include breakpoint-max(lg) {
+        .article-body-inner,
+        &.article-body--no-rail .article-body-inner,
+        &.article-body--no-aside .article-body-inner {
+            grid-template-columns: minmax(0, 1fr);
+            grid-template-areas:
+                "aside"
+                "main"
+                "rail";
+            row-gap: 48px;
+            padding-top: 56px;
+            padding-bottom: 96px;
+        }
+
+        .article-aside {
+            position: static;
+            gap: 24px;
+            max-height: none;
+            overflow: visible;
+        }
+
+        .article-toc {
+            border: 1px solid var(--color-border);
+        }
+
+        .article-share-list {
+            gap: 10px;
+        }
+
+        .article-share-button {
+            width: 44px;
+            height: 44px;
+        }
+
+        // With JS: the label becomes a toggle button.
+        .article-toc.is-ready {
+            .article-toc-label {
+                display: none;
+            }
+
+            .article-toc-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 16px;
+                width: 100%;
+                padding: 16px 20px;
+                border: 0;
+                font-family: var(--font-mono);
+                font-size: 12px;
+                line-height: 1.2;
+                letter-spacing: 0.12px;
+                text-align: left;
+                text-transform: uppercase;
+                color: var(--color-primary);
+
+                &:focus-visible {
+                    outline: 2px solid var(--color-primary);
+                    outline-offset: -2px;
+                }
+            }
+
+            .article-toc-chevron {
+                flex-shrink: 0;
+                width: 12px;
+                height: 8px;
+                transition: transform var(--transition);
+            }
+
+            .article-toc-toggle[aria-expanded="true"] .article-toc-chevron {
+                transform: rotate(180deg);
+            }
+
+            .article-toc-list {
+                padding: 0 20px 16px;
+            }
+
+            .article-toc-list[hidden] {
+                display: none;
+            }
+        }
+
+        .article-toc:not(.is-ready) {
+            padding: 16px 20px;
+        }
+
+        .article-references {
+            margin-top: 88px;
+            padding-top: 40px;
+        }
+    }
+
+    @include breakpoint-max(md) {
+        .article-body-inner,
+        &.article-body--no-rail .article-body-inner,
+        &.article-body--no-aside .article-body-inner {
+            row-gap: 40px;
+            padding: 40px 16px 72px;
+        }
+
+        .article-content {
+            font-size: 16px;
+
+            > * + * {
+                margin-top: 24px;
+            }
+
+            h2 {
+                font-size: 24px;
+                line-height: 1.25;
+                letter-spacing: -0.12px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+
+            .wp-block-quote,
+            .wp-block-pullquote blockquote,
+            > blockquote {
+                padding-left: 20px;
+
+                p {
+                    font-size: 24px;
+                    line-height: 1.25;
+                    letter-spacing: -0.12px;
+                }
+            }
+
+            .is-style-key-point {
+                padding: 24px 20px;
+
+                p {
+                    font-size: 20px;
+                    letter-spacing: 0;
+                }
+            }
+
+            .is-style-checklist li {
+                padding: 14px 0 14px 28px;
+
+                &::before {
+                    top: 20px;
+                }
+            }
+        }
+
+        .article-tags {
+            margin-top: 40px;
+        }
+
+        .article-references {
+            margin-top: 64px;
+            padding-top: 32px;
+        }
+
+        .article-references-heading {
+            font-size: 24px;
+        }
+
+        .article-references-item {
+            gap: 12px;
+        }
+
+        .article-references-number {
+            flex-basis: 32px;
+        }
+
+        .article-references-text {
+            font-size: 15px;
+        }
+
+        .article-service {
+            padding: 24px;
+        }
+
+        .article-service-title {
+            font-size: 24px;
+        }
+    }
+}

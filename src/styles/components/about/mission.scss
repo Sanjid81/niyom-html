@@ -9,7 +9,7 @@
     background: var(--color-subtle-bg);
 
     // Two equal columns: 760 + 160px gap + 760 at 1920; gap shrinks with width.
-    &__inner {
+    .about-mission-inner {
         display: flex;
         align-items: flex-start;
         gap: clamp(80px, 8.333vw, 160px);
@@ -20,7 +20,7 @@
 
     // ---------- Left: label + heading ----------
 
-    &__head {
+    .about-mission-head {
         display: flex;
         flex: 1 1 0;
         flex-direction: column;
@@ -30,7 +30,7 @@
     }
 
     // Labels/L — JetBrains Mono Medium 14 / 100%, Dark 60.
-    &__eyebrow {
+    .about-mission-eyebrow {
         margin: 0;
         font-family: var(--font-mono);
         font-size: 14px;
@@ -45,7 +45,7 @@
     }
 
     // H2 — Inter 56 / 100% / -2% at 1920, scaling down with the viewport.
-    &__title {
+    .about-mission-title {
         margin: 0;
         font-family: var(--font-heading);
         font-size: clamp(48px, 2.9167vw, 56px);
@@ -61,7 +61,7 @@
 
     // ---------- Right: intro + numbered list ----------
 
-    &__body {
+    .about-mission-body {
         display: flex;
         flex: 1 1 0;
         flex-direction: column;
@@ -70,13 +70,13 @@
     }
 
     // Body/L — Inter 18 / 140%, Body text colour.
-    &__intro {
+    .about-mission-intro {
         font-size: 18px;
         line-height: 1.4;
         color: var(--color-ink-80);
     }
 
-    &__list {
+    .about-mission-list {
         display: flex;
         flex-direction: column;
         gap: 40px;
@@ -86,7 +86,7 @@
     }
 
     // Each row: thin top border, number column (60px) + 40px gap + text.
-    &__item {
+    .about-mission-item {
         display: flex;
         align-items: flex-start;
         gap: 40px;
@@ -95,7 +95,7 @@
     }
 
     // Labels/S — JetBrains Mono Regular 12 / 120% / 1%, Research Teal.
-    &__number {
+    .about-mission-number {
         flex: 0 0 60px;
         font-family: var(--font-mono);
         font-size: 12px;
@@ -106,7 +106,7 @@
         color: var(--color-primary);
     }
 
-    &__content {
+    .about-mission-content {
         display: flex;
         flex: 1 1 0;
         flex-direction: column;
@@ -115,7 +115,7 @@
     }
 
     // Lead Text — Inter 24 / 120% / -2%, Deep Ink.
-    &__item-title {
+    .about-mission-item-title {
         margin: 0;
         font-family: var(--font-heading);
         font-size: 24px;
@@ -126,7 +126,7 @@
     }
 
     // Body/M — Inter 16 / 140%, Body text colour.
-    &__item-text {
+    .about-mission-item-text {
         font-size: 16px;
         line-height: 1.4;
         color: var(--color-ink-80);
@@ -136,71 +136,71 @@
 
     // Heading on top, list below.
     @include breakpoint-max(xl) {
-        &__inner {
+        .about-mission-inner {
             flex-direction: column;
             gap: 56px;
             padding-top: 120px;
             padding-bottom: 120px;
         }
 
-        &__head {
+        .about-mission-head {
             flex: none;
             max-width: 760px;
             gap: 24px;
         }
 
-        &__body {
+        .about-mission-body {
             flex: none;
             width: 100%;
         }
     }
 
     @include breakpoint-max(lg) {
-        &__inner {
+        .about-mission-inner {
             gap: 48px;
             padding-top: 96px;
             padding-bottom: 96px;
         }
 
-        &__title {
+        .about-mission-title {
             font-size: 42px;
             line-height: 1.1;
             letter-spacing: -0.6px;
         }
 
-        &__body,
-        &__list {
+        .about-mission-body,
+        .about-mission-list {
             gap: 32px;
         }
 
-        &__item {
+        .about-mission-item {
             gap: 24px;
         }
 
-        &__number {
+        .about-mission-number {
             flex-basis: 48px;
         }
     }
 
     // Mobile (Home mobile patterns, 360 wide).
     @include breakpoint-max(md) {
-        &__inner {
+        .about-mission-inner {
             gap: 32px;
             padding: 56px 16px;
         }
 
-        &__head {
+        .about-mission-head {
             gap: 20px;
         }
 
-        &__eyebrow {
+        .about-mission-eyebrow {
             font-size: 12px;
             line-height: normal;
             letter-spacing: 0.48px;
         }
 
         // Mobile H2 — 34 / 115% / -1%.
-        &__title {
+        .about-mission-title {
             font-size: 34px;
             line-height: 1.15;
             letter-spacing: -0.34px;
@@ -210,32 +210,32 @@
             }
         }
 
-        &__intro {
+        .about-mission-intro {
             font-size: 16px;
         }
 
-        &__body,
-        &__list {
+        .about-mission-body,
+        .about-mission-list {
             gap: 24px;
         }
 
-        &__item {
+        .about-mission-item {
             gap: 16px;
             padding-top: 20px;
         }
 
-        &__number {
+        .about-mission-number {
             flex-basis: 24px;
             padding-top: 4px;
         }
 
         // Mobile Lead Text — 20 / 120%.
-        &__item-title {
+        .about-mission-item-title {
             font-size: 20px;
             letter-spacing: 0;
         }
 
-        &__item-text {
+        .about-mission-item-text {
             font-size: 14px;
         }
     }

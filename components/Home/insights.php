@@ -44,45 +44,45 @@ $heading_id = wp_unique_id('home-insights-heading-');
 ?>
 
 <section class="home-insights"<?php echo $heading ? ' aria-labelledby="' . esc_attr($heading_id) . '"' : ''; ?>>
-    <div class="home-insights__inner">
+    <div class="home-insights-inner">
 
         <?php if ($eyebrow || $heading || $has_button) : ?>
-            <div class="home-insights__intro">
+            <div class="home-insights-intro">
                 <?php if ($eyebrow || $heading) : ?>
-                    <div class="home-insights__titles">
+                    <div class="home-insights-titles">
                         <?php if ($eyebrow) : ?>
-                            <p class="home-insights__eyebrow eyebrow"><?php echo esc_html($eyebrow); ?></p>
+                            <p class="home-insights-eyebrow eyebrow"><?php echo esc_html($eyebrow); ?></p>
                         <?php endif; ?>
 
                         <?php if ($heading) : ?>
-                            <h2 class="home-insights__heading heading-two" id="<?php echo esc_attr($heading_id); ?>"><?php echo $heading; // Escaped in niyom_inline_text(). ?></h2>
+                            <h2 class="home-insights-heading heading-two" id="<?php echo esc_attr($heading_id); ?>"><?php echo $heading; // Escaped in niyom_inline_text(). ?></h2>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
 
                 <?php if ($has_button) : ?>
-                    <a class="btn btn--primary home-insights__button" <?php echo niyom_link_attrs($button_link, $new_tab); ?>>
+                    <a class="btn btn--primary home-insights-button" <?php echo niyom_link_attrs($button_link, $new_tab); ?>>
                         <span><?php echo esc_html($button_text); ?></span>
-                        <?php echo niyom_icon('arrow-right', 'btn__arrow btn__arrow--lg'); ?>
-                        <?php echo niyom_icon('arrow-right-sm', 'btn__arrow btn__arrow--sm'); ?>
+                        <?php echo niyom_icon('arrow-right', 'btn-arrow btn-arrow--lg'); ?>
+                        <?php echo niyom_icon('arrow-right-sm', 'btn-arrow btn-arrow--sm'); ?>
                     </a>
                 <?php endif; ?>
             </div>
         <?php endif; ?>
 
         <?php if ($posts) : ?>
-            <ul class="home-insights__grid" role="list">
+            <ul class="home-insights-grid" role="list">
                 <?php foreach ($posts as $post_item) :
                     $permalink = get_permalink($post_item);
                     $title     = get_the_title($post_item);
                     $terms     = get_the_terms($post_item, 'insight_category');
                     $term_name = ($terms && !is_wp_error($terms)) ? $terms[0]->name : '';
                     ?>
-                    <li class="home-insights__card">
+                    <li class="home-insights-card">
                         <?php if (has_post_thumbnail($post_item)) : ?>
-                            <a class="home-insights__media" href="<?php echo esc_url($permalink); ?>" tabindex="-1" aria-hidden="true">
+                            <a class="home-insights-media" href="<?php echo esc_url($permalink); ?>" tabindex="-1" aria-hidden="true">
                                 <?php echo get_the_post_thumbnail($post_item, 'large', [
-                                    'class'   => 'home-insights__image',
+                                    'class'   => 'home-insights-image',
                                     'alt'     => '',
                                     'loading' => 'lazy',
                                     'sizes'   => '(max-width: 768px) 260px, (max-width: 1200px) 50vw, 425px',
@@ -90,29 +90,29 @@ $heading_id = wp_unique_id('home-insights-heading-');
                             </a>
                         <?php endif; ?>
 
-                        <div class="home-insights__body">
-                            <div class="home-insights__text">
-                                <p class="home-insights__meta">
-                                    <time class="home-insights__date" datetime="<?php echo esc_attr(get_the_date('c', $post_item)); ?>"><?php echo esc_html(get_the_date('j M, Y', $post_item)); ?></time>
+                        <div class="home-insights-body">
+                            <div class="home-insights-text">
+                                <p class="home-insights-meta">
+                                    <time class="home-insights-date" datetime="<?php echo esc_attr(get_the_date('c', $post_item)); ?>"><?php echo esc_html(get_the_date('j M, Y', $post_item)); ?></time>
                                     <?php if ($term_name) : ?>
-                                        <span class="home-insights__dot" aria-hidden="true"></span>
-                                        <span class="home-insights__category"><?php echo esc_html($term_name); ?></span>
+                                        <span class="home-insights-dot" aria-hidden="true"></span>
+                                        <span class="home-insights-category"><?php echo esc_html($term_name); ?></span>
                                     <?php endif; ?>
                                 </p>
 
                                 <?php if ($title !== '') : ?>
-                                    <h3 class="home-insights__title lead-text">
+                                    <h3 class="home-insights-title lead-text">
                                         <a href="<?php echo esc_url($permalink); ?>"><?php echo esc_html($title); ?></a>
                                     </h3>
                                 <?php endif; ?>
                             </div>
 
                             <?php if ($link_text !== '') : ?>
-                                <a class="link-arrow home-insights__link" href="<?php echo esc_url($permalink); ?>"
+                                <a class="link-arrow home-insights-link" href="<?php echo esc_url($permalink); ?>"
                                     aria-label="<?php echo esc_attr($link_text . ': ' . $title); ?>">
                                     <span><?php echo esc_html($link_text); ?></span>
-                                    <?php echo niyom_icon('arrow-right', 'link-arrow__icon link-arrow__icon--lg'); ?>
-                                    <?php echo niyom_icon('arrow-right-sm', 'link-arrow__icon link-arrow__icon--sm'); ?>
+                                    <?php echo niyom_icon('arrow-right', 'link-arrow-icon link-arrow-icon--lg'); ?>
+                                    <?php echo niyom_icon('arrow-right-sm', 'link-arrow-icon link-arrow-icon--sm'); ?>
                                 </a>
                             <?php endif; ?>
                         </div>

@@ -1,0 +1,148 @@
+// =====================================================================
+// Insights › Hero — Figma "Insights › 02 — Hero" (303:7341, 1920 wide).
+// 120px top, 60px bottom; label, then H1 (777px) left + Body L (570px)
+// right, bottom-aligned. Mobile follows the Home mobile patterns.
+// Markup: components/Insights/hero.php
+// =====================================================================
+
+.in-hero {
+    background: var(--color-white);
+
+    .in-hero-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 120px var(--container-padding) 60px;
+    }
+
+    // Labels/L — JetBrains Mono Medium 14 / 100%, Dark 60.
+    .in-hero-eyebrow {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+    }
+
+    .in-hero-copy {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 60px;
+        width: 100%;
+    }
+
+    // H1 — Inter 64 / 100% / -4%. +13px so Figma's 777px lines don't wrap.
+    .in-hero-title {
+        flex: 0 1 790px;
+        min-width: 0;
+        margin: 0;
+        font-size: clamp(48px, 3.3333vw, 64px);
+        line-height: 1;
+        letter-spacing: -0.04em;
+        color: var(--color-ink);
+    }
+
+    // Body L — Inter 18 / 140%, Body text.
+    .in-hero-text {
+        flex: 0 1 570px;
+        min-width: 0;
+        font-size: 18px;
+        line-height: 1.4;
+        color: var(--color-ink-80);
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        .in-hero-inner {
+            padding-top: 100px;
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        .in-hero-inner {
+            padding-top: 88px;
+            padding-bottom: 56px;
+        }
+
+        .in-hero-title {
+            font-size: 48px;
+            line-height: 1.05;
+            letter-spacing: -1.6px;
+        }
+
+        .in-hero-text {
+            flex-basis: 440px;
+        }
+    }
+
+    // Tablet: paragraph under the heading.
+    @include breakpoint-max(lg) {
+        .in-hero-inner {
+            padding-top: 72px;
+            padding-bottom: 48px;
+        }
+
+        .in-hero-copy {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 24px;
+        }
+
+        .in-hero-title {
+            flex: none;
+            max-width: 777px;
+            font-size: 44px;
+            letter-spacing: -1.2px;
+        }
+
+        .in-hero-text {
+            flex: none;
+            max-width: 600px;
+        }
+    }
+
+    // Mobile (Home mobile patterns, 360 wide).
+    @include breakpoint-max(md) {
+        .in-hero-inner {
+            gap: 20px;
+            padding: 40px 16px 40px;
+        }
+
+        .in-hero-eyebrow {
+            font-size: 12px;
+            line-height: normal;
+            letter-spacing: 0.48px;
+        }
+
+        .in-hero-copy {
+            gap: 20px;
+        }
+
+        .in-hero-title {
+            max-width: none;
+            font-size: 40px;
+            letter-spacing: -0.4px;
+
+            br {
+                display: none;
+            }
+        }
+
+        .in-hero-text {
+            max-width: none;
+            font-size: 16px;
+        }
+    }
+
+    @include breakpoint-max(sm) {
+        .in-hero-title {
+            font-size: 36px;
+            letter-spacing: -0.36px;
+        }
+    }
+}

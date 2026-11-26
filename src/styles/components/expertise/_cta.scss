@@ -1,0 +1,19 @@
+// =====================================================================
+// Expertise › CTA — Figma "08 — CTA" (303:3816). Uses the shared teal band
+// (components/Shared/cta-band.php). In this Figma both buttons are the
+// white "inverse" style, so the block wraps the band in
+// .ex-cta--white-buttons (checkbox "White button") to restyle the
+// outline button.
+// =====================================================================
+
+.ex-cta {
+    &.ex-cta--white-buttons .shared-cta-band-button.btn--inverse-outline {
+        border-color: transparent;
+        background: var(--color-white);
+        color: var(--color-ink);
+
+        &:hover {
+            background: var(--color-mist);
+        }
+    }
+}

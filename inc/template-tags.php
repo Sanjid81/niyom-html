@@ -28,10 +28,10 @@ function niyom_logo($context = 'header')
     $html .= $text === '' ? ' aria-label="' . esc_attr(get_bloginfo('name')) . '">' : '>';
 
     if ($image) {
-        $html .= '<img class="brand__mark" src="' . esc_url($image) . '" alt="">';
+        $html .= '<img class="brand-mark" src="' . esc_url($image) . '" alt="">';
     }
     if ($text !== '') {
-        $html .= '<span class="brand__text">' . esc_html($text) . '</span>';
+        $html .= '<span class="brand-text">' . esc_html($text) . '</span>';
     }
 
     return $html . '</a>';
@@ -158,8 +158,8 @@ function niyom_link_attrs($url, $new_tab = false)
 function niyom_submenu_toggle()
 {
     return '<button type="button" class="nav-submenu-toggle" aria-expanded="false" aria-label="' . esc_attr__('Show submenu', 'niyom') . '">'
-        . niyom_icon('chevron-down', 'nav-submenu-toggle__chevron')
-        . '<span class="nav-submenu-toggle__pm" aria-hidden="true"></span>'
+        . niyom_icon('chevron-down', 'nav-submenu-toggle-chevron')
+        . '<span class="nav-submenu-toggle-pm" aria-hidden="true"></span>'
         . '</button>';
 }
 
@@ -187,9 +187,9 @@ add_filter('walker_nav_menu_start_el', function ($item_output, $item, $depth, $a
 function niyom_default_menu_items($location)
 {
     $services = [
-        ['title' => 'Computational Biosciences', 'url' => '/services/computational-biosciences/'],
-        ['title' => 'Research Support', 'url' => '/services/research-support/'],
-        ['title' => 'Scientific Engagement', 'url' => '/services/scientific-engagement/'],
+        ['title' => 'Computational Biosciences', 'url' => '/computational-biosciences/'],
+        ['title' => 'Research Support', 'url' => '/research-support/'],
+        ['title' => 'Scientific Engagement', 'url' => '/scientific-engagement/'],
     ];
 
     // Footer columns (Figma footer).
@@ -198,11 +198,11 @@ function niyom_default_menu_items($location)
     }
     if ($location === 'footer_menu_2') {
         return [
-            ['title' => 'About NIYOM', 'url' => '/about-niyom/'],
+            ['title' => 'About NIYOM', 'url' => '/about/'],
             ['title' => 'Expertise', 'url' => '/expertise/'],
-            ['title' => 'Events & Partnerships', 'url' => '/events-partnerships/'],
+            ['title' => 'Events & Partnerships', 'url' => '/events-and-partnershiphubs/'],
             ['title' => 'Insights', 'url' => '/insights/'],
-            ['title' => 'Contact Us', 'url' => '/contact-us/'],
+            ['title' => 'Contact Us', 'url' => '/#contact'],
         ];
     }
     if ($location === 'footer_menu_3') {
@@ -214,16 +214,16 @@ function niyom_default_menu_items($location)
     }
 
     $items = [
-        ['title' => 'About NIYOM', 'url' => '/about-niyom/'],
-        ['title' => 'Services', 'url' => '/services/', 'children' => $services],
+        ['title' => 'About NIYOM', 'url' => '/about/'],
+        ['title' => 'Services', 'url' => '/services-overview/', 'children' => $services],
         ['title' => 'Expertise', 'url' => '/expertise/'],
-        ['title' => 'Events & Partnerships', 'url' => '/events-partnerships/'],
+        ['title' => 'Events & Partnerships', 'url' => '/events-and-partnershiphubs/'],
         ['title' => 'Insights', 'url' => '/insights/'],
     ];
 
     if ($location === 'mobile_menu') {
         array_unshift($items, ['title' => 'Home', 'url' => '/']);
-        $items[] = ['title' => 'Contact Us', 'url' => '/contact-us/'];
+        $items[] = ['title' => 'Contact Us', 'url' => '/#contact'];
     }
 
     return $items;

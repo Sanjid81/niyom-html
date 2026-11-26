@@ -1,0 +1,575 @@
+// =====================================================================
+// Events & Partnerships › Events — Figma "Content" (303:6773, 1920 wide).
+// Subtle bg, 140px top/bottom. Label + H2 (758); 60px; tab bar (tabs
+// left, type pills right, 15% border under); 30px; event cards in two
+// 820px columns (40px apart, 20px between rows). Card = Figma "Event
+// Row" (281:77), same as the Home events rows.
+// Markup: components/EventsHub/events.php · JS: src/scripts/components/events-hub.js
+// =====================================================================
+
+.eh-events {
+    background: var(--color-subtle-bg);
+
+    .eh-events-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    // ---------- Intro ----------
+
+    .eh-events-header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        max-width: 758px;
+    }
+
+    // Labels/L — Mono Medium 14 / 100% (mobile: Labels/S).
+    .eh-events-eyebrow {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+    }
+
+    .eh-events-heading {
+        color: var(--color-heading);
+    }
+
+    .eh-events-body {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    // ---------- Tabs + type pills ----------
+
+    .eh-events-controls {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        border-bottom: 1px solid rgba(11, 58, 83, 0.15);
+
+        &[hidden] {
+            display: none;
+        }
+    }
+
+    .eh-events-tabs {
+        display: flex;
+        flex-shrink: 0;
+        gap: 40px;
+    }
+
+    // Navigation/14 — Mono 14 / 22, upper; active = teal + 2px teal underline.
+    .eh-events-tab {
+        position: relative;
+        padding: 16px 0;
+        border: 0;
+        background: none;
+        font-family: var(--font-mono);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+        text-transform: uppercase;
+        white-space: nowrap;
+        color: var(--color-ink-60);
+        cursor: pointer;
+        transition: color var(--transition);
+
+        &::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: -1px;
+            left: 0;
+            height: 2px;
+            background: var(--color-teal);
+            transform: scaleX(0);
+            transition: transform var(--transition);
+        }
+
+        &:hover {
+            color: var(--color-ink);
+        }
+
+        &[aria-selected="true"] {
+            color: var(--color-teal);
+
+            &::after {
+                transform: scaleX(1);
+            }
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-cyan);
+            outline-offset: -2px;
+        }
+    }
+
+    .eh-events-filters {
+        display: flex;
+        flex: 1 1 auto;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 8px;
+        min-width: 0;
+        padding: 10px 0;
+    }
+
+    // Tag (281:35) — Mist pill, teal text, teal 20% border; selected = teal border.
+    .eh-events-filter {
+        padding: 6px 12px;
+        border: 1px solid rgba(8, 122, 128, 0.2);
+        border-radius: 40px;
+        background: var(--color-mist);
+        font-family: var(--font-body);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.6;
+        white-space: nowrap;
+        color: var(--color-teal);
+        cursor: pointer;
+        transition: border-color var(--transition), background-color var(--transition), color var(--transition);
+
+        &:hover {
+            border-color: rgba(8, 122, 128, 0.5);
+        }
+
+        &[aria-pressed="true"] {
+            border-color: var(--color-teal);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-cyan);
+            outline-offset: 2px;
+        }
+    }
+
+    // ---------- Cards: two columns ----------
+
+    .eh-events-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px 40px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .eh-events-card {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        gap: 32px;
+        padding: 24px;
+        border: 1px solid var(--color-border);
+        background: var(--color-white);
+        overflow: hidden;
+        transition: border-color var(--transition);
+
+        &[hidden] {
+            display: none;
+        }
+
+        &.is-linked:hover {
+            border-color: rgba(8, 122, 128, 0.35);
+        }
+    }
+
+    // Image right on desktop (first in the markup for mobile). 260 × 170 at 1920.
+    .eh-events-media {
+        order: 2;
+        flex: 0 0 clamp(160px, 34%, 260px);
+        aspect-ratio: 260 / 170;
+        overflow: hidden;
+        background: var(--color-mist);
+    }
+
+    .eh-events-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+
+    .eh-events-card.is-linked:hover .eh-events-image {
+        transform: scale(1.04);
+    }
+
+    .eh-events-details {
+        display: flex;
+        flex: 1 1 auto;
+        align-items: flex-start;
+        gap: 32px;
+        min-width: 0;
+    }
+
+    // Date chip — Mist, H3 teal day, Body S month.
+    .eh-events-date {
+        display: flex;
+        flex: 0 0 110px;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding: 16px 20px;
+        background: var(--color-mist);
+        text-align: center;
+    }
+
+    .eh-events-day {
+        font-family: var(--font-heading);
+        font-size: 42px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.84px;
+        color: var(--color-teal);
+    }
+
+    .eh-events-month {
+        font-family: var(--font-body);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.6;
+        white-space: nowrap;
+        color: var(--color-ink);
+    }
+
+    .eh-events-content {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        min-width: 0;
+        overflow-wrap: break-word;
+    }
+
+    // Labels/S — teal.
+    .eh-events-type {
+        margin: 0;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        text-transform: uppercase;
+        color: var(--color-teal);
+    }
+
+    // Lead Text — 24 / 120% / -2%.
+    .eh-events-title {
+        margin: 0;
+        font-family: var(--font-heading);
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.48px;
+        color: var(--color-ink);
+        transition: color var(--transition);
+    }
+
+    // Stretched link: the title link covers the whole card.
+    .eh-events-link {
+        color: inherit;
+        text-decoration: none;
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+
+        &:focus-visible {
+            outline: none;
+
+            &::after {
+                outline: 2px solid var(--color-cyan);
+                outline-offset: -2px;
+            }
+        }
+    }
+
+    .eh-events-card.is-linked:hover .eh-events-title {
+        color: var(--color-teal);
+    }
+
+    // Venue · format — Body S, Dark 60.
+    .eh-events-meta {
+        margin: 0;
+        font-family: var(--font-body);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.6;
+        color: var(--color-muted);
+    }
+
+    // "VIEW DETAILS ⟶" — Mono 14 / 22, 12px top + bottom padding.
+    .eh-events-more.link-arrow {
+        min-height: 0;
+        padding: 12px 0;
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .eh-events-card.is-linked:hover .eh-events-more {
+        span {
+            text-decoration-color: currentColor;
+        }
+
+        .link-arrow-icon {
+            transform: translateX(4px);
+        }
+    }
+
+    .eh-events-empty {
+        margin: 0;
+        padding: 40px 24px;
+        border: 1px dashed var(--color-border);
+        background: var(--color-white);
+        font-size: 16px;
+        line-height: 1.4;
+        text-align: center;
+        color: var(--color-muted);
+
+        &[hidden] {
+            display: none;
+        }
+    }
+
+    // Screen-reader-only live region ("Showing 3 events").
+    .eh-events-status {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    // ---------- Responsive ----------
+
+    // Small desktops (two narrower columns): tighter card, smaller image.
+    @media (max-width: 1700px) {
+        .eh-events-card,
+        .eh-events-details {
+            gap: 24px;
+        }
+
+        .eh-events-date {
+            flex-basis: 92px;
+            padding: 14px 12px;
+        }
+
+        .eh-events-day {
+            font-size: 36px;
+        }
+
+        .eh-events-title {
+            font-size: 22px;
+            letter-spacing: -0.3px;
+        }
+
+        .eh-events-media {
+            flex-basis: clamp(150px, 30%, 260px);
+        }
+    }
+
+    @include breakpoint-max(xxl) {
+        .eh-events-inner {
+            gap: 56px;
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        .eh-events-card,
+        .eh-events-details {
+            gap: 24px;
+        }
+
+        .eh-events-date {
+            flex-basis: 92px;
+            padding: 14px 12px;
+        }
+
+        .eh-events-day {
+            font-size: 36px;
+        }
+
+        .eh-events-title {
+            font-size: 22px;
+            letter-spacing: -0.3px;
+        }
+    }
+
+    // One column from here: cards get the full width back.
+    @include breakpoint-max(xl) {
+        .eh-events-inner {
+            gap: 48px;
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        .eh-events-list {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .eh-events-date {
+            flex-basis: 110px;
+            padding: 16px 20px;
+        }
+
+        .eh-events-day {
+            font-size: 42px;
+        }
+
+        .eh-events-media {
+            flex-basis: 260px;
+        }
+    }
+
+    // Tablet: pills wrap under the tabs.
+    @include breakpoint-max(lg) {
+        .eh-events-inner {
+            gap: 40px;
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        .eh-events-controls {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0;
+        }
+
+        .eh-events-filters {
+            justify-content: flex-start;
+            order: 2;
+            padding: 16px 0;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .eh-events-media {
+            flex-basis: 200px;
+        }
+    }
+
+    // Mobile (Home events mobile 439:2100): stacked cards, image on top.
+    @include breakpoint-max(md) {
+        .eh-events-inner {
+            gap: 32px;
+            padding: 56px 16px;
+        }
+
+        .eh-events-header {
+            gap: 20px;
+        }
+
+        .eh-events-eyebrow {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: 0.12px;
+        }
+
+        .eh-events-body {
+            gap: 20px;
+        }
+
+        // Tabs scroll sideways if they ever run out of room.
+        .eh-events-tabs {
+            gap: 28px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .eh-events-filters {
+            flex-wrap: nowrap;
+            margin-right: -16px;
+            padding-right: 16px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .eh-events-list {
+            gap: 12px;
+        }
+
+        .eh-events-card {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 16px;
+            padding: 16px 16px 20px;
+            border: 0;
+        }
+
+        .eh-events-media {
+            order: 0;
+            flex: none;
+            width: 100%;
+            max-height: 260px;
+            aspect-ratio: 296 / 180;
+        }
+
+        .eh-events-details {
+            gap: 16px;
+        }
+
+        .eh-events-date {
+            flex-basis: 72px;
+            gap: 2px;
+            padding: 10px 8px;
+        }
+
+        .eh-events-day {
+            font-size: 28px;
+            letter-spacing: -0.56px;
+        }
+
+        .eh-events-month {
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .eh-events-content {
+            gap: 8px;
+        }
+
+        .eh-events-title {
+            font-size: 20px;
+            line-height: 1.25;
+            letter-spacing: -0.4px;
+        }
+
+        .eh-events-meta {
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        // Home mobile hides the link; the whole card stays tappable.
+        .eh-events-more {
+            display: none !important;
+        }
+
+        .eh-events-more.eh-events-link {
+            display: inline-flex !important;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .eh-events-image,
+        .eh-events-tab::after,
+        .eh-events-more .link-arrow-icon {
+            transition: none;
+        }
+    }
+}

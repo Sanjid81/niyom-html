@@ -14,14 +14,14 @@ const reduceMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)")
 const pad = (n) => String(n).padStart(2, "0");
 
 function setupExpertise(root) {
-  const sliderEl = root.querySelector(".home-expertise__slider");
-  const pager = root.querySelector(".home-expertise__pager");
+  const sliderEl = root.querySelector(".home-expertise-slider");
+  const pager = root.querySelector(".home-expertise-pager");
   if (!sliderEl) return;
 
-  const prev = root.querySelector(".home-expertise__nav--prev");
-  const next = root.querySelector(".home-expertise__nav--next");
-  const current = root.querySelector(".home-expertise__current");
-  const total = root.querySelector(".home-expertise__total");
+  const prev = root.querySelector(".home-expertise-nav--prev");
+  const next = root.querySelector(".home-expertise-nav--next");
+  const current = root.querySelector(".home-expertise-current");
+  const total = root.querySelector(".home-expertise-total");
 
   // Position count + arrow states.
   const updatePager = (s) => {

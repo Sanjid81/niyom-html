@@ -49,14 +49,14 @@ $uid       = wp_unique_id('home-banner-');
     aria-roledescription="carousel"
     aria-label="<?php esc_attr_e('Featured', 'niyom'); ?>">
 
-    <div class="swiper home-banner__slider">
+    <div class="swiper home-banner-slider">
         <div class="swiper-wrapper">
             <?php foreach ($slides as $i => $slide) :
                 $has_image = $slide['image'] || $slide['image_mobile'];
                 $has_aside = $slide['text'] || $slide['has_button'];
                 $slide_id  = $uid . '-slide-' . ($i + 1);
                 ?>
-                <div class="swiper-slide home-banner__slide<?php echo $has_image ? ' has-image' : ''; ?><?php echo $i === 0 ? ' is-active' : ''; ?>"
+                <div class="swiper-slide home-banner-slide<?php echo $has_image ? ' has-image' : ''; ?><?php echo $i === 0 ? ' is-active' : ''; ?>"
                     id="<?php echo esc_attr($slide_id); ?>"
                     <?php if ($has_tabs) : ?>
                         role="tabpanel"
@@ -66,12 +66,12 @@ $uid       = wp_unique_id('home-banner-');
                     aria-label="<?php echo esc_attr(sprintf(__('%1$d of %2$d', 'niyom'), $i + 1, $count)); ?>">
 
                     <?php if ($has_image) : ?>
-                        <picture class="home-banner__media">
+                        <picture class="home-banner-media">
                             <?php if ($slide['image_mobile'] && $slide['image']) : ?>
                                 <source media="(max-width: 768px)" srcset="<?php echo esc_url($slide['image_mobile']); ?>">
                             <?php endif; ?>
                             <img
-                                class="home-banner__image"
+                                class="home-banner-image"
                                 src="<?php echo esc_url($slide['image'] ?: $slide['image_mobile']); ?>"
                                 alt=""
                                 decoding="async"
@@ -80,29 +80,29 @@ $uid       = wp_unique_id('home-banner-');
                     <?php endif; ?>
 
                     <?php if ($slide['title'] || $has_aside) : ?>
-                        <div class="home-banner__inner">
-                            <div class="home-banner__content">
+                        <div class="home-banner-inner">
+                            <div class="home-banner-content">
 
                                 <?php if ($slide['title']) : ?>
                                     <?php $tag = $i === 0 ? 'h1' : 'h2'; ?>
-                                    <<?php echo $tag; ?> class="home-banner__title display-one"><?php echo $slide['title']; // Escaped in niyom_inline_text(). ?></<?php echo $tag; ?>>
+                                    <<?php echo $tag; ?> class="home-banner-title display-one"><?php echo $slide['title']; // Escaped in niyom_inline_text(). ?></<?php echo $tag; ?>>
                                 <?php endif; ?>
 
                                 <?php if ($has_aside) : ?>
-                                    <div class="home-banner__aside">
+                                    <div class="home-banner-aside">
                                         <?php if ($slide['text']) : ?>
-                                            <div class="home-banner__text rich-text body-large">
+                                            <div class="home-banner-text rich-text body-large">
                                                 <?php echo $slide['text']; // Escaped in niyom_rich_text(). ?>
                                             </div>
                                         <?php endif; ?>
 
                                         <?php if ($slide['has_button']) : ?>
-                                            <a class="btn btn--inverse home-banner__button"
+                                            <a class="btn btn--inverse home-banner-button"
                                                 href="<?php echo esc_url($slide['button_link']); ?>"
                                                 <?php echo $slide['new_tab'] ? 'target="_blank" rel="noopener noreferrer"' : ''; ?>>
                                                 <span><?php echo esc_html($slide['button_text']); ?></span>
-                                                <?php echo niyom_icon('arrow-right', 'btn__arrow btn__arrow--lg'); ?>
-                                                <?php echo niyom_icon('arrow-right-sm', 'btn__arrow btn__arrow--sm'); ?>
+                                                <?php echo niyom_icon('arrow-right', 'btn-arrow btn-arrow--lg'); ?>
+                                                <?php echo niyom_icon('arrow-right-sm', 'btn-arrow btn-arrow--sm'); ?>
                                             </a>
                                         <?php endif; ?>
                                     </div>
@@ -118,16 +118,16 @@ $uid       = wp_unique_id('home-banner-');
 
     <?php if ($has_tabs) : ?>
         <?php $visible_tabs = min(3, $count); // Tabs shown at once on desktop. ?>
-        <div class="home-banner__tabs-wrap">
-            <div class="home-banner__tabs-viewport">
-            <div class="home-banner__tabs"
+        <div class="home-banner-tabs-wrap">
+            <div class="home-banner-tabs-viewport">
+            <div class="home-banner-tabs"
                 role="tablist"
                 aria-label="<?php esc_attr_e('Banner slides', 'niyom'); ?>"
                 style="--tabs-visible: <?php echo (int) $visible_tabs; ?>;">
                 <?php foreach ($slides as $i => $slide) :
                     $slide_id = $uid . '-slide-' . ($i + 1);
                     $label    = $slide['label'] !== '' ? $slide['label'] : sprintf(__('Slide %d', 'niyom'), $i + 1);
-                    $classes  = ['home-banner__tab'];
+                    $classes  = ['home-banner-tab'];
                     if ($i === 0) {
                         $classes[] = 'is-active';
                         $classes[] = 'is-pos-first';
@@ -147,8 +147,8 @@ $uid       = wp_unique_id('home-banner-');
                         aria-selected="<?php echo $i === 0 ? 'true' : 'false'; ?>"
                         tabindex="<?php echo $i === 0 ? '0' : '-1'; ?>"
                         data-slide="<?php echo esc_attr($i); ?>">
-                        <span class="home-banner__tab-progress" aria-hidden="true"></span>
-                        <span class="home-banner__tab-label"><?php echo esc_html($label); ?></span>
+                        <span class="home-banner-tab-progress" aria-hidden="true"></span>
+                        <span class="home-banner-tab-label"><?php echo esc_html($label); ?></span>
                     </button>
                 <?php endforeach; ?>
             </div>

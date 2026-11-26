@@ -162,7 +162,7 @@ add_action('carbon_fields_register_fields', function () {
             Field::make('text', 'about_button_text', __('Button Text', 'niyom'))
                 ->set_default_value('Discover NIYOM'),
             Field::make('text', 'about_button_link', __('Button Link', 'niyom'))
-                ->set_default_value('/about-niyom/'),
+                ->set_default_value('/about/'),
             Field::make('checkbox', 'about_button_new_tab', __('Open in new tab', 'niyom')),
         ])
         ->set_render_callback(function ($fields) {
@@ -248,7 +248,7 @@ add_action('carbon_fields_register_fields', function () {
                         'title'        => 'Turning complex data into scientific understanding',
                         'text'         => 'Analysis planning, data-readiness review and documented computational workflows that support clear scientific interpretation.',
                         'link_text'    => 'Know more',
-                        'link_url'     => '/services/computational-biosciences/',
+                        'link_url'     => '/computational-biosciences/',
                         'link_new_tab' => false,
                         'image'        => $img . 'wwd-computational-biosciences.jpg',
                     ],
@@ -260,7 +260,7 @@ add_action('carbon_fields_register_fields', function () {
                         'title'        => 'Strengthening research through every stage',
                         'text'         => 'Modern, responsive, and user-friendly websites designed to engage visitors and drive conversions.',
                         'link_text'    => 'Know more',
-                        'link_url'     => '/services/research-support/',
+                        'link_url'     => '/research-support/',
                         'link_new_tab' => false,
                         'image'        => $img . 'wwd-research-support.jpg',
                     ],
@@ -272,7 +272,7 @@ add_action('carbon_fields_register_fields', function () {
                         'title'        => 'Connecting knowledge, people, and possibilities',
                         'text'         => 'Seminars, knowledge-sharing and institutional partnerships — including curriculum mapping and computational integration for academic programs.',
                         'link_text'    => 'Know more',
-                        'link_url'     => '/services/scientific-engagement/',
+                        'link_url'     => '/scientific-engagement/',
                         'link_new_tab' => false,
                         'image'        => $img . 'wwd-scientific-engagement.jpg',
                     ],
@@ -521,7 +521,7 @@ add_action('carbon_fields_register_fields', function () {
                 ->set_default_value('View all events'),
             Field::make('text', 'events_button_link', __('Button Link', 'niyom'))
                 ->set_width(40)
-                ->set_default_value('/events-partnerships/'),
+                ->set_default_value('/events-and-partnershiphubs/'),
             Field::make('checkbox', 'events_button_new_tab', __('Open in new tab', 'niyom'))
                 ->set_width(20),
 
@@ -573,7 +573,7 @@ add_action('carbon_fields_register_fields', function () {
                         'type'      => 'University seminar',
                         'title'     => 'Reproducible analysis in practice: from raw data to figure',
                         'meta'      => '[Host institution] · In person',
-                        'link'      => '/events-partnerships/',
+                        'link'      => '/events-and-partnershiphubs/',
                         'link_text' => 'View details',
                         'new_tab'   => false,
                         'image'     => NIYOM_URI . '/assets/images/home/events-university-seminar.jpg',
@@ -586,7 +586,7 @@ add_action('carbon_fields_register_fields', function () {
                         'type'      => 'Research-club session',
                         'title'     => 'Reading a genomics paper critically: methods first',
                         'meta'      => '[Student research society] · Online',
-                        'link'      => '/events-partnerships/',
+                        'link'      => '/events-and-partnershiphubs/',
                         'link_text' => 'View details',
                         'new_tab'   => false,
                         'image'     => NIYOM_URI . '/assets/images/home/events-research-club.jpg',
@@ -599,7 +599,7 @@ add_action('carbon_fields_register_fields', function () {
                         'type'      => 'Community workshop',
                         'title'     => 'Asking answerable questions of biological data',
                         'meta'      => '[Partner organisation] · Hybrid',
-                        'link'      => '/events-partnerships/',
+                        'link'      => '/events-and-partnershiphubs/',
                         'link_text' => 'View details',
                         'new_tab'   => false,
                         'image'     => NIYOM_URI . '/assets/images/home/events-community-workshop.jpg',

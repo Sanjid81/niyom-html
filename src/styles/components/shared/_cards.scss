@@ -1,0 +1,211 @@
+// =====================================================================
+// Shared › Cards — Figma Computational Biosciences "05 — Deliverables,
+// Documentation & Handover" (296:8492). White section, 140px top/bottom:
+// intro (label + H2 left, 460px paragraph right, bottom-aligned), then a
+// 3-column grid of Mist cards (24px gaps): 32px icon, 56px gap, title + text.
+// Tablet: 2 columns. Mobile: 1 column.
+// Markup: components/Shared/cards.php
+// =====================================================================
+
+.shared-cards {
+    background: var(--color-white);
+
+    .shared-cards-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 64px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    // ---------- Intro ----------
+
+    .shared-cards-intro {
+        display: flex;
+        align-items: flex-end;
+        gap: 120px;
+    }
+
+    .shared-cards-copy {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        min-width: 0;
+    }
+
+    // Labels/L — JetBrains Mono Medium 14 / 100%, Dark 60.
+    .shared-cards-eyebrow {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+    }
+
+    .shared-cards-heading {
+        max-width: 820px;
+        margin: 0;
+        color: var(--color-heading);
+    }
+
+    .shared-cards-text {
+        flex: 0 0 460px;
+        min-width: 0;
+        color: var(--color-ink-80);
+    }
+
+    // ---------- Grid ----------
+
+    .shared-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .shared-cards-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 56px;
+        padding: 32px 32px 36px;
+        background: var(--color-mist);
+    }
+
+    .shared-cards-icon {
+        display: flex;
+        width: 32px;
+        height: 32px;
+        color: var(--color-teal);
+
+        svg,
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .shared-cards-body {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    // Lead Text — Inter 24 / 120% / -2%, Deep Ink.
+    .shared-cards-title {
+        margin: 0;
+        color: var(--color-heading);
+    }
+
+    // Body/M — 16 / 140%, Body text.
+    .shared-cards-item-text {
+        color: var(--color-ink-80);
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        .shared-cards-inner {
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        .shared-cards-intro {
+            gap: 80px;
+        }
+
+        .shared-cards-text {
+            flex-basis: 420px;
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        .shared-cards-inner {
+            gap: 56px;
+        }
+
+        .shared-cards-intro {
+            gap: 56px;
+        }
+
+        .shared-cards-text {
+            flex-basis: 360px;
+        }
+
+        .shared-cards-item {
+            gap: 40px;
+            padding: 28px;
+        }
+    }
+
+    // Tablet: paragraph under the heading, 2-column grid.
+    @include breakpoint-max(lg) {
+        .shared-cards-inner {
+            gap: 48px;
+            padding-top: 96px;
+            padding-bottom: 96px;
+        }
+
+        .shared-cards-intro {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 24px;
+        }
+
+        .shared-cards-copy {
+            flex: none;
+            width: 100%;
+            gap: 24px;
+        }
+
+        .shared-cards-text {
+            flex: none;
+            max-width: 600px;
+        }
+
+        .shared-cards-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+    }
+
+    // Mobile (Home mobile patterns, 360 wide): one column.
+    @include breakpoint-max(md) {
+        .shared-cards-inner {
+            gap: 32px;
+            padding: 56px 16px;
+        }
+
+        .shared-cards-intro,
+        .shared-cards-copy {
+            gap: 20px;
+        }
+
+        .shared-cards-eyebrow {
+            font-size: 12px;
+            line-height: normal;
+            letter-spacing: 0.48px;
+        }
+
+        .shared-cards-text {
+            max-width: none;
+        }
+
+        .shared-cards-grid {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 12px;
+        }
+
+        .shared-cards-item {
+            gap: 28px;
+            padding: 24px 20px;
+        }
+    }
+}

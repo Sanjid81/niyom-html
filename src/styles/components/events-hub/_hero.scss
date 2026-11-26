@@ -1,0 +1,322 @@
+// =====================================================================
+// Events & Partnerships › Hero — Figma "02 — Hero" (303:6381, 1920 wide).
+// Label; H1 (777) + Body L (700) left, quick links (480) right, bottom-
+// aligned; 1680 × 620 image 64px below. 120px padding on every side.
+// No mobile frame in Figma: mobile follows the Home mobile patterns.
+// Markup: components/EventsHub/hero.php
+// =====================================================================
+
+.eh-hero {
+    background: var(--color-white);
+
+    .eh-hero-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 64px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 120px var(--container-padding);
+    }
+
+    .eh-hero-header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+    }
+
+    // Labels/L — JetBrains Mono Medium 14 / 100%, Dark 60.
+    .eh-hero-eyebrow {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+    }
+
+    .eh-hero-copy {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 60px;
+        width: 100%;
+    }
+
+    .eh-hero-main {
+        display: flex;
+        flex: 0 1 790px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        min-width: 0;
+    }
+
+    // H1 — Inter 64 / 100% / -4% (777px; +13px so Figma's lines don't wrap).
+    .eh-hero-title {
+        margin: 0;
+        font-family: var(--font-heading);
+        font-size: clamp(48px, 3.3333vw, 64px);
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        color: var(--color-ink);
+
+        a {
+            color: var(--color-primary);
+        }
+    }
+
+    // Body/L — 18 / 140%, Body text colour, 700px.
+    .eh-hero-text {
+        max-width: 700px;
+        font-size: 18px;
+        line-height: 1.4;
+        color: var(--color-ink-80);
+    }
+
+    // ---------- Quick links (right, 480px) ----------
+
+    .eh-hero-links {
+        display: flex;
+        flex: 0 1 480px;
+        flex-direction: column;
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .eh-hero-links-item {
+        border-top: 1px solid var(--color-border);
+    }
+
+    .eh-hero-link {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        padding: 24px 0;
+        color: inherit;
+        text-decoration: none;
+
+        &:focus-visible {
+            outline: 2px solid var(--color-cyan);
+            outline-offset: 2px;
+        }
+    }
+
+    .eh-hero-link-copy {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        gap: 6px;
+        min-width: 0;
+    }
+
+    // Lead Text — 24 / 120% / -2%.
+    .eh-hero-link-title {
+        font-size: 24px;
+        line-height: 1.2;
+        letter-spacing: -0.48px;
+        color: var(--color-ink);
+        transition: color var(--transition);
+    }
+
+    // Body/S — Inter Medium 14 / 160%.
+    .eh-hero-link-text {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.6;
+        color: var(--color-ink-80);
+    }
+
+    // H5 "→" — 28 / 120%, teal.
+    .eh-hero-link-arrow {
+        flex-shrink: 0;
+        font-size: 28px;
+        line-height: 1.2;
+        letter-spacing: -0.56px;
+        color: var(--color-teal);
+        transition: transform var(--transition);
+    }
+
+    a.eh-hero-link:hover {
+        .eh-hero-link-title {
+            color: var(--color-teal);
+        }
+
+        .eh-hero-link-arrow {
+            transform: translateX(4px);
+        }
+    }
+
+    // ---------- Image: 1680 × 620 at desktop ----------
+
+    .eh-hero-media {
+        position: relative;
+        width: 100%;
+        margin: 0;
+        aspect-ratio: 1680 / 620;
+        overflow: hidden;
+        background: var(--color-ink);
+    }
+
+    .eh-hero-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        .eh-hero-inner {
+            gap: 56px;
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        .eh-hero-links {
+            flex-basis: 420px;
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        .eh-hero-inner {
+            gap: 48px;
+            padding-top: 88px;
+            padding-bottom: 88px;
+        }
+
+        .eh-hero-title {
+            font-size: 48px;
+            line-height: 1.05;
+            letter-spacing: -1.6px;
+        }
+
+        .eh-hero-links {
+            flex-basis: 380px;
+        }
+
+        .eh-hero-link-title {
+            font-size: 22px;
+        }
+    }
+
+    // Tablet: quick links move under the text.
+    @include breakpoint-max(lg) {
+        .eh-hero-inner {
+            gap: 40px;
+            padding-top: 72px;
+            padding-bottom: 72px;
+        }
+
+        .eh-hero-copy {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 40px;
+        }
+
+        .eh-hero-main {
+            flex: none;
+            max-width: 777px;
+            gap: 24px;
+        }
+
+        .eh-hero-title {
+            font-size: 44px;
+            letter-spacing: -1.2px;
+        }
+
+        .eh-hero-links {
+            flex: none;
+            max-width: 600px;
+        }
+
+        .eh-hero-media {
+            aspect-ratio: 16 / 7;
+        }
+    }
+
+    // Mobile (Home mobile patterns, 360 wide).
+    @include breakpoint-max(md) {
+        .eh-hero-inner {
+            gap: 32px;
+            padding: 40px 16px 56px;
+        }
+
+        .eh-hero-header {
+            gap: 20px;
+        }
+
+        .eh-hero-eyebrow {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: normal;
+            letter-spacing: 0.48px;
+        }
+
+        .eh-hero-copy {
+            gap: 32px;
+        }
+
+        .eh-hero-main {
+            max-width: none;
+            gap: 20px;
+        }
+
+        // Mobile H1 — 40 / 105% / -1%; one flowing text, no forced breaks.
+        .eh-hero-title {
+            font-size: 40px;
+            line-height: 1.05;
+            letter-spacing: -0.4px;
+
+            br {
+                display: none;
+            }
+        }
+
+        .eh-hero-text {
+            font-size: 16px;
+        }
+
+        .eh-hero-links {
+            max-width: none;
+        }
+
+        .eh-hero-link {
+            gap: 16px;
+            padding: 20px 0;
+        }
+
+        .eh-hero-link-title {
+            font-size: 20px;
+            letter-spacing: -0.4px;
+        }
+
+        .eh-hero-link-arrow {
+            font-size: 24px;
+        }
+
+        .eh-hero-media {
+            aspect-ratio: 16 / 9;
+        }
+    }
+
+    @include breakpoint-max(sm) {
+        .eh-hero-title {
+            font-size: 36px;
+            letter-spacing: -0.36px;
+        }
+
+        .eh-hero-media {
+            aspect-ratio: 328 / 220;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .eh-hero-link-arrow {
+            transition: none;
+        }
+    }
+}

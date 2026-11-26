@@ -8,7 +8,7 @@ export default function initHeader() {
   const header = document.querySelector("[data-site-header]");
   if (!header) return;
 
-  const toggle = header.querySelector(".site-header__toggle");
+  const toggle = header.querySelector(".site-header-toggle");
   const panel = document.getElementById("site-mobile-nav");
   const mobile = window.matchMedia(MOBILE_QUERY);
 
@@ -63,7 +63,7 @@ export default function initHeader() {
       const open = !li.classList.contains("submenu-open");
 
       // Desktop: one dropdown at a time.
-      if (li.closest(".site-header__menu")) closeAll(li);
+      if (li.closest(".site-header-menu")) closeAll(li);
 
       li.classList.toggle("submenu-open", open);
       btn.setAttribute("aria-expanded", String(open));
@@ -71,7 +71,7 @@ export default function initHeader() {
   });
 
   // Current page inside a submenu: open its parent in the mobile menu.
-  header.querySelectorAll(".site-header__mobile-menu .current-menu-ancestor, .site-header__mobile-menu .current-menu-parent").forEach((li) => {
+  header.querySelectorAll(".site-header-mobile-menu .current-menu-ancestor, .site-header-mobile-menu .current-menu-parent").forEach((li) => {
     li.classList.add("submenu-open");
     const btn = li.querySelector(":scope > .nav-submenu-toggle");
     if (btn) btn.setAttribute("aria-expanded", "true");
@@ -79,8 +79,8 @@ export default function initHeader() {
 
   // Close desktop dropdowns on outside click / Escape.
   document.addEventListener("click", (event) => {
-    if (!event.target.closest(".site-header__menu")) {
-      header.querySelectorAll(".site-header__menu .submenu-open").forEach((li) => {
+    if (!event.target.closest(".site-header-menu")) {
+      header.querySelectorAll(".site-header-menu .submenu-open").forEach((li) => {
         li.classList.remove("submenu-open");
         const btn = li.querySelector(":scope > .nav-submenu-toggle");
         if (btn) btn.setAttribute("aria-expanded", "false");
@@ -90,7 +90,7 @@ export default function initHeader() {
 
   document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape") return;
-    const open = header.querySelector(".site-header__menu .submenu-open");
+    const open = header.querySelector(".site-header-menu .submenu-open");
     if (open) {
       open.classList.remove("submenu-open");
       const btn = open.querySelector(":scope > .nav-submenu-toggle");

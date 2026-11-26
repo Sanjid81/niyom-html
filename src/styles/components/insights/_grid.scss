@@ -1,0 +1,221 @@
+// =====================================================================
+// Insights › All insights — Figma "Insights › Content" (303:7752).
+// White, 140px top/bottom: label + H2 (677px); 60px; category tabs
+// (Navigation 14, teal 2px underline on the active tab, 1px border under
+// the row, 40px apart); 30px; cards (_card.scss); 60px; LOAD MORE centred.
+// Markup: components/Insights/grid.php · JS: src/scripts/components/insights.js
+// =====================================================================
+
+.in-grid {
+    background: var(--color-white);
+    scroll-margin-top: var(--header-height);
+
+    .in-grid-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    .in-grid-intro {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    // Labels/L — JetBrains Mono Medium 14 / 100%.
+    .in-grid-eyebrow {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+    }
+
+    .in-grid-heading {
+        max-width: 677px;
+        margin: 0;
+        color: var(--color-heading);
+    }
+
+    .in-grid-body {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    // ---------- Tabs ----------
+
+    .in-grid-tabs {
+        display: flex;
+        gap: 40px;
+        overflow-x: auto;
+        border-bottom: 1px solid var(--color-border);
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    // Navigation 14 — JetBrains Mono 14 / 22px, upper.
+    .in-grid-tab {
+        flex-shrink: 0;
+        padding: 18px 0 16px;
+        border-bottom: 2px solid transparent;
+        font-family: var(--font-mono);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+        text-transform: uppercase;
+        color: var(--color-ink-80);
+        white-space: nowrap;
+        transition: color var(--transition), border-color var(--transition);
+
+        &:hover {
+            color: var(--color-primary);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: -2px;
+        }
+
+        &[aria-selected="true"] {
+            border-bottom-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+    }
+
+    // ---------- Cards ----------
+
+    .in-grid-panel {
+        transition: opacity var(--transition);
+
+        &[aria-busy="true"] {
+            opacity: 0.5;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .in-grid-empty {
+        margin: 0;
+        padding: 40px 0;
+        font-size: 18px;
+        line-height: 1.4;
+        color: var(--color-ink-80);
+    }
+
+    // Live count for screen readers only.
+    .in-grid-status {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        white-space: nowrap;
+    }
+
+    .in-grid-more {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px; // + 30px gap = Figma 60px.
+
+        &[hidden] {
+            display: none;
+        }
+    }
+
+    .in-grid-more-button[aria-busy="true"] {
+        cursor: progress;
+        opacity: 0.7;
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        .in-grid-inner {
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        .in-grid-inner {
+            gap: 48px;
+            padding-top: 112px;
+            padding-bottom: 112px;
+        }
+
+        .in-grid-tabs {
+            gap: 32px;
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        .in-grid-inner {
+            padding-top: 88px;
+            padding-bottom: 88px;
+        }
+
+        .in-grid-intro {
+            gap: 20px;
+        }
+
+        .in-grid-more {
+            margin-top: 18px;
+        }
+    }
+
+    // Mobile (Home mobile patterns, 360 wide): tabs scroll sideways.
+    @include breakpoint-max(md) {
+        .in-grid-inner {
+            gap: 32px;
+            padding: 56px 16px;
+        }
+
+        .in-grid-eyebrow {
+            font-size: 12px;
+            line-height: normal;
+            letter-spacing: 0.48px;
+        }
+
+        .in-grid-heading {
+            max-width: none;
+        }
+
+        .in-grid-body {
+            gap: 24px;
+        }
+
+        .in-grid-tabs {
+            gap: 24px;
+            margin: 0 -16px;
+            padding: 0 16px;
+        }
+
+        .in-grid-tab {
+            padding: 14px 0 12px;
+            font-size: 13px;
+        }
+
+        .in-grid-more {
+            margin-top: 16px;
+        }
+    }
+
+    @include breakpoint-max(sm) {
+        .in-grid-more-button {
+            justify-content: space-between;
+            width: 100%;
+        }
+    }
+}

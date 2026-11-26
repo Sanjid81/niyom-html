@@ -1,0 +1,165 @@
+// =====================================================================
+// Insight article › Header + image — Figma "02 — Article Header"
+// (303:8327: 1200px column, 120 top / 72 bottom, 36px gaps; meta, H1 64,
+// Lead Text 24 at 80%) and "03 — Article Image" (303:8346: 1680 × 720,
+// caption 16px below, Inter Medium 14 / 160% at 50%).
+// Markup: components/Insights/single-header.php + single-image.php
+// =====================================================================
+
+.article-header {
+    background: var(--color-white);
+    padding: 0 var(--container-padding);
+
+    .article-header-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 36px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 120px 0 72px;
+    }
+
+    .article-header-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 4px 10px;
+        margin: 0;
+    }
+
+    .article-header-date {
+        font-size: 14px;
+        line-height: 1.4;
+        letter-spacing: 0.14px;
+        color: var(--color-muted);
+        white-space: nowrap;
+    }
+
+    .article-header-dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: #E4E4E3; // Figma Black/100.
+    }
+
+    .article-header-category {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        text-transform: uppercase;
+        color: var(--color-primary);
+    }
+
+    // H1 — 64 / 100% / -4%.
+    .article-header-title {
+        margin: 0;
+        font-size: clamp(48px, 3.3333vw, 64px);
+        line-height: 1;
+        letter-spacing: -0.04em;
+        color: var(--color-ink);
+    }
+
+    // Lead Text — 24 / 120% / -2%, Body text colour.
+    .article-header-lead {
+        margin: 0;
+        font-size: 24px;
+        line-height: 1.2;
+        letter-spacing: -0.48px;
+        color: var(--color-ink-80);
+    }
+
+    @include breakpoint-max(xxl) {
+        .article-header-inner {
+            padding-top: 100px;
+            padding-bottom: 64px;
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        .article-header-inner {
+            gap: 28px;
+            padding-top: 72px;
+            padding-bottom: 48px;
+        }
+
+        .article-header-title {
+            font-size: 44px;
+            line-height: 1.05;
+            letter-spacing: -1.2px;
+        }
+
+        .article-header-lead {
+            font-size: 22px;
+            letter-spacing: -0.2px;
+        }
+    }
+
+    @include breakpoint-max(md) {
+        padding: 0 16px;
+
+        .article-header-inner {
+            gap: 20px;
+            padding: 40px 0 32px;
+        }
+
+        .article-header-title {
+            font-size: 36px;
+            letter-spacing: -0.36px;
+        }
+
+        // Mobile Lead Text — Inter Medium 20 / 120%.
+        .article-header-lead {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0;
+        }
+    }
+}
+
+.article-image {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+
+    .article-image-media {
+        overflow: hidden;
+        aspect-ratio: 1680 / 720;
+        background: var(--color-ink);
+    }
+
+    .article-image-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    // Body S — Inter Medium 14 / 160%, Deep Ink 50%.
+    .article-image-caption {
+        margin-top: 16px;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.6;
+        color: rgba(11, 58, 83, 0.5);
+    }
+
+    @include breakpoint-max(lg) {
+        .article-image-media {
+            aspect-ratio: 16 / 8;
+        }
+    }
+
+    @include breakpoint-max(md) {
+        padding: 0 16px;
+
+        .article-image-media {
+            aspect-ratio: 328 / 220;
+        }
+
+        .article-image-caption {
+            margin-top: 12px;
+            font-weight: 400;
+        }
+    }
+}

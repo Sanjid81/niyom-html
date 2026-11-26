@@ -14,10 +14,10 @@ $guidance-head: rgba(11, 58, 83, 0.5);  // Figma column headings (#0B3A53 at 50%
     background: var(--color-mist);
     color: var(--color-ink);
 
-    &__inner {
+    .services-guidance-inner {
         display: flex;
         align-items: flex-start;
-        gap: 120px;
+        gap: clamp(80px, 6.25vw, 120px);
         max-width: var(--container-max);
         margin: 0 auto;
         padding: 140px var(--container-padding);
@@ -25,7 +25,7 @@ $guidance-head: rgba(11, 58, 83, 0.5);  // Figma column headings (#0B3A53 at 50%
 
     // ---------- Intro ----------
 
-    &__intro {
+    .services-guidance-intro {
         display: flex;
         flex: 0 0 520px;
         flex-direction: column;
@@ -35,13 +35,13 @@ $guidance-head: rgba(11, 58, 83, 0.5);  // Figma column headings (#0B3A53 at 50%
         overflow-wrap: break-word;
     }
 
-    &__inner--intro-only &__intro {
+    .services-guidance-inner--intro-only .services-guidance-intro {
         flex-basis: auto;
         max-width: 760px;
     }
 
     // Labels/L — JetBrains Mono Medium 14 / 100%, Dark 60.
-    &__eyebrow {
+    .services-guidance-eyebrow {
         margin: 0;
         font-family: var(--font-mono);
         font-size: 14px;
@@ -56,7 +56,7 @@ $guidance-head: rgba(11, 58, 83, 0.5);  // Figma column headings (#0B3A53 at 50%
     }
 
     // H2 — Inter 56 / 100% / -2%.
-    &__heading {
+    .services-guidance-heading {
         margin: 0;
         font-family: var(--font-heading);
         font-size: 56px;
@@ -71,7 +71,7 @@ $guidance-head: rgba(11, 58, 83, 0.5);  // Figma column headings (#0B3A53 at 50%
     }
 
     // Body/L — Inter 18 / 140%, Body text colour, 460 wide.
-    &__text {
+    .services-guidance-text {
         max-width: 460px;
         font-size: 18px;
         line-height: 1.4;
@@ -80,22 +80,23 @@ $guidance-head: rgba(11, 58, 83, 0.5);  // Figma column headings (#0B3A53 at 50%
 
     // ---------- Table ----------
 
-    &__table {
+    .services-guidance-table {
         flex: 1 1 0;
         min-width: 0;
         background: var(--color-white);
     }
 
-    &__rows {
+    .services-guidance-rows {
         margin: 0;
         padding: 0;
         list-style: none;
     }
 
-    // Situation 520 · Start with (rest) · arrow 23 at 1920.
-    &__row {
+    // Situation 520 · Start with 369 · arrow 23 at 1920; the two text columns
+    // keep that ratio as the table narrows.
+    .services-guidance-row {
         display: grid;
-        grid-template-columns: minmax(0, 520px) minmax(0, 1fr) 23px;
+        grid-template-columns: minmax(0, 520fr) minmax(0, 369fr) 23px;
         align-items: center;
         column-gap: 32px;
         padding: 24px 32px;
@@ -128,31 +129,31 @@ $guidance-head: rgba(11, 58, 83, 0.5);  // Figma column headings (#0B3A53 at 50%
         }
     }
 
-    &__item {
+    .services-guidance-item {
         border-top: 1px solid $guidance-line;
     }
 
-    &__cell {
+    .services-guidance-cell {
         min-width: 0;
         overflow-wrap: break-word;
     }
 
     // Body/L — Inter 18 / 140%, Deep Ink.
-    &__item &__cell--situation {
+    .services-guidance-item .services-guidance-cell--situation {
         font-size: 18px;
         line-height: 1.4;
         color: var(--color-ink);
     }
 
     // Body/M — Inter 16 / 140%, Research Teal.
-    &__item &__cell--service {
+    .services-guidance-item .services-guidance-cell--service {
         font-size: 16px;
         line-height: 1.4;
         color: var(--color-primary);
     }
 
     // Lead Text size arrow — Inter 24 / 120%, Research Teal.
-    &__arrow {
+    .services-guidance-arrow {
         grid-column: 3;
         font-size: 24px;
         line-height: 1.2;
@@ -161,11 +162,11 @@ $guidance-head: rgba(11, 58, 83, 0.5);  // Figma column headings (#0B3A53 at 50%
         transition: transform var(--transition);
     }
 
-    &__row--link:hover &__arrow {
+    .services-guidance-row--link:hover .services-guidance-arrow {
         transform: translateX(4px);
     }
 
-    &__row--link:hover &__cell--service {
+    .services-guidance-row--link:hover .services-guidance-cell--service {
         text-decoration: underline;
         text-underline-offset: 3px;
     }
@@ -173,87 +174,83 @@ $guidance-head: rgba(11, 58, 83, 0.5);  // Figma column headings (#0B3A53 at 50%
     // ---------- Responsive ----------
 
     @include breakpoint-max(xxl) {
-        &__inner {
+        .services-guidance-inner {
             gap: 80px;
             padding-top: 120px;
             padding-bottom: 120px;
         }
 
-        &__intro {
+        .services-guidance-intro {
             flex-basis: 400px;
         }
 
-        &__heading {
+        .services-guidance-heading {
             font-size: 48px;
             letter-spacing: -0.96px;
-        }
-
-        &__row {
-            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) 23px;
         }
     }
 
     // Intro on top, table below.
     @include breakpoint-max(xl) {
-        &__inner {
+        .services-guidance-inner {
             flex-direction: column;
             gap: 56px;
         }
 
-        &__intro {
+        .services-guidance-intro {
             flex: none;
             max-width: 640px;
             gap: 24px;
         }
 
-        &__table {
+        .services-guidance-table {
             flex: none;
             width: 100%;
         }
     }
 
     @include breakpoint-max(lg) {
-        &__inner {
+        .services-guidance-inner {
             gap: 48px;
             padding-top: 96px;
             padding-bottom: 96px;
         }
 
-        &__heading {
+        .services-guidance-heading {
             font-size: 42px;
             line-height: 1.1;
             letter-spacing: -0.6px;
         }
 
-        &__row {
+        .services-guidance-row {
             column-gap: 24px;
             padding: 20px 24px;
         }
 
-        &__item &__cell--situation {
+        .services-guidance-item .services-guidance-cell--situation {
             font-size: 16px;
         }
     }
 
     // Mobile: rows stack — situation, then service; arrow on the right.
     @include breakpoint-max(md) {
-        &__inner {
+        .services-guidance-inner {
             gap: 32px;
             padding: 56px 16px;
         }
 
-        &__intro {
+        .services-guidance-intro {
             gap: 20px;
         }
 
-        &__eyebrow {
+        .services-guidance-eyebrow {
             font-size: 12px;
             line-height: normal;
             letter-spacing: 0.48px;
         }
 
         // Mobile H2 — 34 / 115% / -1%.
-        &__heading {
+        .services-guidance-heading {
             font-size: 34px;
             line-height: 1.15;
             letter-spacing: -0.34px;
@@ -263,49 +260,49 @@ $guidance-head: rgba(11, 58, 83, 0.5);  // Figma column headings (#0B3A53 at 50%
             }
         }
 
-        &__text {
+        .services-guidance-text {
             max-width: none;
             font-size: 16px;
         }
 
-        &__row--head {
+        .services-guidance-row--head {
             display: none;
         }
 
-        &__item:first-child {
+        .services-guidance-item:first-child {
             border-top: 0;
         }
 
-        &__row {
+        .services-guidance-row {
             grid-template-columns: minmax(0, 1fr) auto;
             row-gap: 6px;
             column-gap: 16px;
             padding: 16px;
         }
 
-        &__cell--situation {
+        .services-guidance-cell--situation {
             grid-column: 1;
         }
 
-        &__cell--service {
+        .services-guidance-cell--service {
             grid-column: 1;
         }
 
-        &__cell.is-empty {
+        .services-guidance-cell.is-empty {
             display: none;
         }
 
-        &__arrow {
+        .services-guidance-arrow {
             grid-column: 2;
             grid-row: 1 / span 2;
             font-size: 20px;
         }
 
-        &__item &__cell--situation {
+        .services-guidance-item .services-guidance-cell--situation {
             font-size: 16px;
         }
 
-        &__item &__cell--service {
+        .services-guidance-item .services-guidance-cell--service {
             font-size: 14px;
         }
     }

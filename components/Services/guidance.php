@@ -53,50 +53,50 @@ $uid = wp_unique_id('services-guidance-');
 <section class="services-guidance"
     id="<?php echo esc_attr($uid); ?>"
     <?php echo $heading ? 'aria-labelledby="' . esc_attr($uid . '-title') . '"' : ''; ?>>
-    <div class="services-guidance__inner<?php echo $rows ? '' : ' services-guidance__inner--intro-only'; ?>">
+    <div class="services-guidance-inner<?php echo $rows ? '' : ' services-guidance-inner--intro-only'; ?>">
 
         <?php if ($has_intro) : ?>
-            <div class="services-guidance__intro">
+            <div class="services-guidance-intro">
                 <?php if ($eyebrow !== '') : ?>
-                    <p class="services-guidance__eyebrow"><?php echo esc_html($eyebrow); ?></p>
+                    <p class="services-guidance-eyebrow"><?php echo esc_html($eyebrow); ?></p>
                 <?php endif; ?>
 
                 <?php if ($heading) : ?>
-                    <h2 class="services-guidance__heading" id="<?php echo esc_attr($uid . '-title'); ?>"><?php echo $heading; // Escaped in niyom_inline_text(). ?></h2>
+                    <h2 class="services-guidance-heading" id="<?php echo esc_attr($uid . '-title'); ?>"><?php echo $heading; // Escaped in niyom_inline_text(). ?></h2>
                 <?php endif; ?>
 
                 <?php if ($text) : ?>
-                    <div class="services-guidance__text rich-text"><?php echo $text; // Escaped in niyom_rich_text(). ?></div>
+                    <div class="services-guidance-text rich-text"><?php echo $text; // Escaped in niyom_rich_text(). ?></div>
                 <?php endif; ?>
             </div>
         <?php endif; ?>
 
         <?php if ($rows) : ?>
-            <div class="services-guidance__table">
+            <div class="services-guidance-table">
 
                 <?php if ($has_head) : ?>
                     <!-- Column headings (hidden on mobile, where rows stack). -->
-                    <div class="services-guidance__row services-guidance__row--head" aria-hidden="true">
-                        <span class="services-guidance__cell services-guidance__cell--situation"><?php echo esc_html($col_situation); ?></span>
-                        <span class="services-guidance__cell services-guidance__cell--service"><?php echo esc_html($col_service); ?></span>
+                    <div class="services-guidance-row services-guidance-row--head" aria-hidden="true">
+                        <span class="services-guidance-cell services-guidance-cell--situation"><?php echo esc_html($col_situation); ?></span>
+                        <span class="services-guidance-cell services-guidance-cell--service"><?php echo esc_html($col_service); ?></span>
                     </div>
                 <?php endif; ?>
 
-                <ul class="services-guidance__rows">
+                <ul class="services-guidance-rows">
                     <?php foreach ($rows as $row) : ?>
-                        <li class="services-guidance__item">
+                        <li class="services-guidance-item">
                             <?php if ($row['link'] !== '') : ?>
-                                <a class="services-guidance__row services-guidance__row--link" <?php echo niyom_link_attrs($row['link'], $row['new_tab']); ?>>
+                                <a class="services-guidance-row services-guidance-row--link" <?php echo niyom_link_attrs($row['link'], $row['new_tab']); ?>>
                             <?php else : ?>
-                                <div class="services-guidance__row">
+                                <div class="services-guidance-row">
                             <?php endif; ?>
 
                                 <?php // Empty cells keep the desktop columns but are hidden when rows stack. ?>
-                                <span class="services-guidance__cell services-guidance__cell--situation<?php echo $row['situation'] ? '' : ' is-empty'; ?>"><?php echo $row['situation']; // Escaped in niyom_inline_text(). ?></span>
-                                <span class="services-guidance__cell services-guidance__cell--service<?php echo $row['service'] ? '' : ' is-empty'; ?>"><?php echo $row['service']; // Escaped in niyom_inline_text(). ?></span>
+                                <span class="services-guidance-cell services-guidance-cell--situation<?php echo $row['situation'] ? '' : ' is-empty'; ?>"><?php echo $row['situation']; // Escaped in niyom_inline_text(). ?></span>
+                                <span class="services-guidance-cell services-guidance-cell--service<?php echo $row['service'] ? '' : ' is-empty'; ?>"><?php echo $row['service']; // Escaped in niyom_inline_text(). ?></span>
 
                             <?php if ($row['link'] !== '') : ?>
-                                    <span class="services-guidance__arrow" aria-hidden="true">→</span>
+                                    <span class="services-guidance-arrow" aria-hidden="true">→</span>
                                 </a>
                             <?php else : ?>
                                 </div>

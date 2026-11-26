@@ -17,7 +17,7 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
     // ---------- Background image (Figma: 2000 × 1143, centred, 7%) ----------
 
-    &__bg {
+    .home-expertise-bg {
         position: absolute;
         top: 0;
         left: 50%;
@@ -29,7 +29,7 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
         pointer-events: none;
     }
 
-    &__bg-image {
+    .home-expertise-bg-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -37,7 +37,7 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
     // ---------- Layout ----------
 
-    &__inner {
+    .home-expertise-inner {
         display: flex;
         align-items: flex-start;
         gap: 140px;
@@ -47,14 +47,14 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
         padding: 140px 0 78px var(--container-padding);
     }
 
-    &--no-cards &__inner {
+    &--no-cards .home-expertise-inner {
         padding-right: var(--container-padding);
         padding-bottom: 140px;
     }
 
     // ---------- Intro ----------
 
-    &__intro {
+    .home-expertise-intro {
         display: flex;
         flex: 0 0 495px;
         flex-direction: column;
@@ -63,7 +63,7 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
         max-width: 495px;
     }
 
-    &__copy {
+    .home-expertise-copy {
         display: flex;
         flex-direction: column;
         gap: 30px;
@@ -71,7 +71,7 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
     // Figma "Labels/L": JetBrains Mono Medium 14 / 100%, White 60%.
-    &__eyebrow {
+    .home-expertise-eyebrow {
         font-size: 14px;
         font-weight: 500;
         line-height: 1;
@@ -79,11 +79,11 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
         color: var(--color-white-60);
     }
 
-    &__heading {
+    .home-expertise-heading {
         color: var(--color-white);
     }
 
-    &__text {
+    .home-expertise-text {
         color: var(--color-white-80);
 
         a {
@@ -93,7 +93,7 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
     // ---------- Slider ----------
 
-    &__slider-wrap {
+    .home-expertise-slider-wrap {
         display: flex;
         flex: 1 1 auto;
         flex-direction: column;
@@ -101,14 +101,14 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
         min-width: 0;
     }
 
-    &__slider {
+    .home-expertise-slider {
         width: 100%;
         margin: 0;
         // Before Swiper starts, cards still sit in a clipped row.
         overflow: hidden;
     }
 
-    &__card.swiper-slide {
+    .home-expertise-card.swiper-slide {
         display: flex;
         flex-direction: column;
         flex-shrink: 0;
@@ -120,29 +120,29 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
     // Before Swiper runs, space cards like the Figma (30px).
-    &:not(.is-ready) &__card + &__card {
+    &:not(.is-ready) .home-expertise-card + .home-expertise-card {
         margin-left: 30px;
     }
 
-    &__card-media {
+    .home-expertise-card-media {
         flex-shrink: 0;
         height: 230px;
         overflow: hidden;
         background: rgba(11, 58, 83, 0.08);
     }
 
-    &__card-image {
+    .home-expertise-card-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.8s $expertise-ease;
     }
 
-    &__card:hover &__card-image {
+    .home-expertise-card:hover .home-expertise-card-image {
         transform: scale(1.04);
     }
 
-    &__card-body {
+    .home-expertise-card-body {
         display: flex;
         flex: 1 1 auto;
         flex-direction: column;
@@ -150,7 +150,7 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
         padding: 24px 16px 16px;
     }
 
-    &__card-copy {
+    .home-expertise-card-copy {
         display: flex;
         flex-direction: column;
         gap: 12px;
@@ -158,7 +158,7 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
     // Figma "Headings/H5": Inter 28 / 120% / -2%.
-    &__card-title {
+    .home-expertise-card-title {
         font-family: var(--font-heading);
         font-size: 28px;
         font-weight: 400;
@@ -168,7 +168,7 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
     // Figma "Body/M": Inter 16 / 140%, Body text.
-    &__card-text {
+    .home-expertise-card-text {
         font-size: 16px;
         line-height: 1.4;
         color: var(--color-ink-80);
@@ -176,14 +176,14 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
     // ---------- Chips (Expertise Tags) ----------
 
-    &__chips {
+    .home-expertise-chips {
         display: flex;
         flex-wrap: wrap;
         gap: 4px;
         margin-top: auto;
     }
 
-    &__chip {
+    .home-expertise-chip {
         display: inline-flex;
         align-items: center;
         padding: 4px 10px;
@@ -198,7 +198,7 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
     // ---------- Pager ‹ 01 / 03 › ----------
 
-    &__pager {
+    .home-expertise-pager {
         display: flex;
         align-items: center;
         gap: 16px;
@@ -209,7 +209,7 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
         }
     }
 
-    &__nav {
+    .home-expertise-nav {
         position: relative;
         display: flex;
         align-items: center;
@@ -243,19 +243,19 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
             pointer-events: none;
         }
 
-        &--prev .home-expertise__nav-icon {
+        &--prev .home-expertise-nav-icon {
             transform: scaleX(-1);
         }
     }
 
-    &__nav-icon {
+    .home-expertise-nav-icon {
         flex-shrink: 0;
         width: 8.12px;
         height: 14.12px;
     }
 
     // Figma: Inter 16 / 140%, "01" white, " / 03" White 60%.
-    &__fraction {
+    .home-expertise-fraction {
         margin: 0;
         font-size: 16px;
         line-height: 1.4;
@@ -264,49 +264,49 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
         font-variant-numeric: tabular-nums;
     }
 
-    &__current {
+    .home-expertise-current {
         color: var(--color-white);
     }
 
     // ---------- Responsive ----------
 
     @include breakpoint-max(xxl) {
-        &__inner {
+        .home-expertise-inner {
             gap: 80px;
             padding-top: 120px;
             padding-bottom: 58px; // 120 - 62 (pager row)
         }
 
-        &--no-cards &__inner {
+        &--no-cards .home-expertise-inner {
             padding-bottom: 120px;
         }
 
-        &__intro {
+        .home-expertise-intro {
             flex-basis: 420px;
             max-width: 420px;
         }
 
-        &__card.swiper-slide {
+        .home-expertise-card.swiper-slide {
             width: 460px;
         }
     }
 
     @include breakpoint-max(xl) {
-        &__inner {
+        .home-expertise-inner {
             gap: 56px;
         }
 
-        &__intro {
+        .home-expertise-intro {
             flex-basis: 360px;
             max-width: 360px;
             gap: 48px;
         }
 
-        &__card.swiper-slide {
+        .home-expertise-card.swiper-slide {
             width: 420px;
         }
 
-        &__card-title {
+        .home-expertise-card-title {
             font-size: 24px;
             letter-spacing: -0.24px;
         }
@@ -314,94 +314,94 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
     // Tablet: intro on top, slider full width below.
     @include breakpoint-max(lg) {
-        &__inner {
+        .home-expertise-inner {
             flex-direction: column;
             gap: 48px;
             padding-top: 96px;
             padding-bottom: 72px;
         }
 
-        &--no-cards &__inner {
+        &--no-cards .home-expertise-inner {
             padding-bottom: 96px;
         }
 
-        &__intro {
+        .home-expertise-intro {
             flex: none;
             max-width: 640px;
             gap: 40px;
         }
 
-        &__copy {
+        .home-expertise-copy {
             gap: 24px;
         }
 
-        &__slider-wrap {
+        .home-expertise-slider-wrap {
             width: 100%;
         }
     }
 
     // Mobile (Figma 360): 16px sides, 230px cards, 2-line descriptions.
     @include breakpoint-max(md) {
-        &__inner {
+        .home-expertise-inner {
             gap: 32px;
             padding: 56px 0 56px 16px;
         }
 
-        &--no-cards &__inner {
+        &--no-cards .home-expertise-inner {
             padding-right: 16px;
         }
 
-        &__intro {
+        .home-expertise-intro {
             gap: 20px;
             max-width: 100%;
         }
 
-        &__copy {
+        .home-expertise-copy {
             gap: 20px;
         }
 
         // Figma mobile: JetBrains Mono Medium 13, 0.52px tracking, White 80%.
-        &__eyebrow {
+        .home-expertise-eyebrow {
             font-size: 13px;
             line-height: normal;
             letter-spacing: 0.52px;
             color: var(--color-white-80);
         }
 
-        &__intro,
-        &__copy {
+        .home-expertise-intro,
+        .home-expertise-copy {
             padding-right: 16px;
         }
 
-        &__slider-wrap {
+        .home-expertise-slider-wrap {
             gap: 24px;
         }
 
-        &__card.swiper-slide {
+        .home-expertise-card.swiper-slide {
             width: 230px;
             padding: 4.6px;
         }
 
-        &:not(.is-ready) &__card + &__card {
+        &:not(.is-ready) .home-expertise-card + .home-expertise-card {
             margin-left: 16px;
         }
 
-        &__card-media {
+        .home-expertise-card-media {
             height: 133px;
         }
 
-        &__card-body {
+        .home-expertise-card-body {
             gap: 12px;
             padding: 14px 9px 9px;
         }
 
-        &__card-copy {
+        .home-expertise-card-copy {
             gap: 8px;
             min-height: 0;
         }
 
         // Figma: Inter Medium 16 / 140%.
-        &__card-title {
+        .home-expertise-card-title {
             font-size: 16px;
             font-weight: 500;
             line-height: 1.4;
@@ -409,7 +409,7 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
         }
 
         // Figma: Inter 14 / 140%, clipped to 2 lines with "…".
-        &__card-text {
+        .home-expertise-card-text {
             display: -webkit-box;
             overflow: hidden;
             font-size: 14px;
@@ -418,25 +418,25 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
         }
 
         // Figma chips are scaled down to ~7px; 9px keeps them readable.
-        &__chips {
+        .home-expertise-chips {
             gap: 2.3px;
         }
 
-        &__chip {
+        .home-expertise-chip {
             padding: 2px 6px;
             font-size: 9px;
         }
 
-        &__pager {
+        .home-expertise-pager {
             margin-left: -3px; // Chevron sits ~3px inside its 14px box.
         }
 
-        &__nav {
+        .home-expertise-nav {
             width: 14px;
             height: 14px;
         }
 
-        &__fraction {
+        .home-expertise-fraction {
             font-size: 14px;
         }
     }
@@ -444,11 +444,11 @@ $expertise-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
     // ---------- Reduced motion ----------
 
     @media (prefers-reduced-motion: reduce) {
-        &__card-image {
+        .home-expertise-card-image {
             transition: none;
         }
 
-        &__card:hover &__card-image {
+        .home-expertise-card:hover .home-expertise-card-image {
             transform: none;
         }
     }

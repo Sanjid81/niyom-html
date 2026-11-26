@@ -9,7 +9,7 @@
     background: var(--color-white);
 
     // Portrait 680 wide, 120px gap, text fills the rest.
-    &__inner {
+    .about-founder-inner {
         display: flex;
         align-items: flex-start;
         gap: 120px;
@@ -20,7 +20,7 @@
 
     // ---------- Portrait: 680 × 820, Mist behind the image ----------
 
-    &__media {
+    .about-founder-media {
         position: relative;
         flex: 0 0 40.476%; // 680 / 1680
         margin: 0;
@@ -29,7 +29,7 @@
         background: var(--color-mist);
     }
 
-    &__image {
+    .about-founder-image {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -39,7 +39,7 @@
 
     // ---------- Text column (starts 40px below the portrait top) ----------
 
-    &__content {
+    .about-founder-content {
         display: flex;
         flex: 1 1 0;
         flex-direction: column;
@@ -49,12 +49,12 @@
         padding-top: 40px;
     }
 
-    &--no-image &__content {
+    &--no-image .about-founder-content {
         max-width: 880px;
         padding-top: 0;
     }
 
-    &__head {
+    .about-founder-head {
         display: flex;
         flex-direction: column;
         gap: 8px;
@@ -62,7 +62,7 @@
     }
 
     // H4 — Inter 32 / 120% / -2%.
-    &__name {
+    .about-founder-name {
         margin: 0;
         font-family: var(--font-heading);
         font-size: 32px;
@@ -73,7 +73,7 @@
     }
 
     // Body/S — Inter Medium 14 / 160%, Dark 60.
-    &__role {
+    .about-founder-role {
         margin: 0;
         font-size: 14px;
         font-weight: 500;
@@ -82,7 +82,7 @@
     }
 
     // Lead Text — Inter 24 / 120% / -2%, Deep Ink.
-    &__lead {
+    .about-founder-lead {
         margin: 0;
         font-family: var(--font-heading);
         font-size: 24px;
@@ -97,7 +97,7 @@
     }
 
     // Body/M — Inter 16 / 140%, Body text colour.
-    &__bio {
+    .about-founder-bio {
         width: 100%;
         font-size: 16px;
         line-height: 1.4;
@@ -106,13 +106,13 @@
 
     // ---------- Profile details table ----------
 
-    &__details {
+    .about-founder-details {
         width: 100%;
         margin: 0;
     }
 
     // Row: top border only, label column 220px, 40px gap.
-    &__row {
+    .about-founder-row {
         display: flex;
         align-items: flex-start;
         gap: 40px;
@@ -121,7 +121,7 @@
     }
 
     // Labels/S — JetBrains Mono Regular 12 / 120% / 1%, Dark 60.
-    &__label {
+    .about-founder-label {
         flex: 0 0 220px;
         font-family: var(--font-mono);
         font-size: 12px;
@@ -133,7 +133,7 @@
     }
 
     // Body/M — Inter 16 / 140%, Deep Ink. Links in teal.
-    &__value {
+    .about-founder-value {
         flex: 1 1 0;
         min-width: 0;
         margin: 0;
@@ -149,70 +149,70 @@
     // ---------- Responsive ----------
 
     @include breakpoint-max(xxl) {
-        &__inner {
+        .about-founder-inner {
             gap: 80px;
         }
 
-        &__content {
+        .about-founder-content {
             padding-top: 24px;
         }
 
-        &__label {
+        .about-founder-label {
             flex-basis: 180px;
         }
     }
 
     @include breakpoint-max(xl) {
-        &__inner {
+        .about-founder-inner {
             gap: 56px;
             padding-top: 120px;
             padding-bottom: 120px;
         }
 
-        &__media {
+        .about-founder-media {
             flex-basis: 42%;
         }
 
-        &__content {
+        .about-founder-content {
             gap: 32px;
             padding-top: 0;
         }
 
-        &__name {
+        .about-founder-name {
             font-size: 28px;
             letter-spacing: -0.3px;
         }
 
-        &__lead {
+        .about-founder-lead {
             font-size: 22px;
             letter-spacing: -0.2px;
         }
 
-        &__label {
+        .about-founder-label {
             flex-basis: 140px;
         }
 
-        &__row {
+        .about-founder-row {
             gap: 24px;
         }
     }
 
     // Tablet: portrait on top, text below.
     @include breakpoint-max(lg) {
-        &__inner {
+        .about-founder-inner {
             flex-direction: column;
             gap: 48px;
             padding-top: 96px;
             padding-bottom: 96px;
         }
 
-        &__media {
+        .about-founder-media {
             flex: none;
             width: 100%;
             max-width: 480px;
         }
 
-        &__content {
+        .about-founder-content {
             flex: none;
             width: 100%;
         }
@@ -220,36 +220,36 @@
 
     // Mobile (Home mobile patterns, 360 wide).
     @include breakpoint-max(md) {
-        &__inner {
+        .about-founder-inner {
             gap: 32px;
             padding: 56px 16px;
         }
 
-        &__media {
+        .about-founder-media {
             max-width: 420px;
         }
 
-        &__content {
+        .about-founder-content {
             gap: 24px;
         }
 
-        &__head {
+        .about-founder-head {
             gap: 4px;
         }
 
         // Mobile H4 — 24 / 125% / -0.5%.
-        &__name {
+        .about-founder-name {
             font-size: 24px;
             line-height: 1.25;
             letter-spacing: -0.12px;
         }
 
-        &__role {
+        .about-founder-role {
             line-height: 1.4;
         }
 
         // Mobile Lead Text — 20 / 120%.
-        &__lead {
+        .about-founder-lead {
             font-size: 20px;
             letter-spacing: 0;
 
@@ -259,17 +259,17 @@
         }
 
         // Label above value.
-        &__row {
+        .about-founder-row {
             flex-direction: column;
             gap: 8px;
             padding: 16px 0;
         }
 
-        &__label {
+        .about-founder-label {
             flex: none;
         }
 
-        &__value {
+        .about-founder-value {
             flex: none;
             width: 100%;
         }
@@ -277,7 +277,7 @@
 
     // Phones: portrait full width.
     @include breakpoint-max(sm) {
-        &__media {
+        .about-founder-media {
             max-width: none;
         }
     }

@@ -1,0 +1,121 @@
+// =====================================================================
+// Shared › Intro — Figma "03 — Introduction" on the service pages
+// (Computational Biosciences 294:8091, Research Support 296:8955,
+// Scientific Engagement 294:7342). White, 140px top/bottom: label + H3
+// statement left (fills the row), 520px paragraph right, bottom-aligned.
+// No mobile frame in Figma: mobile follows the Home mobile patterns.
+// Markup: components/Shared/intro.php
+// =====================================================================
+
+.shared-intro {
+    background: var(--color-white);
+
+    .shared-intro-inner {
+        display: flex;
+        align-items: flex-end;
+        gap: 160px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    .shared-intro-copy {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        min-width: 0;
+    }
+
+    // Labels/L — JetBrains Mono Medium 14 / 100%, Dark 60.
+    .shared-intro-eyebrow {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+    }
+
+    // H3 — Inter 42 / 120% / -2%, up to 1000px wide.
+    .shared-intro-heading {
+        max-width: 1000px;
+        margin: 0;
+        color: var(--color-heading);
+    }
+
+    // Body/L — 18 / 140%, Body text, 520px wide.
+    .shared-intro-text {
+        flex: 0 0 520px;
+        min-width: 0;
+        color: var(--color-ink-80);
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        .shared-intro-inner {
+            gap: 96px;
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        .shared-intro-text {
+            flex-basis: 440px;
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        .shared-intro-inner {
+            gap: 64px;
+        }
+
+        .shared-intro-text {
+            flex-basis: 380px;
+        }
+    }
+
+    // Tablet: paragraph moves under the statement.
+    @include breakpoint-max(lg) {
+        .shared-intro-inner {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 32px;
+            padding-top: 96px;
+            padding-bottom: 96px;
+        }
+
+        .shared-intro-copy {
+            flex: none;
+            width: 100%;
+            gap: 24px;
+        }
+
+        .shared-intro-text {
+            flex: none;
+            max-width: 600px;
+        }
+    }
+
+    // Mobile (Home mobile patterns, 360 wide).
+    @include breakpoint-max(md) {
+        .shared-intro-inner {
+            gap: 20px;
+            padding: 56px 16px;
+        }
+
+        .shared-intro-copy {
+            gap: 20px;
+        }
+
+        .shared-intro-eyebrow {
+            font-size: 12px;
+            line-height: normal;
+            letter-spacing: 0.48px;
+        }
+
+        .shared-intro-text {
+            max-width: none;
+        }
+    }
+}

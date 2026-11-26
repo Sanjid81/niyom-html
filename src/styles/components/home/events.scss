@@ -8,7 +8,7 @@
 .home-events {
     background: var(--color-subtle-bg);
 
-    &__inner {
+    .home-events-inner {
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
@@ -21,7 +21,7 @@
 
     // ---------- Intro (left) ----------
 
-    &__intro {
+    .home-events-intro {
         display: flex;
         flex: 0 1 516px;
         flex-direction: column;
@@ -30,7 +30,7 @@
         min-width: 0;
     }
 
-    &__header {
+    .home-events-header {
         display: flex;
         flex-direction: column;
         gap: 30px;
@@ -38,24 +38,24 @@
     }
 
     // Desktop eyebrow is Labels/L (Mono Medium 14 / 100%); mobile uses Labels/S.
-    &__eyebrow {
+    .home-events-eyebrow {
         font-size: 14px;
         font-weight: 500;
         line-height: 1;
         letter-spacing: 0;
     }
 
-    &__heading {
+    .home-events-heading {
         color: var(--color-heading);
     }
 
-    &__text {
+    .home-events-text {
         color: var(--color-text);
     }
 
     // ---------- Event list (right) ----------
 
-    &__list {
+    .home-events-list {
         display: flex;
         flex: 0 1 948px;
         flex-direction: column;
@@ -64,7 +64,7 @@
     }
 
     // One event row: date badge · content · image.
-    &__item {
+    .home-events-item {
         position: relative;
         display: flex;
         align-items: flex-start;
@@ -81,7 +81,7 @@
     }
 
     // Image sits right on desktop (it comes first in the markup for mobile).
-    &__media {
+    .home-events-media {
         order: 2;
         flex: 0 0 260px;
         height: 170px;
@@ -89,18 +89,18 @@
         background: var(--color-mist);
     }
 
-    &__image {
+    .home-events-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.6s ease;
     }
 
-    &__item.is-linked:hover &__image {
+    .home-events-item.is-linked:hover .home-events-image {
         transform: scale(1.04);
     }
 
-    &__details {
+    .home-events-details {
         display: flex;
         flex: 1 1 auto;
         align-items: flex-start;
@@ -109,7 +109,7 @@
     }
 
     // Date badge — Mist, big teal day, month + year below.
-    &__date {
+    .home-events-date {
         display: flex;
         flex: 0 0 110px;
         flex-direction: column;
@@ -120,7 +120,7 @@
         text-align: center;
     }
 
-    &__day {
+    .home-events-day {
         font-family: var(--font-heading);
         font-size: 42px;
         font-weight: 400;
@@ -129,7 +129,7 @@
         color: var(--color-teal);
     }
 
-    &__month {
+    .home-events-month {
         font-family: var(--font-body);
         font-size: 14px;
         font-weight: 500;
@@ -138,7 +138,7 @@
         white-space: nowrap;
     }
 
-    &__content {
+    .home-events-content {
         display: flex;
         flex: 1 1 auto;
         flex-direction: column;
@@ -149,7 +149,7 @@
     }
 
     // Type label — Labels/S, teal.
-    &__type {
+    .home-events-type {
         font-family: var(--font-mono);
         font-size: 12px;
         font-weight: 400;
@@ -160,7 +160,7 @@
     }
 
     // Title — Lead Text (24 / 120% / -2%).
-    &__title {
+    .home-events-title {
         font-family: var(--font-heading);
         font-size: 24px;
         font-weight: 400;
@@ -170,7 +170,7 @@
     }
 
     // Stretched link: the title link covers the whole row.
-    &__link {
+    .home-events-link {
         color: inherit;
         transition: color var(--transition);
 
@@ -191,12 +191,12 @@
         }
     }
 
-    &__item.is-linked:hover &__title {
+    .home-events-item.is-linked:hover .home-events-title {
         color: var(--color-teal);
     }
 
     // Venue · format — Body S, Dark 60.
-    &__meta {
+    .home-events-meta {
         font-family: var(--font-body);
         font-size: 14px;
         font-weight: 500;
@@ -205,19 +205,19 @@
     }
 
     // "VIEW DETAILS ⟶" — Mono 14 / 22, 12px top + bottom padding (Figma).
-    &__more.link-arrow {
+    .home-events-more.link-arrow {
         min-height: 0;
         padding: 12px 0;
         font-size: 14px;
         line-height: 22px;
     }
 
-    &__item.is-linked:hover &__more {
+    .home-events-item.is-linked:hover .home-events-more {
         span {
             text-decoration-color: currentColor;
         }
 
-        .link-arrow__icon {
+        .link-arrow-icon {
             transform: translateX(4px);
         }
     }
@@ -225,17 +225,17 @@
     // ---------- Responsive ----------
 
     @include breakpoint-max(xxl) {
-        &__inner {
+        .home-events-inner {
             padding-top: 120px;
             padding-bottom: 120px;
         }
 
-        &__item,
-        &__details {
+        .home-events-item,
+        .home-events-details {
             gap: 24px;
         }
 
-        &__media {
+        .home-events-media {
             flex-basis: 220px;
             height: 150px;
         }
@@ -243,7 +243,7 @@
 
     // Tablet / small laptop: intro on top, rows below at full width.
     @include breakpoint-max(xl) {
-        &__inner {
+        .home-events-inner {
             flex-direction: column;
             align-items: stretch;
             gap: 56px;
@@ -251,38 +251,38 @@
             padding-bottom: 100px;
         }
 
-        &__intro {
+        .home-events-intro {
             flex: none;
             max-width: 640px;
             gap: 40px;
         }
 
-        &__header {
+        .home-events-header {
             gap: 24px;
         }
 
-        &__list {
+        .home-events-list {
             flex: none;
         }
 
-        &__media {
+        .home-events-media {
             flex-basis: 260px;
             height: 170px;
         }
     }
 
     @include breakpoint-max(lg) {
-        &__inner {
+        .home-events-inner {
             padding-top: 80px;
             padding-bottom: 80px;
         }
 
-        &__media {
+        .home-events-media {
             flex-basis: 200px;
             height: 140px;
         }
 
-        &__title {
+        .home-events-title {
             font-size: 22px;
             letter-spacing: -0.2px;
         }
@@ -290,28 +290,28 @@
 
     // Mobile (Figma 360): stacked white cards, image on top, no "View details".
     @include breakpoint-max(md) {
-        &__inner {
+        .home-events-inner {
             gap: 32px;
             padding: 56px 16px;
         }
 
-        &__intro {
+        .home-events-intro {
             max-width: none;
             gap: 32px;
         }
 
-        &__header {
+        .home-events-header {
             gap: 20px;
         }
 
-        &__eyebrow {
+        .home-events-eyebrow {
             font-size: 12px;
             font-weight: 400;
             line-height: 1.2;
             letter-spacing: 0.12px;
         }
 
-        &__item {
+        .home-events-item {
             flex-direction: column;
             align-items: stretch;
             gap: 16px;
@@ -319,7 +319,7 @@
             border: 0;
         }
 
-        &__media {
+        .home-events-media {
             order: 0;
             flex: none;
             width: 100%;
@@ -328,56 +328,56 @@
             aspect-ratio: 296 / 180;
         }
 
-        &__details {
+        .home-events-details {
             gap: 16px;
         }
 
-        &__date {
+        .home-events-date {
             flex-basis: 72px;
             gap: 2px;
             padding: 10px 8px;
         }
 
-        &__day {
+        .home-events-day {
             font-size: 28px;
             letter-spacing: -0.56px;
         }
 
-        &__month {
+        .home-events-month {
             font-size: 12px;
             line-height: 1.5;
         }
 
-        &__content {
+        .home-events-content {
             gap: 8px;
         }
 
-        &__title {
+        .home-events-title {
             font-size: 20px;
             line-height: 1.25;
             letter-spacing: -0.4px;
         }
 
-        &__meta {
+        .home-events-meta {
             font-size: 13px;
             line-height: 1.5;
             color: #5D6B73; // Figma mobile meta colour.
         }
 
         // Figma hides the link on mobile; the whole card stays tappable.
-        &__more {
+        .home-events-more {
             display: none !important;
         }
 
         // Keep the link reachable when it is the only link (no title).
-        &__more.home-events__link {
+        .home-events-more.home-events-link {
             display: inline-flex !important;
         }
     }
 
     @media (prefers-reduced-motion: reduce) {
-        &__image,
-        &__more .link-arrow__icon {
+        .home-events-image,
+        .home-events-more .link-arrow-icon {
             transition: none;
         }
     }

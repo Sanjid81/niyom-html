@@ -1,0 +1,198 @@
+// =====================================================================
+// Expertise › Selected publications — Figma "08 — Selected Publications
+// & Contributions" (312:10156, 1920 wide). White, 140px top/bottom, 56px
+// under the intro (label in Body text 80%, H2 900px). Cards 2 per row,
+// 24px apart: 1px border, 36px padding, 20px gaps; teal Labels/S type,
+// H5 title, Body M citation, "VIEW PUBLICATION ⟶" (Mono 14 / 22, 12px
+// top + bottom). No mobile frame in Figma: one card per row on mobile.
+// Markup: components/Expertise/publications.php
+// =====================================================================
+
+.ex-publications {
+    background: var(--color-white);
+
+    .ex-publications-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 56px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    // ---------- Intro ----------
+
+    .ex-publications-intro {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    // Labels/L — JetBrains Mono Medium 14 / 100%, Body text (80%) in Figma.
+    .ex-publications-eyebrow {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+        color: var(--color-ink-80);
+    }
+
+    .ex-publications-heading {
+        max-width: 900px;
+        margin: 0;
+        color: var(--color-heading);
+    }
+
+    // ---------- Cards ----------
+
+    .ex-publications-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .ex-publications-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        min-width: 0;
+        padding: 36px;
+        border: 1px solid var(--color-border);
+    }
+
+    // Labels/S — JetBrains Mono 12 / 120% / 1%, teal.
+    .ex-publications-type {
+        margin: 0;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        text-transform: uppercase;
+        color: var(--color-teal);
+    }
+
+    .ex-publications-title {
+        margin: 0;
+        color: var(--color-heading);
+        overflow-wrap: break-word;
+
+        a {
+            color: var(--color-teal);
+        }
+    }
+
+    .ex-publications-meta {
+        margin: 0;
+        color: var(--color-ink-80);
+        overflow-wrap: break-word;
+
+        a {
+            color: var(--color-teal);
+        }
+    }
+
+    // Pushed to the card bottom so links line up across a row.
+    .ex-publications-link.link-arrow {
+        min-height: 0;
+        margin-top: auto;
+        padding: 12px 0;
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    // Placeholder without a link: no hover effect.
+    .ex-publications-link.is-static {
+        cursor: default;
+
+        &:hover {
+            span {
+                text-decoration-color: transparent;
+            }
+
+            .link-arrow-icon {
+                transform: none;
+            }
+        }
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        .ex-publications-inner {
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        .ex-publications-inner {
+            gap: 48px;
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        .ex-publications-card {
+            padding: 32px;
+            gap: 16px;
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        .ex-publications-inner {
+            gap: 40px;
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        .ex-publications-intro {
+            gap: 24px;
+        }
+
+        .ex-publications-grid {
+            gap: 20px;
+        }
+
+        .ex-publications-card {
+            padding: 28px;
+        }
+    }
+
+    // Mobile (Home mobile patterns, 360 wide): one card per row.
+    @include breakpoint-max(md) {
+        .ex-publications-inner {
+            gap: 32px;
+            padding: 56px 16px;
+        }
+
+        .ex-publications-intro {
+            gap: 20px;
+        }
+
+        .ex-publications-eyebrow {
+            font-size: 12px;
+            line-height: normal;
+            letter-spacing: 0.48px;
+        }
+
+        .ex-publications-grid {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 16px;
+        }
+
+        .ex-publications-card {
+            gap: 12px;
+            padding: 24px 20px;
+        }
+
+        .ex-publications-link.link-arrow {
+            padding: 4px 0;
+        }
+    }
+}

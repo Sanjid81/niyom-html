@@ -16,7 +16,7 @@
 
     // ---------- Background image (Figma: 2000 × 1143, centred, 4%) ----------
 
-    &__bg {
+    .about-integrity-bg {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -28,7 +28,7 @@
         pointer-events: none;
     }
 
-    &__bg-image {
+    .about-integrity-bg-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -38,7 +38,7 @@
 
     // Figma 1920: intro 640 · gap 160 · commitments 880. Columns keep that
     // ratio on narrower screens (8.33vw = 160px at 1920).
-    &__inner {
+    .about-integrity-inner {
         display: grid;
         grid-template-columns: minmax(0, 640fr) minmax(0, 880fr);
         align-items: start;
@@ -49,13 +49,13 @@
     }
 
     // No intro: commitments take the full width.
-    &__inner > &__list:only-child {
+    .about-integrity-inner > .about-integrity-list:only-child {
         grid-column: 1 / -1;
     }
 
     // ---------- Intro ----------
 
-    &__intro {
+    .about-integrity-intro {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -64,7 +64,7 @@
     }
 
     // Figma "Labels/L": JetBrains Mono Medium 14 / 100%, White 60%.
-    &__eyebrow {
+    .about-integrity-eyebrow {
         font-size: 14px;
         font-weight: 500;
         line-height: 1;
@@ -72,12 +72,12 @@
         color: var(--color-white-60);
     }
 
-    &__heading {
+    .about-integrity-heading {
         color: var(--color-white);
     }
 
     // Figma "Body/L": Inter 18 / 140%, White 80%, 520px box.
-    &__text {
+    .about-integrity-text {
         max-width: 520px;
         color: var(--color-white-80);
 
@@ -88,7 +88,7 @@
 
     // ---------- Commitments ----------
 
-    &__list {
+    .about-integrity-list {
         display: grid;
         flex: 1 1 auto;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -99,7 +99,7 @@
         list-style: none;
     }
 
-    &__item {
+    .about-integrity-item {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -110,7 +110,7 @@
     }
 
     // Figma "Labels/S": JetBrains Mono 12 / 120% / 1%, Signal Cyan.
-    &__number {
+    .about-integrity-number {
         font-family: var(--font-mono);
         font-size: 12px;
         font-weight: 400;
@@ -121,7 +121,7 @@
     }
 
     // Figma "Lead Text": Inter 24 / 120% / -2%, white.
-    &__title {
+    .about-integrity-title {
         width: 100%;
         font-family: var(--font-heading);
         font-size: 24px;
@@ -132,7 +132,7 @@
     }
 
     // Figma "Body/M": Inter 16 / 140%, White 80%.
-    &__item-text {
+    .about-integrity-item-text {
         width: 100%;
         font-size: 16px;
         line-height: 1.4;
@@ -146,16 +146,16 @@
     // ---------- Responsive ----------
 
     @include breakpoint-max(xxl) {
-        &__inner {
+        .about-integrity-inner {
             padding-top: 120px;
             padding-bottom: 120px;
         }
 
-        &__list {
+        .about-integrity-list {
             column-gap: 40px;
         }
 
-        &__title {
+        .about-integrity-title {
             font-size: 22px;
             letter-spacing: -0.44px;
         }
@@ -163,14 +163,14 @@
 
     // Tablet: intro on top, commitments below in 2 columns.
     @include breakpoint-max(lg) {
-        &__inner {
+        .about-integrity-inner {
             grid-template-columns: minmax(0, 1fr);
             row-gap: 48px;
             padding-top: 96px;
             padding-bottom: 96px;
         }
 
-        &__intro {
+        .about-integrity-intro {
             max-width: 640px;
             gap: 24px;
         }
@@ -178,39 +178,39 @@
 
     // Mobile (Home mobile patterns): one column, 16px sides.
     @include breakpoint-max(md) {
-        &__inner {
+        .about-integrity-inner {
             row-gap: 32px;
             padding: 56px 16px;
         }
 
-        &__intro {
+        .about-integrity-intro {
             gap: 20px;
             max-width: 100%;
         }
 
         // Figma mobile: JetBrains Mono Medium 13, 0.52px tracking, White 80%.
-        &__eyebrow {
+        .about-integrity-eyebrow {
             font-size: 13px;
             line-height: normal;
             letter-spacing: 0.52px;
             color: var(--color-white-80);
         }
 
-        &__list {
+        .about-integrity-list {
             grid-template-columns: minmax(0, 1fr);
         }
 
-        &__item {
+        .about-integrity-item {
             gap: 8px;
             padding: 20px 0 24px;
         }
 
-        &__item:last-child {
+        .about-integrity-item:last-child {
             padding-bottom: 0;
         }
 
         // Figma mobile titles: Inter Medium 18.
-        &__title {
+        .about-integrity-title {
             font-size: 18px;
             font-weight: 500;
             line-height: 1.3;
@@ -218,7 +218,7 @@
         }
 
         // Figma "Mobile/Body/S": Inter 14 / 140%.
-        &__item-text {
+        .about-integrity-item-text {
             font-size: 14px;
         }
     }

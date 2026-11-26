@@ -1,0 +1,24 @@
+// =====================================================================
+// Expertise › Hero — Figma "02 — Hero" (303:3595). Uses the About hero
+// (components/About/hero.php). In this Figma the paragraph column is
+// 570px wide (About: 460px), so the block wraps the hero in .ex-hero.
+// =====================================================================
+
+.ex-hero {
+    .about-hero .about-hero-aside {
+        flex-basis: 570px;
+    }
+
+    @include breakpoint-max(xl) {
+        .about-hero .about-hero-aside {
+            flex-basis: 400px;
+        }
+    }
+
+    // Stacked hero (column): no fixed basis, or it becomes a height.
+    @include breakpoint-max(lg) {
+        .about-hero .about-hero-aside {
+            flex-basis: auto;
+        }
+    }
+}

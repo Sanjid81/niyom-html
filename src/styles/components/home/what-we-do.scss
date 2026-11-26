@@ -31,7 +31,7 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
         }
     }
 
-    &__inner {
+    .home-what-we-do-inner {
         max-width: var(--container-max);
         margin: 0 auto;
         padding: 140px var(--container-padding);
@@ -39,7 +39,7 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
     // ---------- Header: heading left, intro right ----------
 
-    &__header {
+    .home-what-we-do-header {
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
@@ -47,7 +47,7 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
         margin-bottom: 80px;
     }
 
-    &__heading {
+    .home-what-we-do-heading {
         display: flex;
         flex: 0 1 677px; // Figma heading width; shrinks less than the intro.
         flex-direction: column;
@@ -57,7 +57,7 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
     // Labels/L — JetBrains Mono Medium 14 / 100%, Dark 60.
-    &__eyebrow {
+    .home-what-we-do-eyebrow {
         font-family: var(--font-mono);
         font-size: 14px;
         font-weight: 500;
@@ -69,13 +69,13 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
         &::after { content: " )"; }
     }
 
-    &__title {
+    .home-what-we-do-title {
         max-width: 677px;
         margin: 0;
         color: var(--color-ink);
     }
 
-    &__intro {
+    .home-what-we-do-intro {
         flex: 0 3 607px;
         max-width: 607px;
         color: var(--color-ink-80);
@@ -87,13 +87,13 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
     // ---------- Cards ----------
 
-    &__list {
+    .home-what-we-do-list {
         margin: 0;
         padding: 0;
         list-style: none;
     }
 
-    &__item {
+    .home-what-we-do-item {
         --wwd-cover: 0; // 0 → 1 while the next card covers this one (JS).
 
         position: sticky;
@@ -105,12 +105,12 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
         background: var(--wwd-bg);
 
         // Rows share one divider line in the static layout (Figma).
-        & + & {
+        & + .home-what-we-do-item {
             margin-top: -1px;
         }
     }
 
-    &__card {
+    .home-what-we-do-card {
         display: flex;
         align-items: stretch;
         justify-content: space-between;
@@ -121,7 +121,7 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
     // Text column: label + title + text at the top, link at the bottom.
-    &__content {
+    .home-what-we-do-content {
         display: flex;
         flex: 1 1 0;
         flex-direction: column;
@@ -129,7 +129,7 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
         padding: 80px 40px 80px 0;
     }
 
-    &__head {
+    .home-what-we-do-head {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -137,7 +137,7 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
     // Labels/L — "01 COMPUTATIONAL BIOSCIENCES" in Research Teal.
-    &__label {
+    .home-what-we-do-label {
         margin: 0;
         font-family: var(--font-mono);
         font-size: 14px;
@@ -148,7 +148,7 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
     // H4 — Inter 32 / 120% / -2%.
-    &__item-title {
+    .home-what-we-do-item-title {
         max-width: 463px;
         margin: 0;
         font-family: var(--font-heading);
@@ -159,13 +159,13 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
         color: var(--color-ink);
     }
 
-    &__body {
+    .home-what-we-do-body {
         display: grid;
         flex: 1 1 auto;
         grid-template-rows: 1fr;
     }
 
-    &__body-inner {
+    .home-what-we-do-body-inner {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -173,17 +173,17 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
         min-height: 0;
     }
 
-    &__text {
+    .home-what-we-do-text {
         max-width: 463px;
         margin-top: 20px;
         color: var(--color-ink-80);
     }
 
-    &__link {
+    .home-what-we-do-link {
         align-self: flex-start;
     }
 
-    &__media {
+    .home-what-we-do-media {
         position: relative;
         flex: 0 0 53.155%; // 893 / 1680
         aspect-ratio: 893 / 524;
@@ -191,7 +191,7 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
         background: var(--color-mist);
     }
 
-    &__image {
+    .home-what-we-do-image {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -200,7 +200,7 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
     // Stacking off (JS: a card is taller than the viewport) → plain rows.
-    &.is-unstacked &__item {
+    &.is-unstacked .home-what-we-do-item {
         position: relative;
         top: auto;
     }
@@ -208,89 +208,89 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
     // ---------- Responsive ----------
 
     @include breakpoint-max(xxl) {
-        &__content {
+        .home-what-we-do-content {
             padding-top: 56px;
             padding-bottom: 56px;
         }
 
-        &__intro {
+        .home-what-we-do-intro {
             flex-basis: 480px;
         }
     }
 
     @include breakpoint-max(xl) {
-        &__inner {
+        .home-what-we-do-inner {
             padding-top: 120px;
             padding-bottom: 120px;
         }
 
         // Heading on top, intro below.
-        &__header {
+        .home-what-we-do-header {
             flex-direction: column;
             align-items: flex-start;
             gap: 24px;
             margin-bottom: 64px;
         }
 
-        &__heading {
+        .home-what-we-do-heading {
             flex: none;
             max-width: 100%;
         }
 
-        &__intro {
+        .home-what-we-do-intro {
             flex: none;
             max-width: 607px;
         }
 
-        &__content {
+        .home-what-we-do-content {
             padding-top: 40px;
             padding-bottom: 40px;
         }
 
-        &__item-title {
+        .home-what-we-do-item-title {
             font-size: 28px;
             letter-spacing: -0.56px;
         }
     }
 
     @include breakpoint-max(lg) {
-        &__inner {
+        .home-what-we-do-inner {
             padding-top: 96px;
             padding-bottom: 96px;
         }
 
-        &__header {
+        .home-what-we-do-header {
             margin-bottom: 56px;
         }
 
-        &__heading {
+        .home-what-we-do-heading {
             gap: 24px;
         }
 
-        &__item {
+        .home-what-we-do-item {
             padding: 24px 0;
         }
 
-        &__content {
+        .home-what-we-do-content {
             padding: 16px 32px 8px 0;
         }
 
-        &__head {
+        .home-what-we-do-head {
             gap: 16px;
         }
 
-        &__item-title {
+        .home-what-we-do-item-title {
             font-size: 24px;
             letter-spacing: -0.3px;
         }
 
-        &__text {
+        .home-what-we-do-text {
             margin-top: 16px;
             font-size: 16px;
             line-height: 1.4;
         }
 
-        &__media {
+        .home-what-we-do-media {
             flex-basis: 50%;
         }
     }
@@ -300,27 +300,27 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
     @include breakpoint-max(md) {
         --wwd-bg: #F7F6F1; // Figma mobile "Three Disciplines" background.
 
-        &__inner {
+        .home-what-we-do-inner {
             padding: 56px 16px;
         }
 
-        &__header {
+        .home-what-we-do-header {
             gap: 24px;
             margin-bottom: 32px;
         }
 
-        &__heading {
+        .home-what-we-do-heading {
             gap: 20px;
         }
 
-        &__eyebrow {
+        .home-what-we-do-eyebrow {
             font-size: 12px;
             line-height: normal;
             letter-spacing: 0.48px;
         }
 
         // Mobile/H2 — 34 / 115% / -1%; one flowing line, no forced breaks.
-        &__title {
+        .home-what-we-do-title {
             max-width: none;
             font-size: 34px;
             line-height: 1.15;
@@ -331,7 +331,7 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
             }
         }
 
-        &__intro {
+        .home-what-we-do-intro {
             max-width: none;
             font-size: 16px;
             line-height: 1.4;
@@ -345,25 +345,25 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
             }
         }
 
-        &__list {
+        .home-what-we-do-list {
             display: flex;
             flex-direction: column;
             gap: 32px;
         }
 
-        &__item,
-        &.is-unstacked &__item {
+        .home-what-we-do-item,
+        &.is-unstacked .home-what-we-do-item {
             position: static;
             padding: 0;
             border: 0;
             background: none;
 
-            & + & {
+            & + .home-what-we-do-item {
                 margin-top: 0;
             }
         }
 
-        &__card {
+        .home-what-we-do-card {
             flex-direction: column;
             gap: 16px;
             transform: none;
@@ -371,23 +371,23 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
             will-change: auto;
         }
 
-        &__media {
+        .home-what-we-do-media {
             order: -1;
             flex: none;
             width: 100%;
             aspect-ratio: 328 / 210;
         }
 
-        &__content {
+        .home-what-we-do-content {
             padding: 0;
         }
 
-        &__head {
+        .home-what-we-do-head {
             gap: 12px;
         }
 
         // Labels/S — JetBrains Mono Regular 12 / 120% / 1%.
-        &__label {
+        .home-what-we-do-label {
             font-size: 12px;
             font-weight: 400;
             line-height: 1.2;
@@ -395,53 +395,53 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
         }
 
         // Mobile/H4 — 24 / 125% / -0.5%.
-        &__item-title {
+        .home-what-we-do-item-title {
             max-width: none;
             font-size: 24px;
             line-height: 1.25;
             letter-spacing: -0.12px;
         }
 
-        &__body-inner {
+        .home-what-we-do-body-inner {
             justify-content: flex-start;
             gap: 16px;
             padding-top: 16px;
         }
 
-        &__text {
+        .home-what-we-do-text {
             max-width: none;
             margin-top: 0;
         }
 
-        &__link {
+        .home-what-we-do-link {
             min-height: 40px;
         }
 
         // Accordion (set by JS, so without JS every item stays open).
-        &.is-accordion &__head,
-        &.is-accordion &__media {
+        &.is-accordion .home-what-we-do-head,
+        &.is-accordion .home-what-we-do-media {
             cursor: pointer;
         }
 
-        &.is-accordion &__head:focus-visible {
+        &.is-accordion .home-what-we-do-head:focus-visible {
             outline: 2px solid var(--color-primary);
             outline-offset: 4px;
         }
 
-        &.is-accordion &__body {
+        &.is-accordion .home-what-we-do-body {
             transition: grid-template-rows 0.45s $wwd-ease;
         }
 
-        &.is-accordion &__body-inner {
+        &.is-accordion .home-what-we-do-body-inner {
             overflow: hidden;
             transition: opacity 0.3s ease, visibility 0s linear 0s;
         }
 
-        &.is-accordion &__item:not(.is-open) &__body {
+        &.is-accordion .home-what-we-do-item:not(.is-open) .home-what-we-do-body {
             grid-template-rows: 0fr;
         }
 
-        &.is-accordion &__item:not(.is-open) &__body-inner {
+        &.is-accordion .home-what-we-do-item:not(.is-open) .home-what-we-do-body-inner {
             visibility: hidden;
             opacity: 0;
             transition: opacity 0.3s ease, visibility 0s linear 0.45s;
@@ -451,14 +451,14 @@ $wwd-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
     // ---------- Reduced motion ----------
 
     @media (prefers-reduced-motion: reduce) {
-        &__card {
+        .home-what-we-do-card {
             transform: none;
             opacity: 1;
         }
 
-        &.is-accordion &__body,
-        &.is-accordion &__body-inner,
-        &.is-accordion &__item:not(.is-open) &__body-inner {
+        &.is-accordion .home-what-we-do-body,
+        &.is-accordion .home-what-we-do-body-inner,
+        &.is-accordion .home-what-we-do-item:not(.is-open) .home-what-we-do-body-inner {
             transition: none;
         }
     }

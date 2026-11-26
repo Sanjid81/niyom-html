@@ -63,73 +63,73 @@ $uid = wp_unique_id('services-list-');
 <section class="services-list"
     id="<?php echo esc_attr($uid); ?>"
     <?php echo $heading ? 'aria-labelledby="' . esc_attr($uid . '-title') . '"' : ''; ?>>
-    <div class="services-list__inner">
+    <div class="services-list-inner">
 
         <?php if ($has_intro) : ?>
-            <div class="services-list__intro">
+            <div class="services-list-intro">
                 <?php if ($has_head) : ?>
-                    <div class="services-list__head">
+                    <div class="services-list-head">
                         <?php if ($eyebrow !== '') : ?>
-                            <p class="services-list__eyebrow"><?php echo esc_html($eyebrow); ?></p>
+                            <p class="services-list-eyebrow"><?php echo esc_html($eyebrow); ?></p>
                         <?php endif; ?>
 
                         <?php if ($heading) : ?>
-                            <h2 class="services-list__heading" id="<?php echo esc_attr($uid . '-title'); ?>"><?php echo $heading; // Escaped in niyom_inline_text(). ?></h2>
+                            <h2 class="services-list-heading" id="<?php echo esc_attr($uid . '-title'); ?>"><?php echo $heading; // Escaped in niyom_inline_text(). ?></h2>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
 
                 <?php if ($text) : ?>
-                    <div class="services-list__text rich-text"><?php echo $text; // Escaped in niyom_rich_text(). ?></div>
+                    <div class="services-list-text rich-text"><?php echo $text; // Escaped in niyom_rich_text(). ?></div>
                 <?php endif; ?>
             </div>
         <?php endif; ?>
 
         <?php if ($items) : ?>
-            <div class="services-list__items">
+            <div class="services-list-items">
                 <?php foreach ($items as $item) : ?>
-                    <article class="services-list__item<?php echo $item['image'] ? '' : ' services-list__item--no-image'; ?>">
+                    <article class="services-list-item<?php echo $item['image'] ? '' : ' services-list-item--no-image'; ?>">
 
-                        <div class="services-list__content">
+                        <div class="services-list-content">
                             <?php if ($item['label'] !== '' || $item['title']) : ?>
-                                <header class="services-list__item-head">
+                                <header class="services-list-item-head">
                                     <?php if ($item['label'] !== '') : ?>
-                                        <p class="services-list__label"><?php echo esc_html($item['label']); ?></p>
+                                        <p class="services-list-label"><?php echo esc_html($item['label']); ?></p>
                                     <?php endif; ?>
 
                                     <?php if ($item['title']) : ?>
-                                        <h3 class="services-list__title"><?php echo $item['title']; // Escaped in niyom_inline_text(). ?></h3>
+                                        <h3 class="services-list-title"><?php echo $item['title']; // Escaped in niyom_inline_text(). ?></h3>
                                     <?php endif; ?>
                                 </header>
                             <?php endif; ?>
 
                             <?php if ($item['text']) : ?>
-                                <div class="services-list__desc rich-text"><?php echo $item['text']; // Escaped in niyom_rich_text(). ?></div>
+                                <div class="services-list-desc rich-text"><?php echo $item['text']; // Escaped in niyom_rich_text(). ?></div>
                             <?php endif; ?>
 
                             <?php if ($item['points']) : ?>
-                                <ul class="services-list__points">
+                                <ul class="services-list-points">
                                     <?php foreach ($item['points'] as $point) : ?>
-                                        <li class="services-list__point">
-                                            <span class="services-list__point-arrow" aria-hidden="true">→</span>
-                                            <span class="services-list__point-text"><?php echo $point; // Escaped in niyom_inline_text(). ?></span>
+                                        <li class="services-list-point">
+                                            <span class="services-list-point-arrow" aria-hidden="true">→</span>
+                                            <span class="services-list-point-text"><?php echo $point; // Escaped in niyom_inline_text(). ?></span>
                                         </li>
                                     <?php endforeach; ?>
                                 </ul>
                             <?php endif; ?>
 
                             <?php if ($item['has_link']) : ?>
-                                <a class="link-arrow services-list__link" <?php echo niyom_link_attrs($item['link'], $item['new_tab']); ?>>
+                                <a class="link-arrow services-list-link" <?php echo niyom_link_attrs($item['link'], $item['new_tab']); ?>>
                                     <span><?php echo esc_html($item['link_text']); ?></span>
-                                    <?php echo niyom_icon('arrow-right', 'link-arrow__icon link-arrow__icon--lg'); ?>
-                                    <?php echo niyom_icon('arrow-right-sm', 'link-arrow__icon link-arrow__icon--sm'); ?>
+                                    <?php echo niyom_icon('arrow-right', 'link-arrow-icon link-arrow-icon--lg'); ?>
+                                    <?php echo niyom_icon('arrow-right-sm', 'link-arrow-icon link-arrow-icon--sm'); ?>
                                 </a>
                             <?php endif; ?>
                         </div>
 
                         <?php if ($item['image']) : ?>
-                            <figure class="services-list__media">
-                                <img class="services-list__image" src="<?php echo esc_url($item['image']); ?>" alt="<?php echo esc_attr($item['image_alt']); ?>" loading="lazy" decoding="async">
+                            <figure class="services-list-media">
+                                <img class="services-list-image" src="<?php echo esc_url($item['image']); ?>" alt="<?php echo esc_attr($item['image_alt']); ?>" loading="lazy" decoding="async">
                             </figure>
                         <?php endif; ?>
 

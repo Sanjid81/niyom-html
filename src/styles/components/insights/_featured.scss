@@ -1,0 +1,198 @@
+// =====================================================================
+// Insights › Featured article — Figma "03 — Featured Article" (303:7735).
+// #FAFAFA band, 100px top/bottom: image 1000 × 640 left, 80px gap, text
+// column right (vertically centred): meta, H3 title, Body L, button.
+// Markup: components/Insights/featured.php
+// =====================================================================
+
+.in-featured {
+    background: var(--color-surface-2);
+
+    .in-featured-inner {
+        display: flex;
+        align-items: center;
+        gap: 80px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 100px var(--container-padding);
+    }
+
+    .in-featured-media {
+        display: block;
+        flex: 0 0 59.524%; // 1000 of 1680 (Figma).
+        min-width: 0;
+        overflow: hidden;
+        aspect-ratio: 1000 / 640;
+        background: var(--color-ink);
+    }
+
+    .in-featured-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    .in-featured-media:hover .in-featured-image {
+        transform: scale(1.03);
+    }
+
+    .in-featured-body {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 28px;
+        min-width: 0;
+    }
+
+    .in-featured-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 4px 10px;
+        margin: 0;
+    }
+
+    .in-featured-date {
+        font-size: 14px;
+        line-height: 1.4;
+        letter-spacing: 0.14px;
+        color: var(--color-muted);
+        white-space: nowrap;
+    }
+
+    .in-featured-dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: #E4E4E3; // Figma Black/100.
+    }
+
+    .in-featured-category {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        text-transform: uppercase;
+        color: var(--color-primary);
+    }
+
+    // H3 — Inter 42 / 120% / -2%.
+    .in-featured-title {
+        margin: 0;
+        color: var(--color-heading);
+
+        a {
+            transition: color var(--transition);
+
+            &:hover {
+                color: var(--color-primary);
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--color-primary);
+                outline-offset: 2px;
+            }
+        }
+    }
+
+    // Body L — 18 / 140%.
+    .in-featured-text {
+        margin: 0;
+        font-size: 18px;
+        line-height: 1.4;
+        color: var(--color-ink-80);
+    }
+
+    // No image: text runs at a readable width.
+    &.in-featured--no-image .in-featured-body {
+        max-width: 840px;
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        .in-featured-inner {
+            gap: 56px;
+            padding-top: 88px;
+            padding-bottom: 88px;
+        }
+
+        .in-featured-media {
+            flex-basis: 56%;
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        .in-featured-inner {
+            gap: 40px;
+        }
+
+        .in-featured-media {
+            flex-basis: 52%;
+        }
+
+        .in-featured-body {
+            gap: 20px;
+        }
+    }
+
+    // Tablet: image on top, text below.
+    @include breakpoint-max(lg) {
+        .in-featured-inner {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 32px;
+            padding-top: 72px;
+            padding-bottom: 72px;
+        }
+
+        .in-featured-media {
+            flex: none;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+        }
+
+        .in-featured-body {
+            flex: none;
+            max-width: 720px;
+        }
+    }
+
+    @include breakpoint-max(md) {
+        .in-featured-inner {
+            gap: 24px;
+            padding: 48px 16px;
+        }
+
+        .in-featured-media {
+            aspect-ratio: 328 / 220;
+        }
+
+        .in-featured-body {
+            gap: 16px;
+        }
+
+        .in-featured-text {
+            font-size: 16px;
+        }
+
+        .in-featured-button {
+            margin-top: 4px;
+        }
+    }
+
+    @include breakpoint-max(sm) {
+        .in-featured-button {
+            justify-content: space-between;
+            width: 100%;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .in-featured-image {
+            transition: none;
+        }
+    }
+}

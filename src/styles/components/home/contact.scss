@@ -16,7 +16,7 @@ $contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
     background: var(--color-white);
     scroll-margin-top: var(--header-height); // /#contact lands below the sticky header.
 
-    &__inner {
+    .home-contact-inner {
         display: flex;
         align-items: flex-start;
         gap: clamp(64px, 8.334vw, 160px); // 160 at 1920, narrower below.
@@ -28,7 +28,7 @@ $contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
 
     // ---------- Left: invitation + gallery ----------
 
-    &__info {
+    .home-contact-info {
         display: flex;
         flex: 0 1 700px;
         flex-direction: column;
@@ -37,11 +37,11 @@ $contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
     }
 
     // Without a form the info column may use the full width.
-    &:not(&--has-form) &__info {
+    &:not(&--has-form) .home-contact-info {
         flex-basis: 100%;
     }
 
-    &__intro {
+    .home-contact-intro {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -50,14 +50,14 @@ $contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
     }
 
     // Figma: Labels/L — JetBrains Mono Medium 14 / 100%.
-    &__eyebrow {
+    .home-contact-eyebrow {
         font-size: 14px;
         font-weight: 500;
         line-height: 14px;
         letter-spacing: 0;
     }
 
-    &__heading {
+    .home-contact-heading {
         color: var(--color-heading);
 
         // Narrow two-column widths: let the heading wrap naturally instead
@@ -69,30 +69,30 @@ $contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
         }
     }
 
-    &__text {
+    .home-contact-text {
         color: var(--color-text);
     }
 
-    &__gallery {
+    .home-contact-gallery {
         display: flex;
         align-items: flex-end;
         gap: 48px;
     }
 
-    &__media {
+    .home-contact-media {
         flex: 0 0 280px;
         height: 310px;
         overflow: hidden;
         background: var(--color-mist);
     }
 
-    &__image {
+    .home-contact-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
 
-    &__blocks {
+    .home-contact-blocks {
         display: flex;
         flex: 1 1 0;
         flex-direction: column;
@@ -101,20 +101,20 @@ $contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
         padding-bottom: 8px;
     }
 
-    &__block {
+    .home-contact-block {
         display: flex;
         flex-direction: column;
         gap: 16px;
     }
 
     // Figma: Labels/S — JetBrains Mono 12 / 120% / 1%, Dark 60.
-    &__kicker {
+    .home-contact-kicker {
         @extend .label-small;
         color: var(--color-muted);
     }
 
     // Figma: Body/M — Inter 16 / 140%, Deep Ink.
-    &__details {
+    .home-contact-details {
         font-size: 16px;
         line-height: 22.4px;
         color: var(--color-ink);
@@ -134,7 +134,7 @@ $contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
 
     // Base 560px: below 1920 both columns give up width in proportion,
     // so the form never gets squeezed (info 700 / form 820 at 1920).
-    &__form {
+    .home-contact-form {
         flex: 1 1 560px;
         min-width: 0;
         padding: 48px;
@@ -149,7 +149,7 @@ $contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
 
     // CF7 wraps lines in <p>; let them disappear from the layout.
     .niyom-field > p,
-    .niyom-form__actions > p {
+    .niyom-form-actions > p {
         display: contents;
     }
 
@@ -159,7 +159,7 @@ $contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
         gap: 32px;
     }
 
-    .niyom-form__row {
+    .niyom-form-row {
         display: flex;
         gap: 32px;
 
@@ -182,7 +182,7 @@ $contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
     }
 
     // Figma: Body/S — Inter Medium 14 / 160%, Deep Ink.
-    .niyom-field__label {
+    .niyom-field-label {
         display: block;
         font-family: var(--font-body);
         font-size: 14px;
@@ -198,7 +198,7 @@ $contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
     }
 
     // Underline-only control: 50px tall, 16px text (DESIGN.md §5).
-    .niyom-field__control {
+    .niyom-field-control {
         display: block;
         width: 100%;
         height: 50px;
@@ -250,7 +250,7 @@ $contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
     }
 
     // Select: chevron at right, placeholder colour until a choice is made.
-    select.niyom-field__control {
+    select.niyom-field-control {
         padding-right: 36px;
         background: $contact-select-arrow no-repeat right 0 center / 20px 20px;
         cursor: pointer;
@@ -264,7 +264,7 @@ $contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
         }
     }
 
-    textarea.niyom-field__control {
+    textarea.niyom-field-control {
         height: 136px;
         min-height: 80px;
         padding-right: 18px;
@@ -283,7 +283,7 @@ $contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
     }
 
     // Submit = primary button L with the long arrow.
-    .niyom-form__actions {
+    .niyom-form-actions {
         position: relative;
         display: flex;
         flex-wrap: wrap;
@@ -291,7 +291,7 @@ $contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
         gap: 16px;
     }
 
-    .niyom-form__submit {
+    .niyom-form-submit {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -379,7 +379,7 @@ $contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
 
     // Tablet: info on top, form below.
     @include breakpoint-max(xl) {
-        &__inner {
+        .home-contact-inner {
             flex-direction: column;
             align-items: stretch;
             gap: 64px;
@@ -387,39 +387,39 @@ $contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
             padding-bottom: 88px;
         }
 
-        &__info {
+        .home-contact-info {
             flex: none;
             gap: 56px;
         }
 
-        &__form {
+        .home-contact-form {
             flex: none;
         }
     }
 
     @include breakpoint-max(lg) {
-        &__form {
+        .home-contact-form {
             padding: 40px 32px;
         }
     }
 
     // Mobile (Figma 360).
     @include breakpoint-max(md) {
-        &__inner {
+        .home-contact-inner {
             gap: 32px;
             padding: 56px 16px;
         }
 
-        &__info {
+        .home-contact-info {
             gap: 32px;
         }
 
-        &__intro {
+        .home-contact-intro {
             gap: 20px;
         }
 
         // Figma: Labels/S — 12 / 120% / 1%.
-        &__eyebrow {
+        .home-contact-eyebrow {
             font-size: 12px;
             font-weight: 400;
             line-height: 14px;
@@ -427,44 +427,44 @@ $contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
         }
 
         // Figma: Mobile/Body/L — 16 / 140%.
-        &__text {
+        .home-contact-text {
             font-size: 16px;
             line-height: 22.4px;
         }
 
         // Image is not shown on mobile (Figma).
-        &__media {
+        .home-contact-media {
             display: none;
         }
 
-        &__blocks {
+        .home-contact-blocks {
             gap: 20px;
             padding-bottom: 0;
         }
 
-        &__form {
+        .home-contact-form {
             padding: 24px 16px;
         }
 
         .niyom-form,
-        .niyom-form__row {
+        .niyom-form-row {
             gap: 16px;
         }
 
-        .niyom-form__row {
+        .niyom-form-row {
             flex-direction: column;
         }
 
-        textarea.niyom-field__control {
+        textarea.niyom-field-control {
             height: 106px;
         }
 
         // Full-width S button (40px), short arrow.
-        .niyom-form__actions {
+        .niyom-form-actions {
             display: block;
         }
 
-        .niyom-form__submit {
+        .niyom-form-submit {
             width: 100%;
             min-height: 40px;
             padding: 8px 24px;
@@ -487,7 +487,7 @@ $contact-arrow-sm: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/
     }
 
     @media (prefers-reduced-motion: reduce) {
-        .niyom-form__submit::after {
+        .niyom-form-submit::after {
             transition: none;
         }
     }

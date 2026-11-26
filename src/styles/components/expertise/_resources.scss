@@ -1,0 +1,78 @@
+// =====================================================================
+// Expertise › Open resources — Figma "07 — Related Articles" (312:10239,
+// 1920 wide). Uses the Home insights section (components/Home/insights.php,
+// same "Insights" card component). Differences in this Figma, set through
+// the .ex-resources wrapper:
+//   - 120px sides (Home: 80px) and 56px under the intro (Home: 60px);
+//   - H2 up to 900px wide (Home: 677px);
+//   - the button is the "ALL INSIGHTS ⟶" text link (Link / Arrow 281:32:
+//     JetBrains Mono 14 / 22, teal, 12px top + bottom).
+// =====================================================================
+
+.ex-resources {
+    .home-insights .home-insights-inner {
+        gap: 56px;
+        padding-left: var(--container-padding);
+        padding-right: var(--container-padding);
+    }
+
+    .home-insights .home-insights-intro {
+        gap: 40px;
+    }
+
+    .home-insights .home-insights-heading {
+        max-width: 900px;
+    }
+
+    // Button → text link with arrow.
+    .home-insights .home-insights-button {
+        min-height: 0;
+        padding: 12px 0;
+        border: 0;
+        background: transparent;
+        font-size: 14px;
+        line-height: 22px;
+        color: var(--color-teal);
+
+        span {
+            text-decoration: underline;
+            text-decoration-color: transparent;
+            text-underline-offset: 4px;
+            transition: text-decoration-color var(--transition);
+        }
+
+        &:hover {
+            background: transparent;
+
+            span {
+                text-decoration-color: currentColor;
+            }
+        }
+
+        &:focus-visible {
+            box-shadow: none;
+            outline: 2px solid var(--color-teal);
+            outline-offset: 2px;
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        .home-insights .home-insights-inner {
+            gap: 48px;
+        }
+    }
+
+    @include breakpoint-max(md) {
+        .home-insights .home-insights-inner {
+            gap: 32px;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        .home-insights .home-insights-button {
+            min-height: 0;
+            padding: 4px 0;
+            font-size: 14px;
+        }
+    }
+}

@@ -42,24 +42,24 @@ $uid = wp_unique_id('about-values-');
 <section class="about-values"
     id="<?php echo esc_attr($uid); ?>"
     <?php echo $heading ? 'aria-labelledby="' . esc_attr($uid . '-title') . '"' : ''; ?>>
-    <div class="about-values__inner">
+    <div class="about-values-inner">
 
         <?php if ($has_intro) : ?>
-            <div class="about-values__intro">
+            <div class="about-values-intro">
                 <?php if ($eyebrow !== '' || $heading) : ?>
-                    <div class="about-values__copy">
+                    <div class="about-values-copy">
                         <?php if ($eyebrow !== '') : ?>
-                            <p class="about-values__eyebrow eyebrow"><?php echo esc_html($eyebrow); ?></p>
+                            <p class="about-values-eyebrow eyebrow"><?php echo esc_html($eyebrow); ?></p>
                         <?php endif; ?>
 
                         <?php if ($heading) : ?>
-                            <h2 class="about-values__heading heading-two" id="<?php echo esc_attr($uid . '-title'); ?>"><?php echo $heading; // Escaped in niyom_inline_text(). ?></h2>
+                            <h2 class="about-values-heading heading-two" id="<?php echo esc_attr($uid . '-title'); ?>"><?php echo $heading; // Escaped in niyom_inline_text(). ?></h2>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
 
                 <?php if ($text) : ?>
-                    <div class="about-values__text rich-text body-large">
+                    <div class="about-values-text rich-text body-large">
                         <?php echo $text; // Escaped in niyom_rich_text(). ?>
                     </div>
                 <?php endif; ?>
@@ -67,18 +67,18 @@ $uid = wp_unique_id('about-values-');
         <?php endif; ?>
 
         <?php if ($cards) : ?>
-            <ol class="about-values__grid" style="--cards: <?php echo (int) count($cards); ?>;">
+            <ol class="about-values-grid" style="--cards: <?php echo (int) count($cards); ?>;">
                 <?php foreach ($cards as $card) : ?>
-                    <li class="about-values__card">
-                        <span class="about-values__number"><?php echo esc_html($card['number']); ?></span>
+                    <li class="about-values-card">
+                        <span class="about-values-number"><?php echo esc_html($card['number']); ?></span>
 
                         <?php if ($card['title'] !== '' || $card['text']) : ?>
-                            <div class="about-values__body">
+                            <div class="about-values-body">
                                 <?php if ($card['title'] !== '') : ?>
-                                    <h3 class="about-values__title"><?php echo esc_html($card['title']); ?></h3>
+                                    <h3 class="about-values-title"><?php echo esc_html($card['title']); ?></h3>
                                 <?php endif; ?>
                                 <?php if ($card['text']) : ?>
-                                    <div class="about-values__card-text rich-text">
+                                    <div class="about-values-card-text rich-text">
                                         <?php echo $card['text']; // Escaped in niyom_rich_text(). ?>
                                     </div>
                                 <?php endif; ?>

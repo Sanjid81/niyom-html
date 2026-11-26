@@ -1,0 +1,267 @@
+// =====================================================================
+// Expertise › Methods & data types — Figma "03 — Introduction" (303:3616,
+// 1920 wide). White, 140px top/bottom, 120px gap: 609px intro (label, H2,
+// 440px Body L text) left; "Methods matrix" table (312:10000) fills the
+// rest: surface-2 fill, 1px border, Deep Ink header (Labels/S, white 80%),
+// rows 26 × 24 padding, white / warm off-white stripes.
+// No mobile frame in Figma: on mobile each row is a stacked block.
+// Markup: components/Expertise/methods.php
+// =====================================================================
+
+.ex-methods {
+    background: var(--color-white);
+
+    .ex-methods-inner {
+        display: flex;
+        align-items: flex-start;
+        gap: 120px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    // ---------- Intro ----------
+
+    .ex-methods-intro {
+        display: flex;
+        flex: 0 0 609px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        min-width: 0;
+    }
+
+    // Labels/L — JetBrains Mono Medium 14 / 100%, Dark 60.
+    .ex-methods-eyebrow {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+    }
+
+    .ex-methods-heading {
+        margin: 0;
+        color: var(--color-heading);
+    }
+
+    .ex-methods-text {
+        max-width: 440px;
+        color: var(--color-ink-80);
+    }
+
+    // ---------- Table ----------
+
+    .ex-methods-table-wrap {
+        flex: 1 1 0;
+        min-width: 0;
+        border: 1px solid var(--color-border);
+        background: var(--color-surface-2);
+    }
+
+    .ex-methods-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+
+    // Header: Deep Ink, Labels/S — JetBrains Mono 12 / 120% / 1%, white 80%.
+    .ex-methods-head {
+        background: var(--color-ink);
+    }
+
+    .ex-methods-th {
+        padding: 16px 20px 16px 24px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        text-align: left;
+        text-transform: uppercase;
+        color: var(--color-white-80);
+
+        & + .ex-methods-th {
+            padding-left: 20px;
+            padding-right: 24px;
+        }
+    }
+
+    // Rows: 26px top/bottom, 24px sides, 40px between the columns.
+    .ex-methods-row {
+        background: var(--color-white);
+
+        &:nth-child(even) {
+            background: var(--color-subtle-bg);
+        }
+    }
+
+    .ex-methods-method,
+    .ex-methods-data {
+        padding: 26px 20px 26px 24px;
+        vertical-align: middle;
+        font-family: var(--font-body);
+        font-weight: 400;
+        line-height: 1.4;
+        overflow-wrap: break-word;
+    }
+
+    // Body L, Deep Ink.
+    .ex-methods-method {
+        font-size: 18px;
+        color: var(--color-ink);
+    }
+
+    // Body M, Body text.
+    .ex-methods-data {
+        padding-left: 20px;
+        padding-right: 24px;
+        font-size: 16px;
+        color: var(--color-ink-80);
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        .ex-methods-inner {
+            gap: 80px;
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        .ex-methods-intro {
+            flex-basis: 460px;
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        .ex-methods-inner {
+            gap: 56px;
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        .ex-methods-intro {
+            flex-basis: 360px;
+        }
+
+        .ex-methods-method,
+        .ex-methods-data {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .ex-methods-method {
+            font-size: 16px;
+        }
+
+        .ex-methods-data {
+            font-size: 15px;
+        }
+    }
+
+    // Tablet / small laptop: intro above the table.
+    @include breakpoint-max(xl) {
+        .ex-methods-inner {
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .ex-methods-intro {
+            flex: none;
+            width: 100%;
+            gap: 24px;
+        }
+
+        .ex-methods-text {
+            max-width: 600px;
+        }
+
+        .ex-methods-table-wrap {
+            flex: none;
+            width: 100%;
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        .ex-methods-inner {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+    }
+
+    // Mobile: no header row; each row is a stacked block with the data
+    // column heading as a small label above its value.
+    @include breakpoint-max(md) {
+        .ex-methods-inner {
+            gap: 32px;
+            padding: 56px 16px;
+        }
+
+        .ex-methods-intro {
+            gap: 20px;
+        }
+
+        .ex-methods-eyebrow {
+            font-size: 12px;
+            line-height: normal;
+            letter-spacing: 0.48px;
+        }
+
+        .ex-methods-table,
+        .ex-methods-table tbody,
+        .ex-methods-row,
+        .ex-methods-method,
+        .ex-methods-data {
+            display: block;
+            width: 100%;
+        }
+
+        // Visually hidden, still read by screen readers.
+        .ex-methods-head {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+        }
+
+        .ex-methods-row {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px 16px;
+
+            & + .ex-methods-row {
+                border-top: 1px solid var(--color-border);
+            }
+        }
+
+        .ex-methods-method,
+        .ex-methods-data {
+            padding: 0;
+        }
+
+        .ex-methods-method {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .ex-methods-data {
+            font-size: 14px;
+
+            &[data-label]::before {
+                content: attr(data-label);
+                display: block;
+                margin-bottom: 4px;
+                font-family: var(--font-mono);
+                font-size: 11px;
+                line-height: 1.2;
+                letter-spacing: 0.12px;
+                text-transform: uppercase;
+                color: var(--color-teal);
+            }
+        }
+    }
+}

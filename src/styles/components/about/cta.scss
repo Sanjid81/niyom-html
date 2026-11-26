@@ -10,7 +10,7 @@
 .about-cta {
     background: var(--color-white);
 
-    &__inner {
+    .about-cta-inner {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -23,20 +23,20 @@
     }
 
     // Desktop eyebrow is Labels/L (Mono Medium 14 / 100%); mobile uses Labels/S.
-    &__eyebrow {
+    .about-cta-eyebrow {
         font-size: 14px;
         font-weight: 500;
         line-height: 1;
         letter-spacing: 0;
     }
 
-    &__heading {
+    .about-cta-heading {
         max-width: 1100px;
         color: var(--color-heading);
         overflow-wrap: break-word;
     }
 
-    &__buttons {
+    .about-cta-buttons {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -44,73 +44,73 @@
     }
 
     // Figma secondary border is 1.2px.
-    &__button.btn--secondary {
+    .about-cta-button.btn--secondary {
         border-width: 1.2px;
     }
 
     // ---------- Responsive ----------
 
     @include breakpoint-max(xxl) {
-        &__inner {
+        .about-cta-inner {
             padding-top: 140px;
             padding-bottom: 140px;
         }
 
-        &__heading {
+        .about-cta-heading {
             max-width: 1000px;
         }
     }
 
     @include breakpoint-max(xl) {
-        &__inner {
+        .about-cta-inner {
             gap: 40px;
             padding-top: 120px;
             padding-bottom: 120px;
         }
 
-        &__heading {
+        .about-cta-heading {
             max-width: 860px;
         }
     }
 
     @include breakpoint-max(lg) {
-        &__inner {
+        .about-cta-inner {
             gap: 32px;
             padding-top: 96px;
             padding-bottom: 96px;
         }
 
-        &__heading {
+        .about-cta-heading {
             max-width: 680px;
         }
     }
 
     // Mobile (360).
     @include breakpoint-max(md) {
-        &__inner {
+        .about-cta-inner {
             gap: 24px;
             padding: 64px 16px;
         }
 
-        &__eyebrow {
+        .about-cta-eyebrow {
             font-size: 12px;
             font-weight: 400;
             line-height: 1.2;
             letter-spacing: 0.12px;
         }
 
-        &__heading {
+        .about-cta-heading {
             max-width: none;
         }
 
-        &__buttons {
+        .about-cta-buttons {
             margin-top: 8px;
         }
     }
 
     // Small phones: buttons stack full width (Figma mobile buttons are full width).
     @include breakpoint-max(sm) {
-        &__buttons {
+        .about-cta-buttons {
             flex-direction: column;
             align-items: stretch;
             gap: 12px;
@@ -118,7 +118,7 @@
             margin-top: 8px;
         }
 
-        &__button {
+        .about-cta-button {
             width: 100%;
             text-align: center;
         }

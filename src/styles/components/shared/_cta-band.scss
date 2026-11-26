@@ -1,0 +1,142 @@
+// =====================================================================
+// Shared › CTA band — Figma "08 — CTA" (296:8627, symbol 303:8294).
+// Research Teal band: network image under a 90% teal layer. 140px
+// top/bottom; label (white 70%) + white H2 (1000px) left; buttons in a
+// column at the bottom right, 80px gap. Inverse (white) + inverse-outline.
+// No mobile frame in Figma: mobile stacks with full-width buttons.
+// Markup: components/Shared/cta-band.php
+// =====================================================================
+
+.shared-cta-band {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--color-teal);
+    color: var(--color-white);
+
+    // Teal 90% over the image (Figma fill).
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: rgba(8, 122, 128, 0.9);
+    }
+
+    .shared-cta-band-bg {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .shared-cta-band-inner {
+        display: flex;
+        align-items: flex-end;
+        gap: 80px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    .shared-cta-band-copy {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        min-width: 0;
+    }
+
+    // Labels/L — JetBrains Mono Medium 14 / 100%, white 70%.
+    .shared-cta-band-eyebrow {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    // H2 — 56 / 100% / -2%, white, 1000px wide.
+    .shared-cta-band-heading {
+        max-width: 1000px;
+        margin: 0;
+        color: var(--color-white);
+    }
+
+    .shared-cta-band-buttons {
+        display: flex;
+        flex-shrink: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+
+    .shared-cta-band-button {
+        justify-content: space-between;
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        .shared-cta-band-inner {
+            gap: 64px;
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+    }
+
+    // Tablet: buttons under the heading.
+    @include breakpoint-max(lg) {
+        .shared-cta-band-inner {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 40px;
+            padding-top: 96px;
+            padding-bottom: 96px;
+        }
+
+        .shared-cta-band-copy {
+            flex: none;
+            width: 100%;
+        }
+
+        .shared-cta-band-buttons {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+    }
+
+    // Mobile (Home mobile patterns, 360 wide).
+    @include breakpoint-max(md) {
+        .shared-cta-band-inner {
+            gap: 32px;
+            padding: 64px 16px;
+        }
+
+        .shared-cta-band-copy {
+            gap: 20px;
+        }
+
+        .shared-cta-band-eyebrow {
+            font-size: 12px;
+            line-height: normal;
+            letter-spacing: 0.48px;
+        }
+    }
+
+    @include breakpoint-max(sm) {
+        .shared-cta-band-buttons {
+            flex-direction: column;
+            align-self: stretch;
+            gap: 12px;
+        }
+
+        .shared-cta-band-button {
+            width: 100%;
+        }
+    }
+}

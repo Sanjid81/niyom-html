@@ -1,0 +1,183 @@
+// =====================================================================
+// Events & Partnerships › Institutional collaborations — Figma "04 —
+// Institutional Collaborations" (303:6894, 1920 wide). Surface 2 bg,
+// 140px top/bottom; intro 520 left, 120px gap; 3 × 2 grid of white
+// 200px logo tiles with a dashed border, 16px apart.
+// Markup: components/EventsHub/partners.php
+// =====================================================================
+
+.eh-partners {
+    background: var(--color-surface-2);
+
+    .eh-partners-inner {
+        display: flex;
+        align-items: flex-start;
+        gap: 120px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    // ---------- Intro ----------
+
+    .eh-partners-intro {
+        display: flex;
+        flex: 0 0 520px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        min-width: 0;
+    }
+
+    .eh-partners-eyebrow {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+    }
+
+    .eh-partners-heading {
+        color: var(--color-heading);
+    }
+
+    .eh-partners-text {
+        max-width: 460px;
+        color: var(--color-text);
+    }
+
+    // ---------- Logo grid ----------
+
+    .eh-partners-grid {
+        display: grid;
+        flex: 1 1 auto;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .eh-partners-item {
+        display: flex;
+    }
+
+    .eh-partners-tile {
+        display: flex;
+        flex: 1 1 auto;
+        align-items: center;
+        justify-content: center;
+        height: 200px;
+        padding: 32px;
+        border: 1px dashed var(--color-border);
+        background: var(--color-white);
+        color: inherit;
+        text-decoration: none;
+        transition: border-color var(--transition);
+
+        &.is-linked:hover {
+            border-color: rgba(8, 122, 128, 0.35);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-cyan);
+            outline-offset: 2px;
+        }
+    }
+
+    .eh-partners-logo {
+        max-width: min(100%, 220px);
+        max-height: 96px;
+        object-fit: contain;
+    }
+
+    // Placeholder / name — Labels/S, Dark 60.
+    .eh-partners-name {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        text-align: center;
+        text-transform: uppercase;
+        color: var(--color-muted);
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        .eh-partners-inner {
+            gap: 80px;
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        .eh-partners-intro {
+            flex-basis: 420px;
+        }
+
+        .eh-partners-tile {
+            height: 180px;
+        }
+    }
+
+    // Intro on top, grid full width below.
+    @include breakpoint-max(xl) {
+        .eh-partners-inner {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 48px;
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        .eh-partners-intro {
+            flex: none;
+            max-width: 640px;
+            gap: 24px;
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        .eh-partners-inner {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        .eh-partners-tile {
+            height: 160px;
+        }
+    }
+
+    @include breakpoint-max(md) {
+        .eh-partners-inner {
+            gap: 32px;
+            padding: 56px 16px;
+        }
+
+        .eh-partners-intro {
+            gap: 20px;
+        }
+
+        .eh-partners-eyebrow {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: 0.12px;
+        }
+
+        .eh-partners-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .eh-partners-tile {
+            height: 120px;
+            padding: 20px;
+        }
+
+        .eh-partners-logo {
+            max-height: 64px;
+        }
+    }
+}

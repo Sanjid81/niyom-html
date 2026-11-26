@@ -9,7 +9,7 @@
     background: var(--color-white);
 
     // 120px on every side at 1920; image sits 64px under the text.
-    &__inner {
+    .about-hero-inner {
         display: flex;
         flex-direction: column;
         gap: 64px;
@@ -20,7 +20,7 @@
 
     // ---------- Text: label, then heading left + paragraph right ----------
 
-    &__header {
+    .about-hero-header {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -28,7 +28,7 @@
     }
 
     // Labels/L — JetBrains Mono Medium 14 / 100%, Dark 60.
-    &__eyebrow {
+    .about-hero-eyebrow {
         margin: 0;
         font-family: var(--font-mono);
         font-size: 14px;
@@ -43,7 +43,7 @@
     }
 
     // Bottom-aligned row, pushed to both edges (Figma "Hero copy").
-    &__copy {
+    .about-hero-copy {
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
@@ -52,8 +52,10 @@
     }
 
     // H1 — Inter 64 / 100% / -4%, 777px wide at 1920 (scales down with the viewport).
-    &__title {
-        flex: 0 1 777px;
+    // +13px so lines that just fit 777px in Figma (e.g. the Services hero
+    // "One careful way of working.") don't wrap in browsers.
+    .about-hero-title {
+        flex: 0 1 790px;
         min-width: 0;
         margin: 0;
         font-family: var(--font-heading);
@@ -68,18 +70,57 @@
         }
     }
 
-    // Body/L — Inter 18 / 140%, Body text colour, 460px wide.
-    &__text {
+    // Right column: paragraph (+ optional buttons), 460px wide.
+    .about-hero-aside {
+        display: flex;
         flex: 0 1 460px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
         min-width: 0;
+    }
+
+    // Body/L — Inter 18 / 140%, Body text colour.
+    .about-hero-text {
+        width: 100%;
         font-size: 18px;
         line-height: 1.4;
         color: var(--color-ink-80);
     }
 
+    // Optional buttons (Computational Biosciences, Research Support,
+    // Scientific Engagement heroes): 16px apart, outline border 1.2px.
+    .about-hero-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .about-hero-button.btn--secondary {
+        border-width: 1.2px;
+    }
+
+    // With buttons (Figma 294:8073): top-aligned row, 570px right column.
+    &.about-hero--has-buttons {
+        .about-hero-copy {
+            align-items: flex-start;
+        }
+
+        // Keep both buttons on one row; the heading takes what is left.
+        .about-hero-aside {
+            flex-basis: 570px;
+            flex-shrink: 0;
+        }
+    }
+
+    // No bottom padding: the next section's top padding sets the gap (Figma).
+    &.about-hero--flush-bottom .about-hero-inner {
+        padding-bottom: 0;
+    }
+
     // ---------- Image: 1680 × 620 at desktop ----------
 
-    &__media {
+    .about-hero-media {
         position: relative;
         width: 100%;
         margin: 0;
@@ -88,7 +129,7 @@
         background: var(--color-ink);
     }
 
-    &__image {
+    .about-hero-image {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -99,7 +140,7 @@
     // ---------- Responsive ----------
 
     @include breakpoint-max(xxl) {
-        &__inner {
+        .about-hero-inner {
             gap: 56px;
             padding-top: 100px;
             padding-bottom: 100px;
@@ -107,78 +148,85 @@
     }
 
     @include breakpoint-max(xl) {
-        &__inner {
+        .about-hero-inner {
             gap: 48px;
             padding-top: 88px;
             padding-bottom: 88px;
         }
 
-        &__title {
+        .about-hero-title {
             font-size: 48px;
             line-height: 1.05;
             letter-spacing: -1.6px;
         }
 
-        &__text {
+        .about-hero-aside {
             flex-basis: 400px;
+        }
+
+        &.about-hero--has-buttons .about-hero-aside {
+            flex-basis: 480px;
+            flex-shrink: 1;
         }
     }
 
     // Tablet: paragraph moves under the heading.
     @include breakpoint-max(lg) {
-        &__inner {
+        .about-hero-inner {
             gap: 40px;
             padding-top: 72px;
             padding-bottom: 72px;
         }
 
-        &__copy {
+        .about-hero-copy {
             flex-direction: column;
             align-items: flex-start;
             gap: 24px;
         }
 
-        &__title {
+        .about-hero-title {
             flex: none;
             max-width: 777px;
             font-size: 44px;
             letter-spacing: -1.2px;
         }
 
-        &__text {
+        .about-hero-aside,
+        &.about-hero--has-buttons .about-hero-aside {
             flex: none;
             max-width: 600px;
+            gap: 24px;
         }
 
-        &__media {
+        .about-hero-media {
             aspect-ratio: 16 / 7;
         }
     }
 
     // Mobile (Home mobile patterns, 360 wide).
     @include breakpoint-max(md) {
-        &__inner {
+        .about-hero-inner {
             gap: 32px;
             padding: 40px 16px 56px;
         }
 
-        &__header {
+        .about-hero-header {
             gap: 20px;
         }
 
         // Labels — 12px on mobile.
-        &__eyebrow {
+        .about-hero-eyebrow {
             font-size: 12px;
             line-height: normal;
             letter-spacing: 0.48px;
         }
 
-        &__copy {
+        .about-hero-copy {
             gap: 20px;
         }
 
         // Mobile H1 — 40 / 105% / -1%; one flowing text, no forced breaks.
-        &__title {
+        .about-hero-title {
             max-width: none;
             font-size: 40px;
             line-height: 1.05;
@@ -189,23 +237,40 @@
             }
         }
 
-        // Mobile Body L — 16 / 140%.
-        &__text {
+        .about-hero-aside,
+        &.about-hero--has-buttons .about-hero-aside {
             max-width: none;
+            gap: 20px;
+        }
+
+        // Mobile Body L — 16 / 140%.
+        .about-hero-text {
             font-size: 16px;
         }
 
-        &__media {
+        .about-hero-media {
             aspect-ratio: 16 / 9;
         }
     }
 
     @include breakpoint-max(sm) {
-        &__media {
+        .about-hero-media {
             aspect-ratio: 328 / 220;
         }
 
-        &__title {
+        // Mobile buttons: full width, stacked (Home mobile pattern).
+        .about-hero-buttons {
+            flex-direction: column;
+            align-self: stretch;
+            gap: 12px;
+        }
+
+        .about-hero-button {
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .about-hero-title {
             font-size: 36px;
             letter-spacing: -0.36px;
         }

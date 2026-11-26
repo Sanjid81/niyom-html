@@ -35,23 +35,23 @@ if (!$eyebrow && !$heading && !$buttons) {
 ?>
 
 <section class="about-cta">
-    <div class="about-cta__inner">
+    <div class="about-cta-inner">
 
         <?php if ($eyebrow) : ?>
-            <p class="about-cta__eyebrow eyebrow"><?php echo esc_html($eyebrow); ?></p>
+            <p class="about-cta-eyebrow eyebrow"><?php echo esc_html($eyebrow); ?></p>
         <?php endif; ?>
 
         <?php if ($heading) : ?>
-            <h2 class="about-cta__heading heading-two"><?php echo $heading; // Escaped in niyom_inline_text(). ?></h2>
+            <h2 class="about-cta-heading heading-two"><?php echo $heading; // Escaped in niyom_inline_text(). ?></h2>
         <?php endif; ?>
 
         <?php if ($buttons) : ?>
-            <div class="about-cta__buttons">
+            <div class="about-cta-buttons">
                 <?php foreach ($buttons as $button) : ?>
-                    <a class="btn btn--<?php echo esc_attr($button['style']); ?> about-cta__button" <?php echo niyom_link_attrs($button['link'], $button['new_tab']); ?>>
+                    <a class="btn btn--<?php echo esc_attr($button['style']); ?> about-cta-button" <?php echo niyom_link_attrs($button['link'], $button['new_tab']); ?>>
                         <span><?php echo esc_html($button['text']); ?></span>
-                        <?php echo niyom_icon('arrow-right', 'btn__arrow btn__arrow--lg'); ?>
-                        <?php echo niyom_icon('arrow-right-sm', 'btn__arrow btn__arrow--sm'); ?>
+                        <?php echo niyom_icon('arrow-right', 'btn-arrow btn-arrow--lg'); ?>
+                        <?php echo niyom_icon('arrow-right-sm', 'btn-arrow btn-arrow--sm'); ?>
                     </a>
                 <?php endforeach; ?>
             </div>

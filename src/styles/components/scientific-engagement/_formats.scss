@@ -1,0 +1,241 @@
+// =====================================================================
+// Scientific Engagement › Engagement formats — Figma "04 — Engagement
+// Formats" (294:7348, 1920 wide). Warm off-white, 140px top/bottom: label +
+// H2, then 3 white cards (24px gap): 420px image, 40px padded body with
+// number, H4 title, Body M text and "Suitable for:" tag pills.
+// No mobile frame in Figma: mobile follows the Home mobile patterns.
+// Markup: components/ScientificEngagement/formats.php
+// =====================================================================
+
+.se-formats {
+    background: var(--color-subtle-bg);
+
+    .se-formats-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    // ---------- Intro ----------
+
+    .se-formats-intro {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        padding-bottom: 24px;
+    }
+
+    // Labels/L — JetBrains Mono Medium 14 / 100%, Dark 60.
+    .se-formats-eyebrow {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+    }
+
+    .se-formats-heading {
+        max-width: 900px;
+        margin: 0;
+        color: var(--color-heading);
+    }
+
+    // ---------- Cards ----------
+
+    .se-formats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .se-formats-card {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        background: var(--color-white);
+        overflow: hidden;
+    }
+
+    .se-formats-media {
+        height: 420px;
+        overflow: hidden;
+        background: var(--color-mist);
+    }
+
+    .se-formats-image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .se-formats-body {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 40px;
+    }
+
+    // Labels/S — JetBrains Mono 12 / 120% / 1%, Research Teal.
+    .se-formats-number {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        text-transform: uppercase;
+        color: var(--color-teal);
+    }
+
+    .se-formats-title {
+        margin: 0;
+        color: var(--color-heading);
+    }
+
+    .se-formats-text {
+        color: var(--color-ink-80);
+    }
+
+    // Label and pills wrap together in one row (Figma: 8px gap, 8px top padding).
+    .se-formats-tags {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        padding-top: 8px;
+    }
+
+    .se-formats-tag-list {
+        display: contents;
+    }
+
+    // Labels/S — JetBrains Mono 12 / 120% / 1%, Dark 60.
+    .se-formats-tags-label {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        text-transform: uppercase;
+        color: var(--color-ink-60);
+        white-space: nowrap;
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        .se-formats-inner {
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        .se-formats-media {
+            height: 360px;
+        }
+
+        .se-formats-body {
+            padding: 32px;
+        }
+    }
+
+    // Tablet / small laptop: one card per row, image left of the text.
+    @include breakpoint-max(xl) {
+        .se-formats-inner {
+            gap: 32px;
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        .se-formats-intro {
+            gap: 24px;
+            padding-bottom: 8px;
+        }
+
+        .se-formats-grid {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 16px;
+        }
+
+        .se-formats-card {
+            flex-direction: row;
+        }
+
+        .se-formats-media {
+            flex: 0 0 42%;
+            height: auto;
+            min-height: 280px;
+        }
+
+        .se-formats-body {
+            flex: 1 1 auto;
+            justify-content: center;
+            min-width: 0;
+            gap: 16px;
+            padding: 32px;
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        .se-formats-inner {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        .se-formats-media {
+            min-height: 260px;
+        }
+
+        .se-formats-body {
+            padding: 28px 24px;
+        }
+    }
+
+    // Mobile (Home mobile patterns, 360 wide): stacked cards, image on top.
+    @include breakpoint-max(md) {
+        .se-formats-inner {
+            gap: 24px;
+            padding: 56px 16px;
+        }
+
+        .se-formats-intro {
+            gap: 20px;
+            padding-bottom: 8px;
+        }
+
+        .se-formats-eyebrow {
+            font-size: 12px;
+            line-height: normal;
+            letter-spacing: 0.48px;
+        }
+
+        .se-formats-card {
+            flex-direction: column;
+        }
+
+        .se-formats-media {
+            flex: none;
+            height: auto;
+            min-height: 0;
+            max-height: 300px; // keeps large phones / small tablets from tall images.
+            aspect-ratio: 328 / 220;
+        }
+
+        .se-formats-body {
+            gap: 12px;
+            padding: 20px 16px 24px;
+        }
+
+        .se-formats-tags {
+            padding-top: 4px;
+        }
+    }
+}

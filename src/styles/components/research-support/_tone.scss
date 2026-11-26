@@ -1,0 +1,17 @@
+// =====================================================================
+// Research Support › warm off-white sections.
+// Figma "Research Support" (296:8932): the Workflow (303:1257) and FAQ
+// (296:9081) sections sit on "subtle bg" (#FCFBF7), while the reused
+// components (Home how-it-works, Shared FAQ) are white. The render
+// callbacks in inc/blocks/research-support-block.php wrap them in
+// .rs-tone-subtle.
+// =====================================================================
+
+.rs-tone-subtle {
+    background: var(--color-subtle-bg);
+
+    .home-how-it-works,
+    .shared-faq {
+        background: var(--color-subtle-bg);
+    }
+}

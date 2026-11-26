@@ -13,7 +13,7 @@ $steps-border-mobile: rgba(11, 58, 83, 0.15); // Figma mobile divider.
     background: var(--color-white);
     color: var(--color-ink);
 
-    &__inner {
+    .home-how-it-works-inner {
         display: flex;
         flex-direction: column;
         gap: 100px;
@@ -24,14 +24,14 @@ $steps-border-mobile: rgba(11, 58, 83, 0.15); // Figma mobile divider.
 
     // ---------- Intro ----------
 
-    &__intro {
+    .home-how-it-works-intro {
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
         gap: 60px;
     }
 
-    &__copy {
+    .home-how-it-works-copy {
         display: flex;
         flex: 1 1 auto;
         flex-direction: column;
@@ -40,7 +40,7 @@ $steps-border-mobile: rgba(11, 58, 83, 0.15); // Figma mobile divider.
     }
 
     // Figma "Labels/L": JetBrains Mono Medium 14 / 100%, Dark 60%.
-    &__eyebrow {
+    .home-how-it-works-eyebrow {
         font-size: 14px;
         font-weight: 500;
         line-height: 1;
@@ -48,18 +48,18 @@ $steps-border-mobile: rgba(11, 58, 83, 0.15); // Figma mobile divider.
         color: var(--color-ink-60);
     }
 
-    &__heading {
+    .home-how-it-works-heading {
         max-width: 700px; // Figma box is 677px; browsers set Inter ~2% wider, so this keeps the Figma line breaks.
         color: var(--color-ink);
     }
 
-    &__button {
+    .home-how-it-works-button {
         flex-shrink: 0;
     }
 
     // ---------- Steps ----------
 
-    &__steps {
+    .home-how-it-works-steps {
         display: flex;
         gap: 1px;
         margin: 0;
@@ -67,7 +67,7 @@ $steps-border-mobile: rgba(11, 58, 83, 0.15); // Figma mobile divider.
         list-style: none;
     }
 
-    &__step {
+    .home-how-it-works-step {
         display: flex;
         flex: 1 1 0;
         flex-direction: column;
@@ -84,7 +84,7 @@ $steps-border-mobile: rgba(11, 58, 83, 0.15); // Figma mobile divider.
     }
 
     // Figma: Inter Medium 20 / 120%, Deep Ink.
-    &__number {
+    .home-how-it-works-number {
         font-family: var(--font-heading);
         font-size: 20px;
         font-weight: 500;
@@ -92,7 +92,7 @@ $steps-border-mobile: rgba(11, 58, 83, 0.15); // Figma mobile divider.
         color: var(--color-ink);
     }
 
-    &__icon {
+    .home-how-it-works-icon {
         display: flex;
         width: 80px;
         height: 80px;
@@ -106,7 +106,7 @@ $steps-border-mobile: rgba(11, 58, 83, 0.15); // Figma mobile divider.
         }
     }
 
-    &__body {
+    .home-how-it-works-body {
         display: flex;
         flex-direction: column;
         gap: 16px;
@@ -115,7 +115,7 @@ $steps-border-mobile: rgba(11, 58, 83, 0.15); // Figma mobile divider.
     }
 
     // Figma: Inter Medium 20 / 120%.
-    &__title {
+    .home-how-it-works-title {
         font-family: var(--font-heading);
         font-size: 20px;
         font-weight: 500;
@@ -125,7 +125,7 @@ $steps-border-mobile: rgba(11, 58, 83, 0.15); // Figma mobile divider.
     }
 
     // Figma "Body/M": Inter 16 / 140%, Body text.
-    &__text {
+    .home-how-it-works-text {
         font-size: 16px;
         line-height: 1.4;
         color: var(--color-ink-80);
@@ -134,25 +134,25 @@ $steps-border-mobile: rgba(11, 58, 83, 0.15); // Figma mobile divider.
     // ---------- Responsive ----------
 
     @include breakpoint-max(xxl) {
-        &__inner {
+        .home-how-it-works-inner {
             gap: 80px;
             padding-top: 120px;
             padding-bottom: 120px;
         }
 
-        &__step {
+        .home-how-it-works-step {
             padding: 30px 28px;
         }
     }
 
     // Tablet: 2 × 2 grid.
     @include breakpoint-max(xl) {
-        &__steps {
+        .home-how-it-works-steps {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
-        &__step {
+        .home-how-it-works-step {
             border-left: 1px solid $steps-border;
             border-bottom: 1px solid $steps-border;
 
@@ -168,55 +168,55 @@ $steps-border-mobile: rgba(11, 58, 83, 0.15); // Figma mobile divider.
     }
 
     @include breakpoint-max(lg) {
-        &__inner {
+        .home-how-it-works-inner {
             gap: 56px;
             padding-top: 96px;
             padding-bottom: 96px;
         }
 
-        &__intro {
+        .home-how-it-works-intro {
             flex-direction: column;
             align-items: flex-start;
             gap: 32px;
         }
 
-        &__copy {
+        .home-how-it-works-copy {
             gap: 24px;
         }
 
-        &__step {
+        .home-how-it-works-step {
             gap: 32px;
         }
     }
 
     // Mobile (Figma 360): list with the number on the left, divider lines.
     @include breakpoint-max(md) {
-        &__inner {
+        .home-how-it-works-inner {
             gap: 32px;
             padding: 56px 16px;
         }
 
-        &__intro,
-        &__copy {
+        .home-how-it-works-intro,
+        .home-how-it-works-copy {
             gap: 20px;
         }
 
         // Figma mobile: JetBrains Mono Medium 13, 0.52px tracking.
-        &__eyebrow {
+        .home-how-it-works-eyebrow {
             font-size: 13px;
             line-height: normal;
             letter-spacing: 0.52px;
         }
 
-        &__steps {
+        .home-how-it-works-steps {
             display: flex;
             flex-direction: column;
             gap: 0;
         }
 
-        &__step,
-        &__step:first-child,
-        &__step:nth-child(-n + 2) {
+        .home-how-it-works-step,
+        .home-how-it-works-step:first-child,
+        .home-how-it-works-step:nth-child(-n + 2) {
             display: grid;
             grid-template-columns: 40px minmax(0, 1fr);
             grid-template-areas:
@@ -229,12 +229,12 @@ $steps-border-mobile: rgba(11, 58, 83, 0.15); // Figma mobile divider.
             border-top: 1px solid $steps-border-mobile;
         }
 
-        &__step:first-child {
+        .home-how-it-works-step:first-child {
             border-top: 0;
         }
 
         // Figma: JetBrains Mono Medium 16, Research Teal, in a 40 × 40 box.
-        &__number {
+        .home-how-it-works-number {
             grid-area: number;
             display: flex;
             align-items: center;
@@ -246,27 +246,27 @@ $steps-border-mobile: rgba(11, 58, 83, 0.15); // Figma mobile divider.
         }
 
         // The 80px icon at half size; its drawing starts ~5px in, so pull it left.
-        &__icon {
+        .home-how-it-works-icon {
             grid-area: icon;
             width: 40px;
             height: 40px;
             margin-left: -5px;
         }
 
-        &__body {
+        .home-how-it-works-body {
             grid-area: body;
             gap: 8px;
             min-height: 0;
         }
 
         // Figma: Inter Medium 18, normal line height.
-        &__title {
+        .home-how-it-works-title {
             font-size: 18px;
             line-height: 1.21;
         }
 
         // Figma "Mobile/Body/S": Inter 14 / 140%.
-        &__text {
+        .home-how-it-works-text {
             font-size: 14px;
         }
     }

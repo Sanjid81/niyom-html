@@ -10,10 +10,7 @@
     overflow: hidden;
     background: var(--color-white);
 
-    // ---------- Background image (Figma "image 36295") ----------
-    // 2000 × 1333 box centred on the section, 6% opacity, fading to
-    // white towards the bottom.
-    &__bg {
+    .home-about-bg {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -33,7 +30,7 @@
         }
     }
 
-    &__bg-image {
+    .home-about-bg-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -41,7 +38,7 @@
 
     // ---------- Content ----------
 
-    &__inner {
+    .home-about-inner {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -52,8 +49,7 @@
         text-align: center;
     }
 
-    // Labels/L — JetBrains Mono Medium 14 / 100%, Dark 60.
-    &__eyebrow {
+    .home-about-eyebrow {
         font-family: var(--font-mono);
         font-size: 14px;
         font-weight: 500;
@@ -66,8 +62,7 @@
         &::after { content: " )"; }
     }
 
-    // H3 — Inter 42 / 120% / -2%, 1120px wide (400px side padding at 1920).
-    &__text {
+    .home-about-text {
         max-width: 1120px;
         margin: 0;
         font-family: var(--font-heading);
@@ -87,20 +82,20 @@
     }
 
     // p + p rule from typography would add a gap between the two versions.
-    &__text + &__text {
+    .home-about-text + .home-about-text {
         margin-top: 0;
     }
 
     // ---------- Responsive ----------
 
     @include breakpoint-max(xl) {
-        &__inner {
+        .home-about-inner {
             gap: 48px;
             padding-top: 120px;
             padding-bottom: 120px;
         }
 
-        &__text {
+        .home-about-text {
             max-width: 900px;
             font-size: 36px;
             letter-spacing: -0.7px;
@@ -108,13 +103,13 @@
     }
 
     @include breakpoint-max(lg) {
-        &__inner {
+        .home-about-inner {
             gap: 40px;
             padding-top: 96px;
             padding-bottom: 96px;
         }
 
-        &__text {
+        .home-about-text {
             font-size: 32px;
             letter-spacing: -0.5px;
         }
@@ -124,22 +119,22 @@
     @include breakpoint-max(md) {
         background: var(--color-subtle-bg);
 
-        &__bg {
+        .home-about-bg {
             display: none;
         }
 
-        &__inner {
+        .home-about-inner {
             gap: 28px;
             padding: 56px 16px;
         }
 
-        &__eyebrow {
+        .home-about-eyebrow {
             font-size: 12px;
             line-height: normal;
             letter-spacing: 0.48px;
         }
 
-        &__text {
+        .home-about-text {
             font-size: 24px;
             line-height: 1.3;
             letter-spacing: -0.24px;

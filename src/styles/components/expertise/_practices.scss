@@ -1,0 +1,209 @@
+// =====================================================================
+// Expertise › Reproducibility & quality practices — Figma "07 —
+// Reproducibility & Quality Practices" (312:10390, 1920 wide). Deep Ink,
+// 140px top/bottom, 80px between intro and list. Intro: label (white 60%)
+// + white H2 (900px) left, 400px Body L (white 80%) right, bottom-aligned,
+// 120px gap. List: 4 columns 48px apart, 1px white 25% rule, 28px above;
+// H3-size cyan number, Lead Text white title, Body M white 80% text, 20px
+// apart. No mobile frame in Figma: mobile stacks the items.
+// Markup: components/Expertise/practices.php
+// =====================================================================
+
+.ex-practices {
+    background: var(--color-ink);
+    color: var(--color-white);
+
+    .ex-practices-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    // ---------- Intro ----------
+
+    .ex-practices-intro {
+        display: flex;
+        align-items: flex-end;
+        gap: 120px;
+    }
+
+    .ex-practices-copy {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        min-width: 0;
+    }
+
+    // Labels/L — JetBrains Mono Medium 14 / 100%, white 60%.
+    .ex-practices-eyebrow {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+        color: var(--color-white-60);
+    }
+
+    .ex-practices-heading {
+        max-width: 900px;
+        margin: 0;
+        color: var(--color-white);
+    }
+
+    .ex-practices-text {
+        flex: 0 0 400px;
+        min-width: 0;
+        color: var(--color-white-80);
+
+        a {
+            color: var(--color-white);
+        }
+    }
+
+    // ---------- Practices ----------
+
+    .ex-practices-list {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 48px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .ex-practices-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        min-width: 0;
+        padding-top: 28px;
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    // H3 — Inter 42 / 120% / -2%, Signal Cyan.
+    .ex-practices-number {
+        font-family: var(--font-heading);
+        font-size: 42px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.84px;
+        color: var(--color-cyan);
+    }
+
+    .ex-practices-title {
+        margin: 0;
+        color: var(--color-white);
+    }
+
+    .ex-practices-item-text {
+        color: var(--color-white-80);
+
+        a {
+            color: var(--color-white);
+        }
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        .ex-practices-inner {
+            gap: 72px;
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        .ex-practices-intro {
+            gap: 80px;
+        }
+
+        .ex-practices-text {
+            flex-basis: 360px;
+        }
+
+        .ex-practices-list {
+            gap: 40px;
+        }
+    }
+
+    // 2 × 2 below 1200.
+    @include breakpoint-max(xl) {
+        .ex-practices-inner {
+            gap: 56px;
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        .ex-practices-list {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 48px 40px;
+        }
+
+        .ex-practices-number {
+            font-size: 36px;
+        }
+    }
+
+    // Tablet: text under the heading.
+    @include breakpoint-max(lg) {
+        .ex-practices-inner {
+            gap: 48px;
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        .ex-practices-intro {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 24px;
+        }
+
+        .ex-practices-copy {
+            flex: none;
+            width: 100%;
+            gap: 24px;
+        }
+
+        .ex-practices-text {
+            flex: none;
+            max-width: 600px;
+        }
+    }
+
+    // Mobile (Home mobile patterns, 360 wide): one column.
+    @include breakpoint-max(md) {
+        .ex-practices-inner {
+            gap: 32px;
+            padding: 56px 16px;
+        }
+
+        .ex-practices-copy {
+            gap: 20px;
+        }
+
+        .ex-practices-eyebrow {
+            font-size: 12px;
+            line-height: normal;
+            letter-spacing: 0.48px;
+        }
+
+        .ex-practices-list {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 32px;
+        }
+
+        .ex-practices-item {
+            gap: 12px;
+            padding-top: 20px;
+        }
+
+        .ex-practices-number {
+            font-size: 32px;
+        }
+    }
+}

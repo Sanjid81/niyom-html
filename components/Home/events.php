@@ -49,22 +49,22 @@ if (!$has_intro && !$events) {
 ?>
 
 <section class="home-events">
-    <div class="home-events__inner">
+    <div class="home-events-inner">
 
         <?php if ($has_intro) : ?>
-            <div class="home-events__intro">
+            <div class="home-events-intro">
                 <?php if ($eyebrow || $heading || $text) : ?>
-                    <div class="home-events__header">
+                    <div class="home-events-header">
                         <?php if ($eyebrow) : ?>
-                            <p class="home-events__eyebrow eyebrow"><?php echo esc_html($eyebrow); ?></p>
+                            <p class="home-events-eyebrow eyebrow"><?php echo esc_html($eyebrow); ?></p>
                         <?php endif; ?>
 
                         <?php if ($heading) : ?>
-                            <h2 class="home-events__heading heading-two"><?php echo $heading; // Escaped in niyom_inline_text(). ?></h2>
+                            <h2 class="home-events-heading heading-two"><?php echo $heading; // Escaped in niyom_inline_text(). ?></h2>
                         <?php endif; ?>
 
                         <?php if ($text) : ?>
-                            <div class="home-events__text rich-text body-large">
+                            <div class="home-events-text rich-text body-large">
                                 <?php echo $text; // Escaped in niyom_rich_text(). ?>
                             </div>
                         <?php endif; ?>
@@ -72,23 +72,23 @@ if (!$has_intro && !$events) {
                 <?php endif; ?>
 
                 <?php if ($has_button) : ?>
-                    <a class="btn btn--primary home-events__button" <?php echo niyom_link_attrs($button_link, $button_tab); ?>>
+                    <a class="btn btn--primary home-events-button" <?php echo niyom_link_attrs($button_link, $button_tab); ?>>
                         <span><?php echo esc_html($button_text); ?></span>
-                        <?php echo niyom_icon('arrow-right', 'btn__arrow btn__arrow--lg'); ?>
-                        <?php echo niyom_icon('arrow-right-sm', 'btn__arrow btn__arrow--sm'); ?>
+                        <?php echo niyom_icon('arrow-right', 'btn-arrow btn-arrow--lg'); ?>
+                        <?php echo niyom_icon('arrow-right-sm', 'btn-arrow btn-arrow--sm'); ?>
                     </a>
                 <?php endif; ?>
             </div>
         <?php endif; ?>
 
         <?php if ($events) : ?>
-            <ul class="home-events__list">
+            <ul class="home-events-list">
                 <?php foreach ($events as $event) :
                     $has_link  = $event['link'] !== '';
                     $has_date  = $event['day'] || $event['month'];
                     // The title carries the row link; without a title, "View details" does.
                     $more_is_link = $has_link && !$event['title'];
-                    $classes   = ['home-events__item'];
+                    $classes   = ['home-events-item'];
                     if ($has_link) {
                         $classes[] = 'is-linked';
                     }
@@ -99,8 +99,8 @@ if (!$has_intro && !$events) {
                     <li class="<?php echo esc_attr(implode(' ', $classes)); ?>">
 
                         <?php if ($event['image']) : ?>
-                            <div class="home-events__media">
-                                <img class="home-events__image"
+                            <div class="home-events-media">
+                                <img class="home-events-image"
                                     src="<?php echo esc_url($event['image']); ?>"
                                     alt=""
                                     loading="lazy"
@@ -108,27 +108,27 @@ if (!$has_intro && !$events) {
                             </div>
                         <?php endif; ?>
 
-                        <div class="home-events__details">
+                        <div class="home-events-details">
                             <?php if ($has_date) : ?>
-                                <div class="home-events__date">
+                                <div class="home-events-date">
                                     <?php if ($event['day']) : ?>
-                                        <span class="home-events__day"><?php echo esc_html($event['day']); ?></span>
+                                        <span class="home-events-day"><?php echo esc_html($event['day']); ?></span>
                                     <?php endif; ?>
                                     <?php if ($event['month']) : ?>
-                                        <span class="home-events__month"><?php echo esc_html($event['month']); ?></span>
+                                        <span class="home-events-month"><?php echo esc_html($event['month']); ?></span>
                                     <?php endif; ?>
                                 </div>
                             <?php endif; ?>
 
-                            <div class="home-events__content">
+                            <div class="home-events-content">
                                 <?php if ($event['type']) : ?>
-                                    <p class="home-events__type"><?php echo esc_html($event['type']); ?></p>
+                                    <p class="home-events-type"><?php echo esc_html($event['type']); ?></p>
                                 <?php endif; ?>
 
                                 <?php if ($event['title']) : ?>
-                                    <h3 class="home-events__title">
+                                    <h3 class="home-events-title">
                                         <?php if ($has_link) : ?>
-                                            <a class="home-events__link" <?php echo niyom_link_attrs($event['link'], $event['new_tab']); ?>><?php echo $event['title']; // Escaped in niyom_inline_text(). ?></a>
+                                            <a class="home-events-link" <?php echo niyom_link_attrs($event['link'], $event['new_tab']); ?>><?php echo $event['title']; // Escaped in niyom_inline_text(). ?></a>
                                         <?php else : ?>
                                             <?php echo $event['title']; // Escaped in niyom_inline_text(). ?>
                                         <?php endif; ?>
@@ -136,18 +136,18 @@ if (!$has_intro && !$events) {
                                 <?php endif; ?>
 
                                 <?php if ($event['meta']) : ?>
-                                    <p class="home-events__meta"><?php echo esc_html($event['meta']); ?></p>
+                                    <p class="home-events-meta"><?php echo esc_html($event['meta']); ?></p>
                                 <?php endif; ?>
 
                                 <?php if ($has_link && $event['link_text']) : ?>
                                     <?php if ($more_is_link) : ?>
-                                        <a class="link-arrow home-events__more home-events__link" <?php echo niyom_link_attrs($event['link'], $event['new_tab']); ?>>
+                                        <a class="link-arrow home-events-more home-events-link" <?php echo niyom_link_attrs($event['link'], $event['new_tab']); ?>>
                                     <?php else : ?>
-                                        <span class="link-arrow home-events__more" aria-hidden="true">
+                                        <span class="link-arrow home-events-more" aria-hidden="true">
                                     <?php endif; ?>
                                         <span><?php echo esc_html($event['link_text']); ?></span>
-                                        <?php echo niyom_icon('arrow-right', 'link-arrow__icon link-arrow__icon--lg'); ?>
-                                        <?php echo niyom_icon('arrow-right-sm', 'link-arrow__icon link-arrow__icon--sm'); ?>
+                                        <?php echo niyom_icon('arrow-right', 'link-arrow-icon link-arrow-icon--lg'); ?>
+                                        <?php echo niyom_icon('arrow-right-sm', 'link-arrow-icon link-arrow-icon--sm'); ?>
                                     <?php echo $more_is_link ? '</a>' : '</span>'; ?>
                                 <?php endif; ?>
                             </div>

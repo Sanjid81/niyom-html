@@ -54,28 +54,28 @@ $uid = wp_unique_id('home-wwd-');
 ?>
 
 <section class="home-what-we-do" id="<?php echo esc_attr($uid); ?>" data-home-wwd>
-    <div class="home-what-we-do__inner">
+    <div class="home-what-we-do-inner">
 
         <?php if ($has_header) : ?>
-            <header class="home-what-we-do__header">
+            <header class="home-what-we-do-header">
                 <?php if ($eyebrow || $title) : ?>
-                    <div class="home-what-we-do__heading">
+                    <div class="home-what-we-do-heading">
                         <?php if ($eyebrow) : ?>
-                            <p class="home-what-we-do__eyebrow"><?php echo esc_html($eyebrow); ?></p>
+                            <p class="home-what-we-do-eyebrow"><?php echo esc_html($eyebrow); ?></p>
                         <?php endif; ?>
                         <?php if ($title) : ?>
-                            <h2 class="home-what-we-do__title heading-two"><?php echo $title; // Escaped in niyom_inline_text(). ?></h2>
+                            <h2 class="home-what-we-do-title heading-two"><?php echo $title; // Escaped in niyom_inline_text(). ?></h2>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
 
                 <?php if ($intro) : ?>
-                    <div class="home-what-we-do__intro rich-text body-large<?php echo $intro_mobile ? ' home-what-we-do__intro--desktop' : ''; ?>">
+                    <div class="home-what-we-do-intro rich-text body-large<?php echo $intro_mobile ? ' home-what-we-do-intro--desktop' : ''; ?>">
                         <?php echo $intro; // Escaped in niyom_rich_text(). ?>
                     </div>
                 <?php endif; ?>
                 <?php if ($intro_mobile) : ?>
-                    <div class="home-what-we-do__intro rich-text body-large<?php echo $intro ? ' home-what-we-do__intro--mobile' : ''; ?>">
+                    <div class="home-what-we-do-intro rich-text body-large<?php echo $intro ? ' home-what-we-do-intro--mobile' : ''; ?>">
                         <?php echo $intro_mobile; // Escaped in niyom_rich_text(). ?>
                     </div>
                 <?php endif; ?>
@@ -83,20 +83,20 @@ $uid = wp_unique_id('home-wwd-');
         <?php endif; ?>
 
         <?php if ($items) : ?>
-            <ol class="home-what-we-do__list" style="--wwd-count: <?php echo count($items); ?>;" data-wwd-list>
+            <ol class="home-what-we-do-list" style="--wwd-count: <?php echo count($items); ?>;" data-wwd-list>
                 <?php foreach ($items as $i => $item) :
                     $item_id = $uid . '-item-' . ($i + 1);
                     ?>
-                    <li class="home-what-we-do__item<?php echo $i === 0 ? ' is-open' : ''; ?>" style="--wwd-index: <?php echo (int) $i; ?>;" data-wwd-item>
-                        <div class="home-what-we-do__card" data-wwd-card>
+                    <li class="home-what-we-do-item<?php echo $i === 0 ? ' is-open' : ''; ?>" style="--wwd-index: <?php echo (int) $i; ?>;" data-wwd-item>
+                        <div class="home-what-we-do-card" data-wwd-card>
 
-                            <div class="home-what-we-do__content">
+                            <div class="home-what-we-do-content">
                                 <?php if ($item['has_head']) : ?>
-                                    <div class="home-what-we-do__head" id="<?php echo esc_attr($item_id . '-head'); ?>" data-wwd-toggle<?php echo $item['has_body'] ? ' aria-controls="' . esc_attr($item_id . '-panel') . '"' : ''; ?>>
+                                    <div class="home-what-we-do-head" id="<?php echo esc_attr($item_id . '-head'); ?>" data-wwd-toggle<?php echo $item['has_body'] ? ' aria-controls="' . esc_attr($item_id . '-panel') . '"' : ''; ?>>
                                         <?php if ($item['number'] !== '' || $item['label'] !== '') : ?>
-                                            <p class="home-what-we-do__label">
+                                            <p class="home-what-we-do-label">
                                                 <?php if ($item['number'] !== '') : ?>
-                                                    <span class="home-what-we-do__number"><?php echo esc_html($item['number']); ?></span>
+                                                    <span class="home-what-we-do-number"><?php echo esc_html($item['number']); ?></span>
                                                 <?php endif; ?>
                                                 <?php if ($item['label'] !== '') : ?>
                                                     <span><?php echo esc_html($item['label']); ?></span>
@@ -105,25 +105,25 @@ $uid = wp_unique_id('home-wwd-');
                                         <?php endif; ?>
 
                                         <?php if ($item['title']) : ?>
-                                            <h3 class="home-what-we-do__item-title"><?php echo $item['title']; // Escaped in niyom_inline_text(). ?></h3>
+                                            <h3 class="home-what-we-do-item-title"><?php echo $item['title']; // Escaped in niyom_inline_text(). ?></h3>
                                         <?php endif; ?>
                                     </div>
                                 <?php endif; ?>
 
                                 <?php if ($item['has_body']) : ?>
-                                    <div class="home-what-we-do__body" id="<?php echo esc_attr($item_id . '-panel'); ?>" data-wwd-panel>
-                                        <div class="home-what-we-do__body-inner">
+                                    <div class="home-what-we-do-body" id="<?php echo esc_attr($item_id . '-panel'); ?>" data-wwd-panel>
+                                        <div class="home-what-we-do-body-inner">
                                             <?php if ($item['text']) : ?>
-                                                <div class="home-what-we-do__text rich-text body-large">
+                                                <div class="home-what-we-do-text rich-text body-large">
                                                     <?php echo $item['text']; // Escaped in niyom_rich_text(). ?>
                                                 </div>
                                             <?php endif; ?>
 
                                             <?php if ($item['has_link']) : ?>
-                                                <a class="link-arrow home-what-we-do__link" <?php echo niyom_link_attrs($item['link_url'], $item['new_tab']); ?>>
+                                                <a class="link-arrow home-what-we-do-link" <?php echo niyom_link_attrs($item['link_url'], $item['new_tab']); ?>>
                                                     <span><?php echo esc_html($item['link_text']); ?></span>
-                                                    <?php echo niyom_icon('arrow-right', 'link-arrow__icon link-arrow__icon--lg'); ?>
-                                                    <?php echo niyom_icon('arrow-right-sm', 'link-arrow__icon link-arrow__icon--sm'); ?>
+                                                    <?php echo niyom_icon('arrow-right', 'link-arrow-icon link-arrow-icon--lg'); ?>
+                                                    <?php echo niyom_icon('arrow-right-sm', 'link-arrow-icon link-arrow-icon--sm'); ?>
                                                 </a>
                                             <?php endif; ?>
                                         </div>
@@ -132,8 +132,8 @@ $uid = wp_unique_id('home-wwd-');
                             </div>
 
                             <?php if ($item['image']) : ?>
-                                <div class="home-what-we-do__media" data-wwd-media>
-                                    <img class="home-what-we-do__image"
+                                <div class="home-what-we-do-media" data-wwd-media>
+                                    <img class="home-what-we-do-image"
                                         src="<?php echo esc_url($item['image']); ?>"
                                         alt=""
                                         loading="lazy"

@@ -1,0 +1,103 @@
+// =====================================================================
+// Insight article › Continue reading — Figma "07 — Related Articles"
+// (303:8443). White, 140px top/bottom: label + H2 (900px) left, ALL
+// INSIGHTS ⟶ right (bottom-aligned); 56px; 4 cards (_card.scss).
+// Markup: components/Insights/single-related.php
+// =====================================================================
+
+.article-related {
+    background: var(--color-white);
+
+    .article-related-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 56px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    .article-related-intro {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 40px;
+    }
+
+    .article-related-titles {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        min-width: 0;
+    }
+
+    // Labels/L — JetBrains Mono Medium 14 / 100%.
+    .article-related-eyebrow {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+    }
+
+    .article-related-heading {
+        max-width: 900px;
+        margin: 0;
+        color: var(--color-heading);
+    }
+
+    // Link / Arrow — Navigation 14 / 22px.
+    .article-related-link {
+        flex-shrink: 0;
+        min-height: 46px;
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    @include breakpoint-max(xxl) {
+        .article-related-inner {
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        .article-related-inner {
+            gap: 48px;
+            padding-top: 112px;
+            padding-bottom: 112px;
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        .article-related-inner {
+            padding-top: 88px;
+            padding-bottom: 88px;
+        }
+
+        .article-related-titles {
+            gap: 20px;
+        }
+    }
+
+    @include breakpoint-max(md) {
+        .article-related-inner {
+            gap: 32px;
+            padding: 56px 16px;
+        }
+
+        .article-related-intro {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .article-related-eyebrow {
+            font-size: 12px;
+            line-height: normal;
+            letter-spacing: 0.48px;
+        }
+    }
+}

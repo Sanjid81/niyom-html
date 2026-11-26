@@ -46,51 +46,51 @@ $uid = wp_unique_id('home-steps-');
 <section class="home-how-it-works"
     id="<?php echo esc_attr($uid); ?>"
     <?php echo $heading ? 'aria-labelledby="' . esc_attr($uid . '-title') . '"' : ''; ?>>
-    <div class="home-how-it-works__inner">
+    <div class="home-how-it-works-inner">
 
         <?php if ($has_intro) : ?>
-            <div class="home-how-it-works__intro">
+            <div class="home-how-it-works-intro">
                 <?php if ($eyebrow !== '' || $heading) : ?>
-                    <div class="home-how-it-works__copy">
+                    <div class="home-how-it-works-copy">
                         <?php if ($eyebrow !== '') : ?>
-                            <p class="home-how-it-works__eyebrow eyebrow"><?php echo esc_html($eyebrow); ?></p>
+                            <p class="home-how-it-works-eyebrow eyebrow"><?php echo esc_html($eyebrow); ?></p>
                         <?php endif; ?>
 
                         <?php if ($heading) : ?>
-                            <h2 class="home-how-it-works__heading heading-two" id="<?php echo esc_attr($uid . '-title'); ?>"><?php echo $heading; // Escaped in niyom_inline_text(). ?></h2>
+                            <h2 class="home-how-it-works-heading heading-two" id="<?php echo esc_attr($uid . '-title'); ?>"><?php echo $heading; // Escaped in niyom_inline_text(). ?></h2>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
 
                 <?php if ($has_button) : ?>
-                    <a class="btn btn--primary home-how-it-works__button" <?php echo niyom_link_attrs($button_link, $new_tab); ?>>
+                    <a class="btn btn--primary home-how-it-works-button" <?php echo niyom_link_attrs($button_link, $new_tab); ?>>
                         <span><?php echo esc_html($button_text); ?></span>
-                        <?php echo niyom_icon('arrow-right', 'btn__arrow btn__arrow--lg'); ?>
-                        <?php echo niyom_icon('arrow-right-sm', 'btn__arrow btn__arrow--sm'); ?>
+                        <?php echo niyom_icon('arrow-right', 'btn-arrow btn-arrow--lg'); ?>
+                        <?php echo niyom_icon('arrow-right-sm', 'btn-arrow btn-arrow--sm'); ?>
                     </a>
                 <?php endif; ?>
             </div>
         <?php endif; ?>
 
         <?php if ($steps) : ?>
-            <ol class="home-how-it-works__steps" style="--steps: <?php echo (int) count($steps); ?>;">
+            <ol class="home-how-it-works-steps" style="--steps: <?php echo (int) count($steps); ?>;">
                 <?php foreach ($steps as $step) : ?>
-                    <li class="home-how-it-works__step">
-                        <span class="home-how-it-works__number"><?php echo esc_html($step['number']); ?></span>
+                    <li class="home-how-it-works-step">
+                        <span class="home-how-it-works-number"><?php echo esc_html($step['number']); ?></span>
 
                         <?php if ($step['icon']) : ?>
-                            <span class="home-how-it-works__icon" aria-hidden="true">
-                                <?php echo niyom_media_icon($step['icon'], 'home-how-it-works__icon-svg'); ?>
+                            <span class="home-how-it-works-icon" aria-hidden="true">
+                                <?php echo niyom_media_icon($step['icon'], 'home-how-it-works-icon-svg'); ?>
                             </span>
                         <?php endif; ?>
 
                         <?php if ($step['title'] !== '' || $step['text']) : ?>
-                            <div class="home-how-it-works__body">
+                            <div class="home-how-it-works-body">
                                 <?php if ($step['title'] !== '') : ?>
-                                    <h3 class="home-how-it-works__title"><?php echo esc_html($step['title']); ?></h3>
+                                    <h3 class="home-how-it-works-title"><?php echo esc_html($step['title']); ?></h3>
                                 <?php endif; ?>
                                 <?php if ($step['text']) : ?>
-                                    <div class="home-how-it-works__text rich-text">
+                                    <div class="home-how-it-works-text rich-text">
                                         <?php echo $step['text']; // Escaped in niyom_rich_text(). ?>
                                     </div>
                                 <?php endif; ?>

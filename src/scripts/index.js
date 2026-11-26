@@ -8,6 +8,9 @@ import initHomeBanner from "./components/home-banner";
 import initHomeWhatWeDo from "./components/home-what-we-do";
 import initHomeExpertise from "./components/home-expertise";
 import initHomeInsights from "./components/home-insights";
+import initSharedFaq from "./components/shared-faq";
+import initEventsHub from "./components/events-hub";
+import initInsights from "./components/insights";
 
 document.addEventListener("DOMContentLoaded", () => {
   initHeader();
@@ -16,4 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initHomeWhatWeDo();
   initHomeExpertise();
   initHomeInsights();
+  initSharedFaq();
+  initEventsHub();
+  initInsights();
 });

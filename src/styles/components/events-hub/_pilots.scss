@@ -1,0 +1,359 @@
+// =====================================================================
+// Events & Partnerships › Pilots — Figma "05 — University & Laboratory
+// Pilots" (303:6921, 1920 wide). White, 140px top/bottom; label + H2
+// (900); 56px; two 828px Mist cards in view (24px apart): 300 × 420
+// image + 36px-padded text; 56px; centred "‹ 01 / 03 ›" pager.
+// Markup: components/EventsHub/pilots.php · JS: src/scripts/components/events-hub.js
+// =====================================================================
+
+.eh-pilots {
+    background: var(--color-white);
+    overflow: hidden;
+
+    .eh-pilots-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 56px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    // ---------- Intro ----------
+
+    .eh-pilots-header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        max-width: 900px;
+    }
+
+    .eh-pilots-eyebrow {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+    }
+
+    .eh-pilots-heading {
+        color: var(--color-heading);
+    }
+
+    // ---------- Slider ----------
+
+    .eh-pilots-slider {
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    // Without JS (no .is-ready) the cards scroll sideways.
+    .eh-pilots-track {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &:not(.is-ready) .eh-pilots-track {
+        display: flex;
+        gap: 24px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+    }
+
+    // Two cards in view on large screens (Swiper reads these widths).
+    .eh-pilots-card {
+        display: flex;
+        flex-shrink: 0;
+        align-items: stretch;
+        width: calc((100% - 24px) / 2);
+        height: auto;
+        background: var(--color-mist);
+        scroll-snap-align: start;
+    }
+
+    .eh-pilots-media {
+        position: relative;
+        flex: 0 0 300px;
+        height: 420px;
+        overflow: hidden;
+        background: var(--color-ink);
+    }
+
+    .eh-pilots-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    // Figma: the note follows the text directly.
+    .eh-pilots-body {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        align-items: flex-start;
+        min-width: 0;
+        padding: 36px;
+        overflow-wrap: break-word;
+    }
+
+    .eh-pilots-copy {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        width: 100%;
+    }
+
+    // Labels/S — teal.
+    .eh-pilots-label {
+        margin: 0;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        text-transform: uppercase;
+        color: var(--color-teal);
+    }
+
+    // H5 — 28 / 120% / -2%.
+    .eh-pilots-title {
+        margin: 0;
+        font-family: var(--font-heading);
+        font-size: 28px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.56px;
+        color: var(--color-ink);
+    }
+
+    // Body/M — 16 / 140%, Body text colour.
+    .eh-pilots-text {
+        width: 100%;
+        font-size: 16px;
+        line-height: 1.4;
+        color: var(--color-ink-80);
+    }
+
+    // Labels/S — Body text colour.
+    .eh-pilots-note {
+        width: 100%;
+        margin: 0;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        text-transform: uppercase;
+        color: var(--color-ink-80);
+    }
+
+    // ---------- Pager ‹ 01 / 03 › ----------
+
+    .eh-pilots-pager {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+
+        &[hidden] {
+            display: none;
+        }
+    }
+
+    .eh-pilots-nav {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px;
+        height: 18px;
+        padding: 0;
+        border: 0;
+        background: none;
+        color: var(--color-ink);
+        cursor: pointer;
+        transition: color var(--transition), opacity var(--transition);
+
+        // Bigger tap area without moving anything.
+        &::before {
+            content: "";
+            position: absolute;
+            inset: -13px;
+        }
+
+        &:hover {
+            color: var(--color-teal);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--color-cyan);
+            outline-offset: 4px;
+        }
+
+        // Figma: the unavailable arrow is Dark 60.
+        &.is-disabled {
+            opacity: 0.6;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        &--prev .eh-pilots-nav-icon {
+            transform: scaleX(-1);
+        }
+    }
+
+    .eh-pilots-nav-icon {
+        flex-shrink: 0;
+        width: 8.12px;
+        height: 14.12px;
+    }
+
+    // 16 / 100%: "01" Deep Ink, " / 03" Dark 60.
+    .eh-pilots-fraction {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0.16px;
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+        color: var(--color-ink-60);
+    }
+
+    .eh-pilots-current {
+        color: var(--color-ink);
+    }
+
+    // ---------- Responsive ----------
+
+    // Small desktops (two narrower cards): smaller image and title.
+    @media (max-width: 1700px) {
+        .eh-pilots-media {
+            flex-basis: 240px;
+        }
+
+        .eh-pilots-body {
+            padding: 28px;
+        }
+
+        .eh-pilots-title {
+            font-size: 24px;
+            letter-spacing: -0.48px;
+        }
+
+        .eh-pilots-text {
+            font-size: 15px;
+        }
+    }
+
+    @include breakpoint-max(xxl) {
+        .eh-pilots-inner {
+            gap: 48px;
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        // One card in view: back to the Figma card sizes.
+        .eh-pilots-card {
+            width: 100%;
+        }
+
+        .eh-pilots-media {
+            flex-basis: 300px;
+        }
+
+        .eh-pilots-body {
+            padding: 36px;
+        }
+
+        .eh-pilots-title {
+            font-size: 28px;
+            letter-spacing: -0.56px;
+        }
+
+        .eh-pilots-text {
+            font-size: 16px;
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        .eh-pilots-inner {
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        .eh-pilots-inner {
+            gap: 40px;
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        .eh-pilots-media {
+            flex-basis: 260px;
+            height: 380px;
+        }
+
+        .eh-pilots-title {
+            font-size: 24px;
+            letter-spacing: -0.48px;
+        }
+    }
+
+    // Mobile: image on top, text below.
+    @include breakpoint-max(md) {
+        .eh-pilots-inner {
+            gap: 32px;
+            padding: 56px 16px;
+        }
+
+        .eh-pilots-header {
+            gap: 20px;
+        }
+
+        .eh-pilots-eyebrow {
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: 0.12px;
+        }
+
+        .eh-pilots-card {
+            flex-direction: column;
+        }
+
+        .eh-pilots-media {
+            flex: none;
+            height: auto;
+            aspect-ratio: 328 / 220;
+        }
+
+        .eh-pilots-body {
+            padding: 20px 20px 24px;
+        }
+
+        .eh-pilots-copy {
+            gap: 12px;
+        }
+
+        .eh-pilots-title {
+            font-size: 20px;
+            line-height: 1.25;
+            letter-spacing: -0.4px;
+        }
+
+        .eh-pilots-text {
+            font-size: 14px;
+        }
+
+        .eh-pilots-note {
+            margin-top: 12px;
+        }
+    }
+}

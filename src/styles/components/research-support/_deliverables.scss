@@ -1,0 +1,255 @@
+// =====================================================================
+// Research Support › Deliverables — Figma "Content" (303:1387).
+// White, 140px top/bottom. Left (flexible, 960 at 1920): label + H2, 60px
+// gap, rows with a 1px Deep Ink 10% top border, 22px padding, 380px title
+// (Lead Text), 40px gap, text (Body/M, Deep Ink 70%). 100px gap. Right:
+// 620px Mist box, 48px padding, 24px gaps: Labels/S teal label, H4,
+// Body/M text, dashed list (1px top border, 14px top padding, teal dash).
+// No mobile frame in Figma: mobile follows the Home mobile patterns.
+// Markup: components/ResearchSupport/deliverables.php
+// =====================================================================
+
+.rs-deliverables {
+    background: var(--color-white);
+    color: var(--color-ink);
+
+    .rs-deliverables-inner {
+        display: flex;
+        align-items: flex-start;
+        gap: clamp(64px, 5.21vw, 100px); // 100px at 1920
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    // ---------- Left: intro + list ----------
+
+    .rs-deliverables-main {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        gap: 60px;
+        min-width: 0;
+    }
+
+    .rs-deliverables-intro {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    // Labels/L — JetBrains Mono Medium 14 / 100%, Dark 60.
+    .rs-deliverables-eyebrow {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+    }
+
+    // Figma box is 677px; browsers set Inter ~2% wider, so 700px keeps the Figma line breaks.
+    .rs-deliverables-heading {
+        max-width: 700px;
+        margin: 0;
+        color: var(--color-heading);
+    }
+
+    .rs-deliverables-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .rs-deliverables-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 40px;
+        padding: 22px 0;
+        border-top: 1px solid var(--color-border);
+    }
+
+    // Lead Text — Inter 24 / 120% / -2%, Deep Ink, 380px column at 1920.
+    .rs-deliverables-title {
+        flex: 0 0 clamp(240px, 19.8vw, 380px);
+        min-width: 0;
+        margin: 0;
+        color: var(--color-heading);
+    }
+
+    // Body/M — 16 / 140%, Deep Ink 70%.
+    .rs-deliverables-text {
+        flex: 1 1 0;
+        min-width: 0;
+        color: rgba(11, 58, 83, 0.7);
+    }
+
+    // ---------- Right: boundaries box ----------
+
+    .rs-boundaries {
+        display: flex;
+        flex: 0 0 clamp(440px, 32.3vw, 620px); // 620px at 1920
+        flex-direction: column;
+        align-items: stretch;
+        gap: 24px;
+        min-width: 0;
+        padding: 48px;
+        background: var(--color-mist);
+    }
+
+    // Labels/S — JetBrains Mono 12 / 120% / 1%, Research Teal, no brackets.
+    .rs-boundaries-label {
+        margin: 0;
+        color: var(--color-teal);
+    }
+
+    // H4 — Inter 32 / 120% / -2%, Deep Ink.
+    .rs-boundaries-heading {
+        margin: 0;
+        color: var(--color-heading);
+    }
+
+    .rs-boundaries-text {
+        color: var(--color-ink-80);
+    }
+
+    .rs-boundaries-list {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .rs-boundaries-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding-top: 14px;
+        border-top: 1px solid var(--color-border);
+        color: var(--color-heading);
+    }
+
+    .rs-boundaries-dash {
+        flex-shrink: 0;
+        color: var(--color-teal);
+    }
+
+    .rs-boundaries-item-text {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        .rs-deliverables-inner {
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        .rs-boundaries {
+            padding: 40px;
+        }
+    }
+
+    // Box moves under the list.
+    @include breakpoint-max(xl) {
+        .rs-deliverables-inner {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 64px;
+        }
+
+        .rs-deliverables-main {
+            flex: none;
+        }
+
+        .rs-boundaries {
+            flex: none;
+            max-width: 720px;
+        }
+    }
+
+    @include breakpoint-max(lg) {
+        .rs-deliverables-inner {
+            gap: 56px;
+            padding-top: 96px;
+            padding-bottom: 96px;
+        }
+
+        .rs-deliverables-main {
+            gap: 48px;
+        }
+
+        .rs-deliverables-intro {
+            gap: 24px;
+        }
+
+        .rs-deliverables-item {
+            gap: 24px;
+        }
+
+        .rs-deliverables-title {
+            flex-basis: 260px;
+        }
+    }
+
+    // Mobile (Home mobile patterns, 360 wide): title above text.
+    @include breakpoint-max(md) {
+        .rs-deliverables-inner {
+            gap: 40px;
+            padding: 56px 16px;
+        }
+
+        .rs-deliverables-main {
+            gap: 32px;
+        }
+
+        .rs-deliverables-intro {
+            gap: 20px;
+        }
+
+        // Figma mobile: JetBrains Mono Medium 13, 0.52px tracking.
+        .rs-deliverables-eyebrow {
+            font-size: 13px;
+            line-height: normal;
+            letter-spacing: 0.52px;
+        }
+
+        .rs-deliverables-item {
+            flex-direction: column;
+            gap: 8px;
+            padding: 20px 0;
+        }
+
+        .rs-deliverables-title {
+            flex: none;
+        }
+
+        // Figma "Mobile/Body/S": Inter 14 / 140%.
+        .rs-deliverables-text {
+            flex: none;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .rs-boundaries {
+            gap: 20px;
+            max-width: none;
+            padding: 24px 20px;
+        }
+
+        .rs-boundaries-list {
+            gap: 16px;
+        }
+
+        .rs-boundaries-item {
+            gap: 12px;
+            padding-top: 12px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+    }
+}

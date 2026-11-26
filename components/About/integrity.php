@@ -46,25 +46,25 @@ $uid = wp_unique_id('about-integrity-');
     <?php echo $heading ? 'aria-labelledby="' . esc_attr($uid . '-title') . '"' : ''; ?>>
 
     <?php if ($bg) : ?>
-        <div class="about-integrity__bg" aria-hidden="true">
-            <img class="about-integrity__bg-image" src="<?php echo esc_url($bg); ?>" alt="" loading="lazy" decoding="async">
+        <div class="about-integrity-bg" aria-hidden="true">
+            <img class="about-integrity-bg-image" src="<?php echo esc_url($bg); ?>" alt="" loading="lazy" decoding="async">
         </div>
     <?php endif; ?>
 
-    <div class="about-integrity__inner">
+    <div class="about-integrity-inner">
 
         <?php if ($has_intro) : ?>
-            <div class="about-integrity__intro">
+            <div class="about-integrity-intro">
                 <?php if ($eyebrow !== '') : ?>
-                    <p class="about-integrity__eyebrow eyebrow"><?php echo esc_html($eyebrow); ?></p>
+                    <p class="about-integrity-eyebrow eyebrow"><?php echo esc_html($eyebrow); ?></p>
                 <?php endif; ?>
 
                 <?php if ($heading) : ?>
-                    <h2 class="about-integrity__heading heading-two" id="<?php echo esc_attr($uid . '-title'); ?>"><?php echo $heading; // Escaped in niyom_inline_text(). ?></h2>
+                    <h2 class="about-integrity-heading heading-two" id="<?php echo esc_attr($uid . '-title'); ?>"><?php echo $heading; // Escaped in niyom_inline_text(). ?></h2>
                 <?php endif; ?>
 
                 <?php if ($text) : ?>
-                    <div class="about-integrity__text rich-text body-large">
+                    <div class="about-integrity-text rich-text body-large">
                         <?php echo $text; // Escaped in niyom_rich_text(). ?>
                     </div>
                 <?php endif; ?>
@@ -72,17 +72,17 @@ $uid = wp_unique_id('about-integrity-');
         <?php endif; ?>
 
         <?php if ($items) : ?>
-            <ol class="about-integrity__list">
+            <ol class="about-integrity-list">
                 <?php foreach ($items as $item) : ?>
-                    <li class="about-integrity__item">
-                        <span class="about-integrity__number"><?php echo esc_html($item['number']); ?></span>
+                    <li class="about-integrity-item">
+                        <span class="about-integrity-number"><?php echo esc_html($item['number']); ?></span>
 
                         <?php if ($item['title'] !== '') : ?>
-                            <h3 class="about-integrity__title"><?php echo esc_html($item['title']); ?></h3>
+                            <h3 class="about-integrity-title"><?php echo esc_html($item['title']); ?></h3>
                         <?php endif; ?>
 
                         <?php if ($item['text']) : ?>
-                            <div class="about-integrity__item-text rich-text">
+                            <div class="about-integrity-item-text rich-text">
                                 <?php echo $item['text']; // Escaped in niyom_rich_text(). ?>
                             </div>
                         <?php endif; ?>

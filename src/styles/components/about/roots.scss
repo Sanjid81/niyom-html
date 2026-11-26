@@ -10,7 +10,7 @@
 .about-roots {
     background: var(--color-subtle-bg);
 
-    &__inner {
+    .about-roots-inner {
         display: grid;
         grid-template-columns: minmax(0, 800fr) minmax(0, 760fr); // Figma 800 / 760
         align-items: center;
@@ -23,13 +23,13 @@
 
     // ---------- Image (left) ----------
 
-    &__media {
+    .about-roots-media {
         min-width: 0;
         aspect-ratio: 800 / 640;
         overflow: hidden;
     }
 
-    &__image {
+    .about-roots-image {
         display: block;
         width: 100%;
         height: 100%;
@@ -38,7 +38,7 @@
 
     // ---------- Text (right) ----------
 
-    &__content {
+    .about-roots-content {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -48,24 +48,24 @@
     }
 
     // Desktop eyebrow is Labels/L (Mono Medium 14 / 100%); mobile uses Labels/S.
-    &__eyebrow {
+    .about-roots-eyebrow {
         font-size: 14px;
         font-weight: 500;
         line-height: 1;
         letter-spacing: 0;
     }
 
-    &__heading {
+    .about-roots-heading {
         color: var(--color-heading);
     }
 
-    &__text {
+    .about-roots-text {
         color: var(--color-text);
     }
 
     // ---------- Facts (3 columns, rule on top of each) ----------
 
-    &__facts {
+    .about-roots-facts {
         display: flex;
         align-items: flex-start;
         gap: 40px;
@@ -73,7 +73,7 @@
         margin: 0;
     }
 
-    &__fact {
+    .about-roots-fact {
         display: flex;
         flex: 1 1 0;
         flex-direction: column;
@@ -84,14 +84,14 @@
     }
 
     // Labels/S — Mono Regular 12 / 120% / 1%, uppercase.
-    &__fact-label {
+    .about-roots-fact-label {
         @extend .label-small;
         color: var(--color-muted);
     }
 
     // Body/M. Inter has no Bengali glyphs, so Bengali text (e.g. "বাংলা")
     // falls back to a Bengali system font.
-    &__fact-value {
+    .about-roots-fact-value {
         margin: 0;
         font-family: "Inter", "Noto Sans Bengali", "Nirmala UI", "Vrinda", "Bangla Sangam MN", "Kohinoor Bangla", system-ui, sans-serif;
         font-size: 16px;
@@ -101,74 +101,74 @@
     }
 
     // Text only: keep a readable line length.
-    &--no-image &__inner {
+    &--no-image .about-roots-inner {
         grid-template-columns: minmax(0, 760px);
     }
 
     // ---------- Responsive ----------
 
     @include breakpoint-max(xxl) {
-        &__inner {
+        .about-roots-inner {
             padding-top: 120px;
             padding-bottom: 120px;
         }
     }
 
     @include breakpoint-max(xl) {
-        &__inner {
+        .about-roots-inner {
             gap: 56px;
             padding-top: 100px;
             padding-bottom: 100px;
         }
 
-        &__content {
+        .about-roots-content {
             gap: 28px;
         }
 
-        &__facts {
+        .about-roots-facts {
             gap: 24px;
         }
     }
 
     // Tablet: image on top (Figma ratio), text below.
     @include breakpoint-max(lg) {
-        &__inner {
+        .about-roots-inner {
             grid-template-columns: minmax(0, 1fr);
             gap: 48px;
             padding-top: 80px;
             padding-bottom: 80px;
         }
 
-        &__content {
+        .about-roots-content {
             max-width: 760px;
         }
     }
 
     // Mobile (360).
     @include breakpoint-max(md) {
-        &__inner {
+        .about-roots-inner {
             gap: 32px;
             padding: 56px 16px;
         }
 
-        &__content {
+        .about-roots-content {
             max-width: none;
             gap: 20px;
         }
 
-        &__eyebrow {
+        .about-roots-eyebrow {
             font-size: 12px;
             font-weight: 400;
             line-height: 1.2;
             letter-spacing: 0.12px;
         }
 
-        &__facts {
+        .about-roots-facts {
             gap: 20px;
             margin-top: 12px;
         }
 
-        &__fact {
+        .about-roots-fact {
             padding-top: 16px;
             gap: 8px;
         }
@@ -176,12 +176,12 @@
 
     // Small phones: facts stack, one per row.
     @include breakpoint-max(sm) {
-        &__facts {
+        .about-roots-facts {
             flex-direction: column;
             align-items: stretch;
         }
 
-        &__fact {
+        .about-roots-fact {
             flex: none;
         }
     }

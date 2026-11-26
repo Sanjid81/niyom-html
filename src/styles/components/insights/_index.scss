@@ -1,0 +1,16 @@
+// insights listing + single article — import this folder's partials here.
+
+// Cards (listing grid + "Continue reading")
+@import "./card";
+
+// Listing page (inc/blocks/insights-block.php)
+@import "./hero";
+@import "./featured";
+@import "./grid";
+@import "./newsletter";
+
+// Single article (single-insights.php)
+@import "./single-header";
+@import "./single-body";
+@import "./single-author";
+@import "./single-related";

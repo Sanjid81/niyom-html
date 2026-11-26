@@ -8,7 +8,7 @@
 .home-insights {
     background: var(--color-subtle-bg);
 
-    &__inner {
+    .home-insights-inner {
         display: flex;
         flex-direction: column;
         gap: 60px;
@@ -20,14 +20,14 @@
 
     // ---------- Intro: titles left, button right ----------
 
-    &__intro {
+    .home-insights-intro {
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
         gap: 60px;
     }
 
-    &__titles {
+    .home-insights-titles {
         display: flex;
         flex: 1 1 auto;
         flex-direction: column;
@@ -37,57 +37,57 @@
     }
 
     // Figma: Labels/L — JetBrains Mono Medium 14 / 100%.
-    &__eyebrow {
+    .home-insights-eyebrow {
         font-size: 14px;
         font-weight: 500;
         line-height: 14px;
         letter-spacing: 0;
     }
 
-    &__heading {
+    .home-insights-heading {
         max-width: 677px;
         color: var(--color-heading);
     }
 
-    &__button {
+    .home-insights-button {
         flex-shrink: 0;
     }
 
     // ---------- Cards ----------
 
-    &__grid {
+    .home-insights-grid {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 20px;
     }
 
-    &__card {
+    .home-insights-card {
         display: flex;
         flex-direction: column;
         gap: 20px;
         min-width: 0;
     }
 
-    &__media {
+    .home-insights-media {
         display: block;
         overflow: hidden;
         aspect-ratio: 3 / 2; // Figma 300 × 200.
         background: var(--color-mist);
     }
 
-    &__image {
+    .home-insights-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
-    &__card:hover &__image {
+    .home-insights-card:hover .home-insights-image {
         transform: scale(1.04);
     }
 
     // Fills the card so the links line up when titles wrap differently.
-    &__body {
+    .home-insights-body {
         display: flex;
         flex: 1 1 auto;
         flex-direction: column;
@@ -95,11 +95,11 @@
         gap: 20px;
     }
 
-    &__link {
+    .home-insights-link {
         margin-top: auto;
     }
 
-    &__text {
+    .home-insights-text {
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -107,14 +107,14 @@
     }
 
     // "20 Jan, 2026 · CATEGORY"
-    &__meta {
+    .home-insights-meta {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         gap: 4px 10px;
     }
 
-    &__date {
+    .home-insights-date {
         font-family: var(--font-body);
         font-size: 14px;
         font-weight: 400;
@@ -124,7 +124,7 @@
         white-space: nowrap;
     }
 
-    &__dot {
+    .home-insights-dot {
         flex-shrink: 0;
         width: 4px;
         height: 4px;
@@ -133,7 +133,7 @@
     }
 
     // Figma: Labels/S — JetBrains Mono 12 / 120% / 1%, teal.
-    &__category {
+    .home-insights-category {
         font-family: var(--font-mono);
         font-size: 12px;
         font-weight: 400;
@@ -143,7 +143,7 @@
         color: var(--color-primary);
     }
 
-    &__title {
+    .home-insights-title {
         color: var(--color-heading);
 
         a {
@@ -163,7 +163,7 @@
     // ---------- Responsive ----------
 
     @include breakpoint-max(xxl) {
-        &__inner {
+        .home-insights-inner {
             padding-left: var(--container-padding);
             padding-right: var(--container-padding);
         }
@@ -171,65 +171,65 @@
 
     // Tablet: 2 × 2 grid.
     @include breakpoint-max(xl) {
-        &__inner {
+        .home-insights-inner {
             gap: 48px;
             padding-top: 112px;
             padding-bottom: 112px;
         }
 
-        &__grid {
+        .home-insights-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 48px 20px;
         }
     }
 
     @include breakpoint-max(lg) {
-        &__inner {
+        .home-insights-inner {
             padding-top: 88px;
             padding-bottom: 88px;
         }
 
-        &__intro {
+        .home-insights-intro {
             gap: 32px;
         }
 
-        &__titles {
+        .home-insights-titles {
             gap: 20px;
         }
     }
 
     // Mobile (Figma 360): stacked intro, cards scroll sideways.
     @include breakpoint-max(md) {
-        &__inner {
+        .home-insights-inner {
             gap: 32px;
             padding: 56px 16px;
         }
 
-        &__intro {
+        .home-insights-intro {
             flex-direction: column;
             align-items: flex-start;
         }
 
         // Figma: Labels/S — 12 / 120% / 1%.
-        &__eyebrow {
+        .home-insights-eyebrow {
             font-size: 12px;
             font-weight: 400;
             line-height: 14px;
             letter-spacing: 0.12px;
         }
 
-        &__heading {
+        .home-insights-heading {
             max-width: 100%;
         }
 
-        &__button {
+        .home-insights-button {
             min-height: 40px;
             padding: 8px 24px;
             font-size: 14px;
         }
 
         // Horizontal scroll with snap, edge to edge.
-        &__grid {
+        .home-insights-grid {
             display: flex;
             gap: 16px;
             margin: 0 -16px;
@@ -245,30 +245,30 @@
             }
         }
 
-        &__card {
+        .home-insights-card {
             flex: 0 0 260px;
             gap: 12px;
             scroll-snap-align: start;
         }
 
-        &__media {
+        .home-insights-media {
             aspect-ratio: 260 / 174;
         }
 
-        &__body,
-        &__text {
+        .home-insights-body,
+        .home-insights-text {
             gap: 12px;
         }
 
         // Mobile cards show category + title only (no date, no link).
-        &__date,
-        &__dot,
-        &__link {
+        .home-insights-date,
+        .home-insights-dot,
+        .home-insights-link {
             display: none;
         }
 
         // Figma: Mobile/Lead Text — Inter Medium 20 / 120%.
-        &__title {
+        .home-insights-title {
             font-size: 20px;
             font-weight: 500;
             line-height: 24px;
@@ -277,7 +277,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-        &__image {
+        .home-insights-image {
             transition: none;
         }
     }

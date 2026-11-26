@@ -38,3 +38,15 @@
 // services page
 @import "./components/services/list";
 @import "./components/services/guidance";
+
+// shared sections (used on several pages)
+@import "./components/shared/index";
+
+// inner pages
+@import "./components/computational-biosciences/index";
+@import "./components/research-support/index";
+@import "./components/scientific-engagement/index";
+@import "./components/events-hub/index";
+@import "./components/expertise/index";
+@import "./components/insights/index";
+@import "./components/work-with-us/index";

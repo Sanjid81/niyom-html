@@ -11,10 +11,17 @@ $services-list-line: rgba(11, 58, 83, 0.15);  // Figma point dividers (#0B3A53 a
 $services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 75%).
 
 .services-list {
+    // Where rows stick while stacking: under the sticky header (+ WP admin bar).
+    --services-list-top: var(--header-height);
+
     background: var(--color-subtle-bg);
     color: var(--color-ink);
 
-    &__inner {
+    .admin-bar & {
+        --services-list-top: calc(var(--header-height) + 32px);
+    }
+
+    .services-list-inner {
         display: flex;
         flex-direction: column;
         gap: 80px;
@@ -26,14 +33,14 @@ $services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 
     // ---------- Intro ----------
 
     // Bottom-aligned row pushed to both edges (760 + 360 gap + 560 at 1920).
-    &__intro {
+    .services-list-intro {
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
         gap: 60px;
     }
 
-    &__head {
+    .services-list-head {
         display: flex;
         flex: 0 1 760px;
         flex-direction: column;
@@ -43,7 +50,7 @@ $services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 
     }
 
     // Labels/L — JetBrains Mono Medium 14 / 100%, Dark 60.
-    &__eyebrow {
+    .services-list-eyebrow {
         margin: 0;
         font-family: var(--font-mono);
         font-size: 14px;
@@ -58,7 +65,7 @@ $services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 
     }
 
     // H2 — Inter 56 / 100% / -2%.
-    &__heading {
+    .services-list-heading {
         margin: 0;
         font-family: var(--font-heading);
         font-size: 56px;
@@ -73,7 +80,7 @@ $services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 
     }
 
     // Body/L — Inter 18 / 140%, Body text colour.
-    &__text {
+    .services-list-text {
         flex: 0 1 560px;
         min-width: 0;
         font-size: 18px;
@@ -83,24 +90,36 @@ $services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 
 
     // ---------- Service rows ----------
 
-    &__items {
+    .services-list-items {
         display: flex;
         flex-direction: column;
     }
 
     // 40px above and below; rows after the first get a Deep Ink rule.
-    &__item {
+    .services-list-item {
         display: flex;
         align-items: flex-start;
         gap: 80px;
         padding: 40px 0;
 
-        & + & {
+        & + .services-list-item {
             border-top: 1px solid var(--color-ink);
         }
     }
 
-    &__content {
+    // Sticky stacking (desktop, tall enough screens): each row sticks under
+    // the header and the next row slides up over it. Later rows sit on top
+    // because they come later in the DOM; the opaque background hides the
+    // row underneath. After the last row the whole list scrolls away.
+    @media (min-width: 993px) and (min-height: 760px) {
+        .services-list-item {
+            position: sticky;
+            top: var(--services-list-top);
+            background: var(--color-subtle-bg);
+        }
+    }
+
+    .services-list-content {
         display: flex;
         flex: 1 1 0;
         flex-direction: column;
@@ -110,7 +129,7 @@ $services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 
         overflow-wrap: break-word;
     }
 
-    &__item-head {
+    .services-list-item-head {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -119,7 +138,7 @@ $services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 
     }
 
     // Labels/S — JetBrains Mono 12 / 120% / 1%, Research Teal.
-    &__label {
+    .services-list-label {
         margin: 0;
         font-family: var(--font-mono);
         font-size: 12px;
@@ -131,7 +150,7 @@ $services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 
     }
 
     // H3 — Inter 42 / 120% / -2%.
-    &__title {
+    .services-list-title {
         margin: 0;
         font-family: var(--font-heading);
         font-size: 42px;
@@ -146,7 +165,7 @@ $services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 
     }
 
     // Body/M — Inter 16 / 140%, Deep Ink 75%.
-    &__desc {
+    .services-list-desc {
         width: 100%;
         font-size: 16px;
         line-height: 1.4;
@@ -154,7 +173,7 @@ $services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 
     }
 
     // Two columns, 32px apart; each point has a thin rule above it.
-    &__points {
+    .services-list-points {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         column-gap: 32px;
@@ -164,7 +183,7 @@ $services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 
         list-style: none;
     }
 
-    &__point {
+    .services-list-point {
         display: flex;
         align-items: flex-start;
         gap: 12px;
@@ -179,26 +198,26 @@ $services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 
         }
     }
 
-    &__point-arrow {
+    .services-list-point-arrow {
         flex-shrink: 0;
         color: var(--color-primary);
     }
 
-    &__point-text {
+    .services-list-point-text {
         flex: 1 1 0;
         min-width: 0;
     }
 
     // "KNOW MORE ⟶" — Figma button box is 48px tall (12px above/below),
     // 30px under the list (28px gap + 2px).
-    &__link {
+    .services-list-link {
         min-height: 48px;
         margin-top: 2px;
     }
 
     // ---------- Image: 640 × 560 at 1920 ----------
 
-    &__media {
+    .services-list-media {
         position: relative;
         flex: 0 0 38.0952%; // 640 / 1680
         margin: 0;
@@ -207,7 +226,7 @@ $services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 
         background: var(--color-mist);
     }
 
-    &__image {
+    .services-list-image {
         position: absolute;
         inset: 0;
         width: 100%;
@@ -218,83 +237,83 @@ $services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 
     // ---------- Responsive ----------
 
     @include breakpoint-max(xxl) {
-        &__inner {
+        .services-list-inner {
             gap: 64px;
             padding-top: 120px;
             padding-bottom: 120px;
         }
 
-        &__heading {
+        .services-list-heading {
             font-size: 48px;
             letter-spacing: -0.96px;
         }
 
-        &__item {
+        .services-list-item {
             gap: 56px;
         }
 
-        &__title {
+        .services-list-title {
             font-size: 36px;
             letter-spacing: -0.72px;
         }
 
-        &__media {
+        .services-list-media {
             flex-basis: 42%;
         }
     }
 
     @include breakpoint-max(xl) {
-        &__content,
-        &__item-head {
+        .services-list-content,
+        .services-list-item-head {
             gap: 24px;
         }
 
-        &__title {
+        .services-list-title {
             font-size: 32px;
             letter-spacing: -0.64px;
         }
 
-        &__item {
+        .services-list-item {
             gap: 40px;
         }
 
-        &__media {
+        .services-list-media {
             aspect-ratio: 4 / 5;
         }
     }
 
     // Tablet: intro stacks; each row shows the image above the text.
     @include breakpoint-max(lg) {
-        &__inner {
+        .services-list-inner {
             gap: 48px;
             padding-top: 96px;
             padding-bottom: 96px;
         }
 
-        &__intro {
+        .services-list-intro {
             flex-direction: column;
             align-items: flex-start;
             gap: 24px;
         }
 
-        &__head {
+        .services-list-head {
             flex: none;
             gap: 24px;
             max-width: 760px;
         }
 
-        &__heading {
+        .services-list-heading {
             font-size: 42px;
             line-height: 1.1;
             letter-spacing: -0.6px;
         }
 
-        &__text {
+        .services-list-text {
             flex: none;
             max-width: 600px;
         }
 
-        &__item {
+        .services-list-item {
             flex-direction: column;
             gap: 32px;
             padding: 40px 0;
@@ -304,14 +323,14 @@ $services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 
             }
         }
 
-        &__media {
+        .services-list-media {
             flex: none;
             order: -1;
             width: 100%;
             aspect-ratio: 16 / 9;
         }
 
-        &__content {
+        .services-list-content {
             flex: none;
             width: 100%;
         }
@@ -319,23 +338,23 @@ $services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 
 
     // Mobile (Home mobile patterns, 360 wide).
     @include breakpoint-max(md) {
-        &__inner {
+        .services-list-inner {
             gap: 40px;
             padding: 56px 16px;
         }
 
-        &__head {
+        .services-list-head {
             gap: 20px;
         }
 
-        &__eyebrow {
+        .services-list-eyebrow {
             font-size: 12px;
             line-height: normal;
             letter-spacing: 0.48px;
         }
 
         // Mobile H2 — 34 / 115% / -1%.
-        &__heading {
+        .services-list-heading {
             font-size: 34px;
             line-height: 1.15;
             letter-spacing: -0.34px;
@@ -345,23 +364,23 @@ $services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 
             }
         }
 
-        &__text {
+        .services-list-text {
             max-width: none;
             font-size: 16px;
         }
 
-        &__item {
+        .services-list-item {
             gap: 24px;
             padding: 32px 0;
         }
 
-        &__content,
-        &__item-head {
+        .services-list-content,
+        .services-list-item-head {
             gap: 16px;
         }
 
         // Mobile H3 — 28 / 120%.
-        &__title {
+        .services-list-title {
             font-size: 28px;
             letter-spacing: -0.14px;
 
@@ -370,26 +389,26 @@ $services-list-muted: rgba(11, 58, 83, 0.75); // Figma service text (#0B3A53 at 
             }
         }
 
-        &__desc {
+        .services-list-desc {
             font-size: 14px;
         }
 
         // One column of points on phones.
-        &__points {
+        .services-list-points {
             grid-template-columns: minmax(0, 1fr);
         }
 
-        &__point {
+        .services-list-point {
             padding: 12px 0;
             font-size: 14px;
         }
 
-        &__link {
+        .services-list-link {
             min-height: 40px;
             margin-top: 0;
         }
 
-        &__media {
+        .services-list-media {
             aspect-ratio: 328 / 240;
         }
     }

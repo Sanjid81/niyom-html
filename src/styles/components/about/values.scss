@@ -11,7 +11,7 @@
     background: var(--color-surface-2); // Figma "surface 2" #FAFAFA
     color: var(--color-ink);
 
-    &__inner {
+    .about-values-inner {
         display: flex;
         flex-direction: column;
         gap: 72px;
@@ -22,14 +22,14 @@
 
     // ---------- Intro ----------
 
-    &__intro {
+    .about-values-intro {
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
         gap: 120px;
     }
 
-    &__copy {
+    .about-values-copy {
         display: flex;
         flex: 1 1 auto;
         flex-direction: column;
@@ -38,7 +38,7 @@
     }
 
     // Figma "Labels/L": JetBrains Mono Medium 14 / 100%, Dark 60%.
-    &__eyebrow {
+    .about-values-eyebrow {
         font-size: 14px;
         font-weight: 500;
         line-height: 1;
@@ -46,14 +46,14 @@
         color: var(--color-ink-60);
     }
 
-    &__heading {
+    .about-values-heading {
         max-width: 840px; // Figma box 820px; browsers set Inter slightly wider.
         color: var(--color-ink);
     }
 
     // Figma "Body/L": Inter 18 / 140%, Body text, 520px box (+10px: browsers
     // set Inter slightly wider, this keeps the Figma line breaks).
-    &__text {
+    .about-values-text {
         flex: 0 1 530px;
         max-width: 530px;
         color: var(--color-ink-80);
@@ -62,7 +62,7 @@
     // ---------- Cards ----------
 
     // Cards overlap by 1px (Figma mr -1) so neighbouring borders stay 1px.
-    &__grid {
+    .about-values-grid {
         display: grid;
         grid-template-columns: repeat(var(--cards, 4), minmax(0, 1fr));
         margin: 0;
@@ -70,7 +70,7 @@
         list-style: none;
     }
 
-    &__card {
+    .about-values-card {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -83,7 +83,7 @@
     }
 
     // Figma "Labels/S": JetBrains Mono 12 / 120% / 1%, Research Teal.
-    &__number {
+    .about-values-number {
         font-family: var(--font-mono);
         font-size: 12px;
         font-weight: 400;
@@ -93,7 +93,7 @@
         color: var(--color-teal);
     }
 
-    &__body {
+    .about-values-body {
         display: flex;
         flex-direction: column;
         gap: 12px;
@@ -101,7 +101,7 @@
     }
 
     // Figma "Lead Text": Inter 24 / 120% / -2%.
-    &__title {
+    .about-values-title {
         font-family: var(--font-heading);
         font-size: 24px;
         font-weight: 400;
@@ -111,7 +111,7 @@
     }
 
     // Figma "Body/M": Inter 16 / 140%, Body text.
-    &__card-text {
+    .about-values-card-text {
         font-size: 16px;
         line-height: 1.4;
         color: var(--color-ink-80);
@@ -120,26 +120,26 @@
     // ---------- Responsive ----------
 
     @include breakpoint-max(xxl) {
-        &__inner {
+        .about-values-inner {
             gap: 64px;
             padding-top: 120px;
             padding-bottom: 120px;
         }
 
-        &__intro {
+        .about-values-intro {
             gap: 80px;
         }
 
-        &__text {
+        .about-values-text {
             flex-basis: 440px;
         }
 
-        &__card {
+        .about-values-card {
             gap: 48px;
             padding: 28px 28px 36px;
         }
 
-        &__title {
+        .about-values-title {
             font-size: 22px;
             letter-spacing: -0.44px;
         }
@@ -147,75 +147,75 @@
 
     // Tablet: 2 × 2 cards.
     @include breakpoint-max(xl) {
-        &__grid {
+        .about-values-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
     }
 
     @include breakpoint-max(lg) {
-        &__inner {
+        .about-values-inner {
             gap: 48px;
             padding-top: 96px;
             padding-bottom: 96px;
         }
 
-        &__intro {
+        .about-values-intro {
             flex-direction: column;
             align-items: flex-start;
             gap: 24px;
         }
 
-        &__copy {
+        .about-values-copy {
             gap: 24px;
         }
 
-        &__text {
+        .about-values-text {
             flex: none;
             max-width: 640px;
         }
 
-        &__card {
+        .about-values-card {
             gap: 40px;
         }
     }
 
     // Mobile (Home mobile patterns): one column, 16px sides.
     @include breakpoint-max(md) {
-        &__inner {
+        .about-values-inner {
             gap: 32px;
             padding: 56px 16px;
         }
 
-        &__copy {
+        .about-values-copy {
             gap: 20px;
         }
 
-        &__intro {
+        .about-values-intro {
             gap: 20px;
         }
 
         // Figma mobile: JetBrains Mono Medium 13, 0.52px tracking.
-        &__eyebrow {
+        .about-values-eyebrow {
             font-size: 13px;
             line-height: normal;
             letter-spacing: 0.52px;
         }
 
-        &__grid {
+        .about-values-grid {
             grid-template-columns: minmax(0, 1fr);
         }
 
-        &__card {
+        .about-values-card {
             gap: 24px;
             padding: 20px 20px 24px;
         }
 
-        &__body {
+        .about-values-body {
             gap: 8px;
         }
 
         // Figma mobile card titles: Inter Medium 18.
-        &__title {
+        .about-values-title {
             font-size: 18px;
             font-weight: 500;
             line-height: 1.3;
@@ -223,7 +223,7 @@
         }
 
         // Figma "Mobile/Body/S": Inter 14 / 140%.
-        &__card-text {
+        .about-values-card-text {
             font-size: 14px;
         }
     }

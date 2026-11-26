@@ -8,7 +8,7 @@
 .home-global {
     background: var(--color-white);
 
-    &__inner {
+    .home-global-inner {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -21,7 +21,7 @@
 
     // ---------- Text (left) ----------
 
-    &__content {
+    .home-global-content {
         display: flex;
         flex: 0 0 611px; // text keeps its width; the globe shrinks.
         flex-direction: column;
@@ -30,7 +30,7 @@
         min-width: 0;
     }
 
-    &__header {
+    .home-global-header {
         display: flex;
         flex-direction: column;
         gap: 30px;
@@ -38,24 +38,24 @@
     }
 
     // Desktop eyebrow is Labels/L (Mono Medium 14 / 100%); mobile uses Labels/S.
-    &__eyebrow {
+    .home-global-eyebrow {
         font-size: 14px;
         font-weight: 500;
         line-height: 1;
         letter-spacing: 0;
     }
 
-    &__heading {
+    .home-global-heading {
         color: var(--color-heading);
     }
 
-    &__text {
+    .home-global-text {
         color: var(--color-text);
     }
 
     // ---------- Globe (right) ----------
 
-    &__media {
+    .home-global-media {
         position: relative;
         flex: 0 1 866px;
         min-width: 0;
@@ -64,35 +64,35 @@
         background: var(--color-white);
     }
 
-    &__image,
-    &__video {
+    .home-global-image,
+    .home-global-video {
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
 
     // Video plays over the image (which stays as the fallback).
-    &__video {
+    .home-global-video {
         position: absolute;
         inset: 0;
     }
 
     // Text only: let the text use the full row.
-    &--no-media &__content {
+    &--no-media .home-global-content {
         flex-basis: 760px;
     }
 
     // ---------- Responsive ----------
 
     @include breakpoint-max(xxl) {
-        &__content {
+        .home-global-content {
             flex-basis: 520px;
         }
     }
 
     // Tablet / small laptop: text on top, globe below (centred, Figma size max).
     @include breakpoint-max(xl) {
-        &__inner {
+        .home-global-inner {
             flex-direction: column;
             align-items: stretch;
             gap: 48px;
@@ -100,17 +100,17 @@
             padding-bottom: 100px;
         }
 
-        &__content {
+        .home-global-content {
             flex: none;
             max-width: 640px;
             gap: 40px;
         }
 
-        &__header {
+        .home-global-header {
             gap: 24px;
         }
 
-        &__media {
+        .home-global-media {
             flex: none;
             width: 100%;
             max-width: 866px;
@@ -120,7 +120,7 @@
     }
 
     @include breakpoint-max(lg) {
-        &__inner {
+        .home-global-inner {
             padding-top: 72px;
             padding-bottom: 80px;
         }
@@ -128,21 +128,21 @@
 
     // Mobile (Figma 360).
     @include breakpoint-max(md) {
-        &__inner {
+        .home-global-inner {
             gap: 32px;
             padding: 56px 16px;
         }
 
-        &__content {
+        .home-global-content {
             max-width: none;
             gap: 32px;
         }
 
-        &__header {
+        .home-global-header {
             gap: 20px;
         }
 
-        &__eyebrow {
+        .home-global-eyebrow {
             font-size: 12px;
             font-weight: 400;
             line-height: 1.2;
@@ -152,7 +152,7 @@
 
     // Reduced motion: no autoplaying video, show the still image.
     @media (prefers-reduced-motion: reduce) {
-        &__media.has-video &__image + &__video {
+        .home-global-media.has-video .home-global-image + .home-global-video {
             display: none;
         }
     }

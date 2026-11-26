@@ -12,9 +12,9 @@ import { A11y, Autoplay, EffectFade, Keyboard } from "swiper/modules";
 const reduceMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function setupBanner(root) {
-  const sliderEl = root.querySelector(".home-banner__slider");
-  const tabs = Array.from(root.querySelectorAll(".home-banner__tab"));
-  const slideCount = root.querySelectorAll(".home-banner__slide").length;
+  const sliderEl = root.querySelector(".home-banner-slider");
+  const tabs = Array.from(root.querySelectorAll(".home-banner-tab"));
+  const slideCount = root.querySelectorAll(".home-banner-slide").length;
 
   if (!sliderEl || slideCount < 2) {
     return;
@@ -24,7 +24,7 @@ function setupBanner(root) {
   const wantsAutoplay = root.dataset.autoplay === "true" && !reduced;
   const delay = parseInt(root.dataset.delay, 10) || 6000;
 
-  const tabsRow = root.querySelector(".home-banner__tabs");
+  const tabsRow = root.querySelector(".home-banner-tabs");
   const visible = Math.min(3, tabs.length);
 
   // Show 3 tabs at a time; keep the active one in the middle when possible.

@@ -1,0 +1,35 @@
+// =====================================================================
+// Shared › Tag pills — Figma component "Tag" (281:35): Mist fill, teal
+// 20% border, fully rounded, Inter Medium 14 / 160% in Research Teal.
+// <ul class="shared-tags"><li class="shared-tag">Study design</li></ul>
+// Used by: components/ComputationalBiosciences/areas.php
+// =====================================================================
+
+.shared-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.shared-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border: 1px solid rgba(8, 122, 128, 0.2);
+    border-radius: 40px;
+    background: var(--color-mist);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--color-teal);
+    white-space: nowrap;
+
+    @include breakpoint-max(md) {
+        padding: 4px 10px;
+        font-size: 13px;
+    }
+}

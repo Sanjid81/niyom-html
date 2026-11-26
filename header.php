@@ -31,50 +31,50 @@ $mobile_location = has_nav_menu('mobile_menu') || !has_nav_menu('main_menu') ? '
     <a class="skip-link" href="#main"><?php esc_html_e('Skip to content', 'niyom'); ?></a>
 
     <header class="site-header" data-site-header>
-        <div class="site-header__inner">
+        <div class="site-header-inner">
 
             <?php echo niyom_logo('header'); ?>
 
-            <nav class="site-header__nav" aria-label="<?php esc_attr_e('Main menu', 'niyom'); ?>">
+            <nav class="site-header-nav" aria-label="<?php esc_attr_e('Main menu', 'niyom'); ?>">
                 <?php
                 wp_nav_menu([
                     'theme_location' => 'main_menu',
                     'container'      => false,
-                    'menu_class'     => 'site-header__menu',
+                    'menu_class'     => 'site-header-menu',
                     'depth'          => 2,
                     'fallback_cb'    => 'niyom_menu_fallback',
                 ]);
                 ?>
             </nav>
 
-            <div class="site-header__actions">
+            <div class="site-header-actions">
                 <?php if ($has_button) : ?>
-                    <a class="btn btn--primary btn--m site-header__button" <?php echo niyom_link_attrs($btn_link, $btn_new_tab); ?>>
+                    <a class="btn btn--primary btn--m site-header-button" <?php echo niyom_link_attrs($btn_link, $btn_new_tab); ?>>
                         <span><?php echo esc_html($btn_text); ?></span>
-                        <?php echo niyom_icon('arrow-right', 'btn__arrow btn__arrow--lg'); ?>
+                        <?php echo niyom_icon('arrow-right', 'btn-arrow btn-arrow--lg'); ?>
                     </a>
                 <?php endif; ?>
 
-                <button class="site-header__toggle" type="button"
+                <button class="site-header-toggle" type="button"
                     aria-controls="site-mobile-nav"
                     aria-expanded="false"
                     aria-label="<?php esc_attr_e('Open menu', 'niyom'); ?>"
                     data-label-open="<?php esc_attr_e('Open menu', 'niyom'); ?>"
                     data-label-close="<?php esc_attr_e('Close menu', 'niyom'); ?>">
-                    <?php echo niyom_icon('menu', 'site-header__toggle-open', false); ?>
-                    <?php echo niyom_icon('close', 'site-header__toggle-close', false); ?>
+                    <?php echo niyom_icon('menu', 'site-header-toggle-open', false); ?>
+                    <?php echo niyom_icon('close', 'site-header-toggle-close', false); ?>
                 </button>
             </div>
         </div>
 
         <!-- Mobile expanded menu -->
-        <div class="site-header__panel" id="site-mobile-nav">
-            <nav class="site-header__panel-nav" aria-label="<?php esc_attr_e('Mobile menu', 'niyom'); ?>">
+        <div class="site-header-panel" id="site-mobile-nav">
+            <nav class="site-header-panel-nav" aria-label="<?php esc_attr_e('Mobile menu', 'niyom'); ?>">
                 <?php
                 wp_nav_menu([
                     'theme_location' => $mobile_location,
                     'container'      => false,
-                    'menu_class'     => 'site-header__mobile-menu',
+                    'menu_class'     => 'site-header-mobile-menu',
                     'depth'          => 2,
                     'fallback_cb'    => 'niyom_menu_fallback',
                 ]);
@@ -82,10 +82,10 @@ $mobile_location = has_nav_menu('mobile_menu') || !has_nav_menu('main_menu') ? '
             </nav>
 
             <?php if ($has_button) : ?>
-                <div class="site-header__panel-cta">
-                    <a class="btn btn--primary site-header__panel-button" <?php echo niyom_link_attrs($btn_link, $btn_new_tab); ?>>
+                <div class="site-header-panel-cta">
+                    <a class="btn btn--primary site-header-panel-button" <?php echo niyom_link_attrs($btn_link, $btn_new_tab); ?>>
                         <span><?php echo esc_html($btn_text); ?></span>
-                        <?php echo niyom_icon('arrow-right-sm', 'btn__arrow'); ?>
+                        <?php echo niyom_icon('arrow-right-sm', 'btn-arrow'); ?>
                     </a>
                 </div>
             <?php endif; ?>

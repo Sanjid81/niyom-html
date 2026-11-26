@@ -40,11 +40,11 @@ if (!$image) {
 ?>
 
 <section class="<?php echo esc_attr(implode(' ', $classes)); ?>">
-    <div class="about-roots__inner">
+    <div class="about-roots-inner">
 
         <?php if ($image) : ?>
-            <div class="about-roots__media">
-                <img class="about-roots__image"
+            <div class="about-roots-media">
+                <img class="about-roots-image"
                     src="<?php echo esc_url($image); ?>"
                     alt="<?php echo esc_attr($image_alt); ?>"
                     loading="lazy"
@@ -53,30 +53,30 @@ if (!$image) {
         <?php endif; ?>
 
         <?php if ($has_content) : ?>
-            <div class="about-roots__content">
+            <div class="about-roots-content">
                 <?php if ($eyebrow) : ?>
-                    <p class="about-roots__eyebrow eyebrow"><?php echo esc_html($eyebrow); ?></p>
+                    <p class="about-roots-eyebrow eyebrow"><?php echo esc_html($eyebrow); ?></p>
                 <?php endif; ?>
 
                 <?php if ($heading) : ?>
-                    <h2 class="about-roots__heading heading-two"><?php echo $heading; // Escaped in niyom_inline_text(). ?></h2>
+                    <h2 class="about-roots-heading heading-two"><?php echo $heading; // Escaped in niyom_inline_text(). ?></h2>
                 <?php endif; ?>
 
                 <?php if ($text) : ?>
-                    <div class="about-roots__text rich-text body-large">
+                    <div class="about-roots-text rich-text body-large">
                         <?php echo $text; // Escaped in niyom_rich_text(). ?>
                     </div>
                 <?php endif; ?>
 
                 <?php if ($facts) : ?>
-                    <dl class="about-roots__facts">
+                    <dl class="about-roots-facts">
                         <?php foreach ($facts as $fact) : ?>
-                            <div class="about-roots__fact">
+                            <div class="about-roots-fact">
                                 <?php if ($fact['label'] !== '') : ?>
-                                    <dt class="about-roots__fact-label"><?php echo esc_html($fact['label']); ?></dt>
+                                    <dt class="about-roots-fact-label"><?php echo esc_html($fact['label']); ?></dt>
                                 <?php endif; ?>
                                 <?php if ($fact['value'] !== '') : ?>
-                                    <dd class="about-roots__fact-value"><?php echo $fact['value']; // Escaped in niyom_inline_text(). ?></dd>
+                                    <dd class="about-roots-fact-value"><?php echo $fact['value']; // Escaped in niyom_inline_text(). ?></dd>
                                 <?php endif; ?>
                             </div>
                         <?php endforeach; ?>

@@ -15,7 +15,7 @@ foreach ([1, 2, 3] as $n) {
     $menu = wp_nav_menu([
         'theme_location' => 'footer_menu_' . $n,
         'container'      => false,
-        'menu_class'     => 'site-footer__links',
+        'menu_class'     => 'site-footer-links',
         'menu_id'        => 'footer-links-' . $n,
         'depth'          => 1,
         'fallback_cb'    => 'niyom_menu_fallback',
@@ -52,27 +52,27 @@ $has_bottom = $copyright !== '' || $has_credit || $social;
 
     <?php if ($has_top || $has_bottom) : ?>
         <footer class="site-footer">
-            <div class="site-footer__container">
+            <div class="site-footer-container">
 
                 <?php if ($has_top) : ?>
-                    <div class="site-footer__top">
+                    <div class="site-footer-top">
                         <?php echo $logo; // Escaped in niyom_logo(). ?>
 
                         <?php if ($columns) : ?>
-                            <div class="site-footer__columns<?php echo count($columns) === 3 ? ' site-footer__columns--figma' : ''; ?>"
+                            <div class="site-footer-columns<?php echo count($columns) === 3 ? ' site-footer-columns--figma' : ''; ?>"
                                 style="--footer-cols: <?php echo (int) count($columns); ?>;">
                                 <?php foreach ($columns as $i => $column) :
                                     $list_id = $column['id'];
                                     $open    = $i === 0;
                                     ?>
-                                    <div class="site-footer__col<?php echo $open ? ' is-open' : ''; ?><?php echo $column['title'] === '' ? ' site-footer__col--untitled' : ''; ?>" data-footer-col>
+                                    <div class="site-footer-col<?php echo $open ? ' is-open' : ''; ?><?php echo $column['title'] === '' ? ' site-footer-col--untitled' : ''; ?>" data-footer-col>
                                         <?php if ($column['title'] !== '') : ?>
-                                            <h2 class="site-footer__col-title">
-                                                <button type="button" class="site-footer__col-toggle"
+                                            <h2 class="site-footer-col-title">
+                                                <button type="button" class="site-footer-col-toggle"
                                                     aria-controls="<?php echo esc_attr($list_id); ?>"
                                                     aria-expanded="<?php echo $open ? 'true' : 'false'; ?>">
                                                     <span><?php echo esc_html($column['title']); ?></span>
-                                                    <span class="site-footer__pm" aria-hidden="true"></span>
+                                                    <span class="site-footer-pm" aria-hidden="true"></span>
                                                 </button>
                                             </h2>
                                         <?php endif; ?>
@@ -86,19 +86,19 @@ $has_bottom = $copyright !== '' || $has_credit || $social;
                 <?php endif; ?>
 
                 <?php if ($has_bottom) : ?>
-                    <div class="site-footer__bottom">
+                    <div class="site-footer-bottom">
                         <?php if ($copyright !== '' || $has_credit) : ?>
-                            <div class="site-footer__legal">
+                            <div class="site-footer-legal">
                                 <?php if ($copyright !== '') : ?>
-                                    <p class="site-footer__copyright"><?php echo esc_html($copyright); ?></p>
+                                    <p class="site-footer-copyright"><?php echo esc_html($copyright); ?></p>
                                 <?php endif; ?>
 
                                 <?php if ($copyright !== '' && $has_credit) : ?>
-                                    <span class="site-footer__divider" aria-hidden="true"></span>
+                                    <span class="site-footer-divider" aria-hidden="true"></span>
                                 <?php endif; ?>
 
                                 <?php if ($has_credit) : ?>
-                                    <p class="site-footer__credit">
+                                    <p class="site-footer-credit">
                                         <?php echo esc_html($credit_text); ?>
                                         <?php if ($credit_label !== '') : ?>
                                             <?php if ($credit_url !== '') : ?>
@@ -113,7 +113,7 @@ $has_bottom = $copyright !== '' || $has_credit || $social;
                         <?php endif; ?>
 
                         <?php if ($social) : ?>
-                            <ul class="site-footer__social">
+                            <ul class="site-footer-social">
                                 <?php foreach ($social as $item) :
                                     $label = trim($item['label'] ?? '');
                                     ?>
@@ -123,7 +123,7 @@ $has_bottom = $copyright !== '' || $has_credit || $social;
                                             <?php if (!empty($item['icon'])) : ?>
                                                 <?php echo niyom_media_icon($item['icon']); // Cleaned in niyom_clean_svg(). ?>
                                             <?php else : ?>
-                                                <span class="site-footer__social-text"><?php echo esc_html($label); ?></span>
+                                                <span class="site-footer-social-text"><?php echo esc_html($label); ?></span>
                                             <?php endif; ?>
                                         </a>
                                     </li>

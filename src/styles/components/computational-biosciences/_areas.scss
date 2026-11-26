@@ -1,0 +1,188 @@
+// =====================================================================
+// Computational Biosciences › Areas — Figma "04 — Capabilities" (294:8423).
+// Warm off-white (#FCFBF7), 140px top/bottom: 480px intro column (label,
+// H2, 420px text), 120px gap, numbered list. Each row: 1px top border
+// (Deep Ink 20%), 40px padding, 60px number column + 48px gap, H4 title,
+// text and tag pills (16px apart).
+// No mobile frame in Figma: mobile follows the Home mobile patterns.
+// Markup: components/ComputationalBiosciences/areas.php
+// =====================================================================
+
+.cb-areas {
+    background: var(--color-subtle-bg);
+
+    .cb-areas-inner {
+        display: flex;
+        align-items: flex-start;
+        gap: 120px;
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 140px var(--container-padding);
+    }
+
+    // ---------- Intro ----------
+
+    .cb-areas-intro {
+        display: flex;
+        flex: 0 0 480px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+        min-width: 0;
+    }
+
+    // Labels/L — JetBrains Mono Medium 14 / 100%, Dark 60.
+    .cb-areas-eyebrow {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0;
+    }
+
+    .cb-areas-heading {
+        margin: 0;
+        color: var(--color-heading);
+    }
+
+    .cb-areas-text {
+        max-width: 420px;
+        color: var(--color-ink-80);
+    }
+
+    // ---------- List ----------
+
+    .cb-areas-list {
+        flex: 1 1 0;
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .cb-areas-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 48px;
+        padding: 40px 0;
+        border-top: 1px solid rgba(11, 58, 83, 0.2);
+    }
+
+    // Labels/S — JetBrains Mono 12 / 120% / 1%, Research Teal, 60px column.
+    .cb-areas-number {
+        flex: 0 0 60px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.12px;
+        text-transform: uppercase;
+        color: var(--color-teal);
+    }
+
+    .cb-areas-body {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        min-width: 0;
+    }
+
+    // H4 — Inter 32 / 120% / -2%, Deep Ink.
+    .cb-areas-title {
+        margin: 0;
+        color: var(--color-heading);
+    }
+
+    // Body/M — 16 / 140%, Body text.
+    .cb-areas-item-text {
+        color: var(--color-ink-80);
+    }
+
+    // ---------- Responsive ----------
+
+    @include breakpoint-max(xxl) {
+        .cb-areas-inner {
+            gap: 80px;
+            padding-top: 120px;
+            padding-bottom: 120px;
+        }
+
+        .cb-areas-intro {
+            flex-basis: 400px;
+        }
+    }
+
+    @include breakpoint-max(xl) {
+        .cb-areas-inner {
+            gap: 56px;
+        }
+
+        .cb-areas-intro {
+            flex-basis: 320px;
+        }
+
+        .cb-areas-item {
+            gap: 24px;
+            padding: 32px 0;
+        }
+
+        .cb-areas-number {
+            flex-basis: 32px;
+        }
+    }
+
+    // Tablet: intro above the list.
+    @include breakpoint-max(lg) {
+        .cb-areas-inner {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 48px;
+            padding-top: 96px;
+            padding-bottom: 96px;
+        }
+
+        .cb-areas-intro {
+            flex: none;
+            max-width: 640px;
+            gap: 24px;
+        }
+
+        .cb-areas-list {
+            flex: none;
+        }
+    }
+
+    // Mobile (Home mobile patterns, 360 wide).
+    @include breakpoint-max(md) {
+        .cb-areas-inner {
+            gap: 32px;
+            padding: 56px 16px;
+        }
+
+        .cb-areas-intro {
+            gap: 20px;
+        }
+
+        .cb-areas-eyebrow {
+            font-size: 12px;
+            line-height: normal;
+            letter-spacing: 0.48px;
+        }
+
+        .cb-areas-item {
+            gap: 16px;
+            padding: 24px 0;
+        }
+
+        .cb-areas-number {
+            flex-basis: 20px;
+            padding-top: 6px;
+        }
+
+        .cb-areas-body {
+            gap: 12px;
+        }
+    }
+}
